@@ -1,0 +1,15 @@
+.headerItem{
+    text-align: center;
+    padding-top: 10px;
+    font-size: xx-large;
+    font-family: 'Roboto';
+    color:#676565;
+}
+
+span:hover{
+    cursor: pointer;
+}
+
+.headerItem>span:hover{
+    color: #dcb31a;
+}
