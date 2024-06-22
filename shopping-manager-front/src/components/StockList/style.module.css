@@ -17,8 +17,20 @@
 .cellStockList{
     padding: 20px;
     font-size: large;
+    text-align: center;
 }
 
 .cell{
     padding: 50px;
+}
+
+.indexFood{
+    font-size: 20px;
+    padding: 27px;
+}
+
+.nameFood{
+    font-size: 28px;
+    font-weight: 500;
+    color: #a6aab6;
 }
