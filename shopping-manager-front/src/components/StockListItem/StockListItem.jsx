@@ -1,17 +1,23 @@
 import s from "./style.module.css";
 import { Pictogramme } from "../Pictogramme/Pictogramme";
 
-export function StockListItem({ element }) {
+export function StockListItem({ element, clickName }) {
   const nameFoodClasses = `${s.cellStockList} ${s.nameFood}`;
   const indiceFoodClasses = `${s.cellStockList} ${s.indexFood}`;
-  const darkrow =
-    element.Id % 2 == 0
-      ? `${s.headerStockList}`
-      : `${s.headerStockList} ${s.darkrow}`;
+
+  function clickButtonName(actionName) {
+    alert("You go to the action of " + actionName);
+  }
+
   return (
-    <div className={`row ${darkrow}`}>
+    <div className={`row ${s.headerStockList}`}>
       <div className={`col-2 ${indiceFoodClasses}`}>{element.Id}</div>
-      <div className={`col-2 ${nameFoodClasses}`}>{element.Name}</div>
+      <div
+        className={`col-2 ${nameFoodClasses}`}
+        onClick={() => clickName(element.Name)}
+      >
+        {element.Name}
+      </div>
       <div className={`col-2 ${s.cellStockList}`}>
         <Pictogramme pictoName={element.Type} height={50} width={50} />
       </div>
@@ -20,8 +26,22 @@ export function StockListItem({ element }) {
         <Pictogramme pictoName={element.Status} height={50} width={50} />
       </div>
       <div className={`col-2 ${s.cellStockList}`}>
-        <Pictogramme pictoName={"sup"} height={50} width={50} />
-        <Pictogramme pictoName={"edit"} height={50} width={50} />
+        <Pictogramme
+          className={`${s.deleteButton}`}
+          pictoName={"sup"}
+          height={50}
+          width={50}
+          clickName={clickButtonName}
+          actionName={"delete"}
+        />
+        <Pictogramme
+          className={`${s.editButton}`}
+          pictoName={"edit"}
+          height={50}
+          width={50}
+          clickName={clickButtonName}
+          actionName={"edit"}
+        />
       </div>
     </div>
   );

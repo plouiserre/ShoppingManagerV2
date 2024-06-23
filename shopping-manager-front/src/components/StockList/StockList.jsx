@@ -46,6 +46,10 @@ export function StockList() {
     Status: "warning",
   });
 
+  function clickElementName(name) {
+    alert("You go to the page of " + name);
+  }
+
   return (
     <div className={`${s.allStocks}`}>
       <div className={`row ${s.headerStockList}`}>
@@ -57,7 +61,7 @@ export function StockList() {
         <div className={`col-2 ${s.cellStockList}`}>Action</div>
       </div>
       {stocks.map((stock) => {
-        return <StockListItem element={stock} />;
+        return <StockListItem element={stock} clickName={clickElementName} />;
       })}
     </div>
   );

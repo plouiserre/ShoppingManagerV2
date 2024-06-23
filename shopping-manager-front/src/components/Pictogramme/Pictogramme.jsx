@@ -7,7 +7,14 @@ import warning from "../../assets/images/warning.png";
 import sup from "../../assets/images/delete.png";
 import edit from "../../assets/images/edit.png";
 
-export function Pictogramme({ pictoName, height, width }) {
+export function Pictogramme({
+  pictoName,
+  height,
+  width,
+  className,
+  clickName,
+  actionName,
+}) {
   function getPictoFromPictoName(name) {
     if (name === "vegetables") return vegetables;
     else if (name === "meat") return meat;
@@ -21,6 +28,12 @@ export function Pictogramme({ pictoName, height, width }) {
   }
 
   return (
-    <img src={getPictoFromPictoName(pictoName)} height={height} width={width} />
+    <img
+      className={`${className}`}
+      src={getPictoFromPictoName(pictoName)}
+      height={height}
+      width={width}
+      onClick={() => clickName(actionName)}
+    />
   );
 }
