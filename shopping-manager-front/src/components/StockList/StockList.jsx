@@ -1,9 +1,50 @@
 import s from "./style.module.css";
-import { Pictogramme } from "../Pictogramme/Pictogramme";
+import { StockListItem } from "../StockListItem/StockListItem";
 
 export function StockList() {
-  const nameFoodClasses = `${s.cellStockList} ${s.nameFood}`;
-  const indiceFoodClasses = `${s.cellStockList} ${s.indexFood}`;
+  const stocks = [];
+  stocks.push({
+    Id: 1,
+    Name: "Carotte",
+    Type: "vegetables",
+    Quantity: 2,
+    Status: "ok",
+  });
+  stocks.push({
+    Id: 2,
+    Name: "Lapin",
+    Type: "meat",
+    Quantity: 3,
+    Status: "ok",
+  });
+  stocks.push({
+    Id: 3,
+    Name: "Boeuf",
+    Type: "meat",
+    Quantity: 2,
+    Status: "error",
+  });
+  stocks.push({
+    Id: 4,
+    Name: "Yaourt",
+    Type: "breakfast",
+    Quantity: 8,
+    Status: "ok",
+  });
+  stocks.push({
+    Id: 5,
+    Name: "Taboule",
+    Type: "vegetables",
+    Quantity: 1,
+    Status: "ok",
+  });
+  stocks.push({
+    Id: 6,
+    Name: "Brocolis",
+    Type: "vegetables",
+    Quantity: 5,
+    Status: "warning",
+  });
 
   return (
     <div className={`${s.allStocks}`}>
@@ -15,96 +56,9 @@ export function StockList() {
         <div className={`col-2 ${s.cellStockList}`}>Status</div>
         <div className={`col-2 ${s.cellStockList}`}>Action</div>
       </div>
-      <div className={`row ${s.stockListItem}`}>
-        <div className={`col-2 ${indiceFoodClasses}`}>1</div>
-        <div className={`col-2 ${nameFoodClasses}`}>Carotte</div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"vegetables"} height={50} width={50} />
-        </div>
-        <div className={`col-2 ${indiceFoodClasses}`}>2</div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"ok"} height={50} width={50} />
-        </div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"sup"} height={50} width={50} />
-          <Pictogramme pictoName={"edit"} height={50} width={50} />
-        </div>
-      </div>
-      <div className={`row ${s.stockListItem}`}>
-        <div className={`col-2 ${indiceFoodClasses}`}>2</div>
-        <div className={`col-2 ${nameFoodClasses}`}>Lapin</div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"meat"} height={50} width={50} />
-        </div>
-        <div className={`col-2 ${indiceFoodClasses}`}>3</div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"ok"} height={50} width={50} />
-        </div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"sup"} height={50} width={50} />
-          <Pictogramme pictoName={"edit"} height={50} width={50} />
-        </div>
-      </div>
-      <div className={`row ${s.stockListItem}`}>
-        <div className={`col-2 ${indiceFoodClasses}`}>3</div>
-        <div className={`col-2 ${nameFoodClasses}`}>Boeuf</div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"meat"} height={50} width={50} />
-        </div>
-        <div className={`col-2 ${indiceFoodClasses}`}>2</div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"error"} height={50} width={50} />
-        </div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"sup"} height={50} width={50} />
-          <Pictogramme pictoName={"edit"} height={50} width={50} />
-        </div>
-      </div>
-      <div className={`row ${s.stockListItem}`}>
-        <div className={`col-2 ${indiceFoodClasses}`}>4</div>
-        <div className={`col-2 ${nameFoodClasses}`}>Yaourt</div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"breakfast"} height={50} width={50} />
-        </div>
-        <div className={`col-2 ${indiceFoodClasses}`}>8</div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"ok"} height={50} width={50} />
-        </div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"sup"} height={50} width={50} />
-          <Pictogramme pictoName={"edit"} height={50} width={50} />
-        </div>
-      </div>
-      <div className={`row ${s.stockListItem}`}>
-        <div className={`col-2 ${indiceFoodClasses}`}>5</div>
-        <div className={`col-2 ${nameFoodClasses}`}>Taboulé</div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"vegetables"} height={50} width={50} />
-        </div>
-        <div className={`col-2 ${indiceFoodClasses}`}>1</div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"ok"} height={50} width={50} />
-        </div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"sup"} height={50} width={50} />
-          <Pictogramme pictoName={"edit"} height={50} width={50} />
-        </div>
-      </div>
-      <div className={`row ${s.stockListItem}`}>
-        <div className={`col-2 ${indiceFoodClasses}`}>6</div>
-        <div className={`col-2 ${nameFoodClasses}`}>Brocolis</div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"vegetables"} height={50} width={50} />
-        </div>
-        <div className={`col-2 ${indiceFoodClasses}`}>5</div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"warning"} height={50} width={50} />
-        </div>
-        <div className={`col-2 ${s.cellStockList}`}>
-          <Pictogramme pictoName={"sup"} height={50} width={50} />
-          <Pictogramme pictoName={"edit"} height={50} width={50} />
-        </div>
-      </div>
+      {stocks.map((stock) => {
+        return <StockListItem element={stock} />;
+      })}
     </div>
   );
 }
