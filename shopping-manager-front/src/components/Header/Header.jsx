@@ -12,8 +12,8 @@ export function Header(props) {
   return (
     <div className={`row ${s.header}`}>
       <Logo onClick={() => navigate("/")} />
-      {headerItems.map((headerItem) => {
-        return <HeaderItem itemName={headerItem} onClick={goToPage} />;
+      {headerItems.map((headerItem, i) => {
+        return <HeaderItem itemName={headerItem} onClick={goToPage} key={i} />;
       })}
     </div>
   );
