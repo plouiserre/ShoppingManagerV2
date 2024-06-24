@@ -3,9 +3,24 @@ import { AddElement } from "../../components/AddElement/AddElement";
 import s from "./style.module.css";
 
 export function AddStock() {
-  const [name, setName] = useState("");
-  const [type, setType] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [stock, setStock] = useState({
+    name: "",
+    type: "",
+    quantity: 1,
+    datePeremption: Date(),
+  });
+
+  function saveStock() {
+    console.log(
+      stock.name +
+        " " +
+        stock.type +
+        " " +
+        stock.quantity +
+        " " +
+        stock.datePeremption
+    );
+  }
   return (
     <div>
       <form className={`container-fluid ${s.formStock}`}>
@@ -22,8 +37,10 @@ export function AddStock() {
           <div className="col-4">
             <input
               type="text"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
+              value={stock.name}
+              onChange={(event) =>
+                setStock({ ...stock, name: event.target.value })
+              }
             />
           </div>
           <div className="col-2"></div>
@@ -33,9 +50,9 @@ export function AddStock() {
           <div className="col-3">Type</div>
           <div className="col-4">
             <select
-              value={type}
+              value={stock.type}
               onChange={(event) => {
-                setType(event.target.value);
+                setStock({ ...stock, type: event.target.value });
               }}
             >
               <option>Sélectionner une valeur</option>
@@ -53,9 +70,23 @@ export function AddStock() {
           <div className="col-4">
             <input
               type="number"
-              value={quantity}
+              value={stock.quantity}
               onChange={(event) => {
-                setQuantity(event.target.value);
+                setStock({ ...stock, quantity: event.target.value });
+              }}
+            />
+          </div>
+          <div className="col-2"></div>
+        </div>
+        <div className={`row ${s.lineForm}`}>
+          <div className="col-3"></div>
+          <div className="col-3">Date de péremption</div>
+          <div className="col-4">
+            <input
+              type="date"
+              value={stock.datePeremption}
+              onChange={(event) => {
+                setStock({ ...stock, datePeremption: event.target.value });
               }}
             />
           </div>
@@ -66,9 +97,7 @@ export function AddStock() {
           <div className="col-7">
             <AddElement
               labelButton={"Enregistrer"}
-              actionButton={() =>
-                console.log(name + " " + type + " " + quantity)
-              }
+              actionButton={() => saveStock()}
             />
           </div>
           <div className="col-2"></div>
