@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { AddElement } from "../../components/AddElement/AddElement";
+import { ValidateStock } from "../../domain/validateStock";
 import s from "./style.module.css";
+import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 
 export function AddStock() {
   const [stock, setStock] = useState({
@@ -10,16 +12,24 @@ export function AddStock() {
     datePeremption: Date(),
   });
 
+  const [visibility, setVisibility] = useState(false);
+
   function saveStock() {
-    console.log(
-      stock.name +
-        " " +
-        stock.type +
-        " " +
-        stock.quantity +
-        " " +
-        stock.datePeremption
-    );
+    var result = ValidateStock(stock);
+    setVisibility(!result);
+    if (result) {
+      console.log(
+        stock.name +
+          " " +
+          stock.type +
+          " " +
+          stock.quantity +
+          " " +
+          stock.datePeremption
+      );
+    } else {
+      console.log("validation wrong");
+    }
   }
   return (
     <div>
@@ -31,6 +41,9 @@ export function AddStock() {
             <div className="col-2"></div>
           </div>
         </div>
+        {visibility && (
+          <ErrorMessage messageError={"Le stock n'est pas valide"} />
+        )}
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-3">Nom</div>
@@ -86,7 +99,11 @@ export function AddStock() {
               type="date"
               value={stock.datePeremption}
               onChange={(event) => {
-                setStock({ ...stock, datePeremption: event.target.value });
+                setStock({
+                  ...stock,
+                  datePeremption: event.target.value,
+                  isDateSelected: true,
+                });
               }}
             />
           </div>
