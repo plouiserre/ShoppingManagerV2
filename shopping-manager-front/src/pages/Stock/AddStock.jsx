@@ -17,20 +17,8 @@ export function AddStock() {
   function saveStock() {
     var result = ValidateStock(stock);
     setVisibility(!result);
-    if (result) {
-      console.log(
-        stock.name +
-          " " +
-          stock.type +
-          " " +
-          stock.quantity +
-          " " +
-          stock.datePeremption
-      );
-    } else {
-      console.log("validation wrong");
-    }
   }
+
   return (
     <div>
       <form className={`container-fluid ${s.formStock}`}>
