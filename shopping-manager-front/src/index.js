@@ -9,11 +9,12 @@ import { Food } from './pages/Food/Food';
 import { List } from './pages/List/List';
 import { AddStock } from './pages/Stock/AddStock';
 import { Provider } from 'react-redux';
+import {store, persistor} from "./store"
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <Provider>
+  <Provider store= {store}>
       <BrowserRouter>
       <Routes>
           <Route path="/" element={<App/>}>
@@ -25,5 +26,5 @@ root.render(
           </Route>
         </Routes>
       </BrowserRouter>
-  // </Provider>
+  </Provider>
 );

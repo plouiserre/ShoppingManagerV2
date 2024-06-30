@@ -3,8 +3,11 @@ import { AddElement } from "../../components/AddElement/AddElement";
 import { ValidateStock } from "../../domain/validateStock";
 import s from "./style.module.css";
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
+import { useDispatch } from "react-redux";
+import { addStock } from "../../store/stock/stock-slice";
 
 export function AddStock() {
+  const dispatch = useDispatch();
   const [stock, setStock] = useState({
     name: "",
     type: "",
@@ -17,6 +20,9 @@ export function AddStock() {
   function saveStock() {
     var result = ValidateStock(stock);
     setVisibility(!result);
+    if (result) {
+      dispatch(addStock(stock));
+    }
   }
 
   return (
