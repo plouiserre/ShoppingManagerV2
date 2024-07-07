@@ -1,7 +1,9 @@
 import s from "./style.module.css";
 import { StockListItem } from "../StockListItem/StockListItem";
+// import { useSelector } from "react-redux";
 
 export function StockList() {
+  //const stocksBis = useSelector((store) => store.STOCK.stocks);
   const stocks = [];
   stocks.push({
     Id: 1,
