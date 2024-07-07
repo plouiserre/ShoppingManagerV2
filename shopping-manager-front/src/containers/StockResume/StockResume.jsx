@@ -1,4 +1,4 @@
-import { AddElement } from "../AddElement/AddElement";
+import { AddElement } from "../../components/AddElement/AddElement";
 import { useNavigate } from "react-router-dom";
 import s from "./style.module.css";
 import { useSelector } from "react-redux";

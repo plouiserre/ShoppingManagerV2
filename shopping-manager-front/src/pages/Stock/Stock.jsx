@@ -1,5 +1,5 @@
 import { AddElement } from "../../components/AddElement/AddElement";
-import { StockList } from "../../components/StockList/StockList";
+import { StockList } from "../../containers/StockList/StockList";
 import { useNavigate } from "react-router-dom";
 
 export function Stock() {

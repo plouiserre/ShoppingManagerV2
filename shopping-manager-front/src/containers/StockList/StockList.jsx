@@ -1,5 +1,5 @@
 import s from "./style.module.css";
-import { StockListItem } from "../StockListItem/StockListItem";
+import { StockListItem } from "../../components/StockListItem/StockListItem";
 import { useSelector } from "react-redux";
 
 export function StockList() {
