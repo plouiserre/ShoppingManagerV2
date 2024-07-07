@@ -9,18 +9,28 @@ import { addStockItem } from "../../store/stock/stock-slice";
 export function AddStock() {
   const dispatch = useDispatch();
   const [stock, setStock] = useState({
-    name: "",
-    type: "",
-    quantity: 1,
-    datePeremption: Date(),
+    Name: "",
+    Type: "",
+    Quantity: 1,
+    DatePeremption: Date(),
   });
 
   const [visibility, setVisibility] = useState(false);
 
+  //TODO rewrite this code
+  function setType(stock) {
+    if (stock.Type == "Viande blanche" || stock.Type == "Viande rouge")
+      stock.Type = "meat";
+    else if (stock.Type == "Légumes") stock.Type = "vegetables";
+    else stock.Type = "breakfast";
+  }
+
+  //TODO rewrite this code
   function saveStock() {
     var result = ValidateStock(stock);
     setVisibility(!result);
     if (result) {
+      setType(stock);
       dispatch(addStockItem(stock));
     }
   }
@@ -44,9 +54,9 @@ export function AddStock() {
           <div className="col-4">
             <input
               type="text"
-              value={stock.name}
+              value={stock.Name}
               onChange={(event) =>
-                setStock({ ...stock, name: event.target.value })
+                setStock({ ...stock, Name: event.target.value })
               }
             />
           </div>
@@ -57,9 +67,9 @@ export function AddStock() {
           <div className="col-3">Type</div>
           <div className="col-4">
             <select
-              value={stock.type}
+              value={stock.Type}
               onChange={(event) => {
-                setStock({ ...stock, type: event.target.value });
+                setStock({ ...stock, Type: event.target.value });
               }}
             >
               <option>Sélectionner une valeur</option>
@@ -77,9 +87,9 @@ export function AddStock() {
           <div className="col-4">
             <input
               type="number"
-              value={stock.quantity}
+              value={stock.Quantity}
               onChange={(event) => {
-                setStock({ ...stock, quantity: event.target.value });
+                setStock({ ...stock, Quantity: event.target.value });
               }}
             />
           </div>
@@ -91,12 +101,12 @@ export function AddStock() {
           <div className="col-4">
             <input
               type="date"
-              value={stock.datePeremption}
+              value={stock.DatePeremption}
               onChange={(event) => {
                 setStock({
                   ...stock,
-                  datePeremption: event.target.value,
-                  isDateSelected: true,
+                  DatePeremption: event.target.value,
+                  IsDateSelected: true,
                 });
               }}
             />

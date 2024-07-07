@@ -3,21 +3,21 @@ export function ValidateStock(stock){
 }
 
 function ValidateStockName(stock){
-    if(stock.name === undefined || stock.name === "")
+    if(stock.Name === undefined || stock.Name === "")
         return false;
     else
         return true;
 }
 
 function ValidateStockType(stock){
-    if(stock.type === undefined || stock.type ==="")
+    if(stock.Type === undefined || stock.Type ==="")
         return false;
     else
         return true;
 }
 
 function ValidateDate(stock){
-    var datePeremption = new Date(stock.datePeremption)
+    var datePeremption = new Date(stock.DatePeremption)
     var dateNow = new Date()
-    return stock.isDateSelected && dateNow < datePeremption
+    return stock.IsDateSelected && dateNow < datePeremption
 }
