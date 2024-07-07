@@ -3,15 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export const stockSlice = createSlice({
     name:"stockSlice",
     initialState:{
-        stocks:[]
+        stockItemList:[]
     },
     reducers:{
-        addStock:(currentSlice, action)=>{
-            currentSlice.stocks.push({...action.payload});
+        addStockItem:(currentSlice, action)=>{
+            currentSlice.stockItemList.push({...action.payload});
         }
     }
 })
 
-const {addStock} = stockSlice.actions;
+const {addStockItem} = stockSlice.actions;
 
-export {addStock}
+export {addStockItem}

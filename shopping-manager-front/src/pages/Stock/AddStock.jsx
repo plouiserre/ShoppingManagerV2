@@ -4,7 +4,7 @@ import { ValidateStock } from "../../domain/validateStock";
 import s from "./style.module.css";
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 import { useDispatch } from "react-redux";
-import { addStock } from "../../store/stock/stock-slice";
+import { addStockItem } from "../../store/stock/stock-slice";
 
 export function AddStock() {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export function AddStock() {
     var result = ValidateStock(stock);
     setVisibility(!result);
     if (result) {
-      dispatch(addStock(stock));
+      dispatch(addStockItem(stock));
     }
   }
 

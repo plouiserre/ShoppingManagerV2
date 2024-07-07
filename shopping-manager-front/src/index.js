@@ -10,13 +10,15 @@ import { List } from './pages/List/List';
 import { AddStock } from './pages/Stock/AddStock';
 import { Provider } from 'react-redux';
 import {store, persistor} from "./store"
+import { PersistGate } from 'redux-persist/integration/react';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store= {store}>
+    <PersistGate persistor={persistor}>
       <BrowserRouter>
-      <Routes>
+        <Routes>
           <Route path="/" element={<App/>}>
             <Route path="/" element={<Welcome/>}/>
             <Route path="/Stock/" element={<Stock/>}/>
@@ -26,5 +28,6 @@ root.render(
           </Route>
         </Routes>
       </BrowserRouter>
+      </PersistGate>
   </Provider>
 );
