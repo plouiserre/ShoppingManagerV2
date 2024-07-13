@@ -18,17 +18,21 @@ function setStatus(element){
 export const stockSlice = createSlice({
     name:"stockSlice",
     initialState:{
-        stocks:[]
+        stocks:[],
+        stocksSelected:[]
     },
     reducers:{
         addStockItem:(currentSlice, action)=>{
             getId(currentSlice.stocks, action.payload);
             setStatus(action.payload)
             currentSlice.stocks.push({...action.payload});
+        },
+        selectStockItem:(currentSlice, action) =>{
+            currentSlice.stocksSelected.push({...action.payload});
         }
     }
 })
 
-const {addStockItem} = stockSlice.actions;
+const {addStockItem, selectStockItem} = stockSlice.actions;
 
-export {addStockItem}
+export {addStockItem, selectStockItem}
