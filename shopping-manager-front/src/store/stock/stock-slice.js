@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 function getId(elements, elementToAdd){
     if(elements !== undefined){
@@ -30,12 +30,15 @@ export const stockSlice = createSlice({
         selectStockItem:(currentSlice, action) =>{
             currentSlice.stocksSelected.push({...action.payload});
         },
+        deselectStockItem:(currentSlice, action)=>{
+            currentSlice.stocksSelected = currentSlice.stocksSelected.filter(item => item.Id !== action.payload.Id)
+        },
         emptySelectStockItem:(currentSlice, action) =>{
             currentSlice.stocksSelected = []
         }
     }
 })
 
-const {addStockItem, selectStockItem, emptySelectStockItem} = stockSlice.actions;
+const {addStockItem, selectStockItem, emptySelectStockItem, deselectStockItem} = stockSlice.actions;
 
-export {addStockItem, selectStockItem, emptySelectStockItem}
+export {addStockItem, selectStockItem, emptySelectStockItem, deselectStockItem}

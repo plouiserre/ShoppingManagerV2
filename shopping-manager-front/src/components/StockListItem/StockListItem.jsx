@@ -1,15 +1,20 @@
 import s from "./style.module.css";
 import { Pictogramme } from "../Pictogramme/Pictogramme";
 import { useDispatch } from "react-redux";
-import { selectStockItem } from "../../store/stock/stock-slice";
+import {
+  selectStockItem,
+  deselectStockItem,
+} from "../../store/stock/stock-slice";
 
 export function StockListItem({ element, clickName }) {
   const dispatch = useDispatch();
   const nameFoodClasses = `${s.cellStockList} ${s.nameFood}`;
   const indiceFoodClasses = `${s.cellStockList} ${s.indexFood}`;
 
-  function selectStockElement(element) {
-    dispatch(selectStockItem(element));
+  function selectStockElement(stockElement, element) {
+    var isChecked = element.target.checked;
+    if (isChecked) dispatch(selectStockItem(stockElement));
+    else dispatch(deselectStockItem(stockElement));
   }
 
   return (
@@ -34,7 +39,7 @@ export function StockListItem({ element, clickName }) {
           type="checkbox"
           value=""
           id="flexCheckDefault"
-          onChange={() => selectStockElement(element)}
+          onChange={(e) => selectStockElement(element, e)}
         ></input>
       </div>
     </div>
