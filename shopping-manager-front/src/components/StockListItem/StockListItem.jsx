@@ -8,10 +8,6 @@ export function StockListItem({ element, clickName }) {
   const nameFoodClasses = `${s.cellStockList} ${s.nameFood}`;
   const indiceFoodClasses = `${s.cellStockList} ${s.indexFood}`;
 
-  function clickButtonName(actionName) {
-    alert("You go to the action of " + actionName);
-  }
-
   function selectStockElement(element) {
     dispatch(selectStockItem(element));
   }

@@ -1,13 +1,21 @@
 import s from "./style.module.css";
 import { StockListItem } from "../../components/StockListItem/StockListItem";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { emptySelectStockItem } from "../../store/stock/stock-slice";
 
 export function StockList() {
+  const dispatch = useDispatch();
   const stocks = useSelector((store) => store.STOCK.stocks);
 
   function clickElementName(name) {
     alert("You go to the page of " + name);
   }
+
+  useEffect(() => {
+    dispatch(emptySelectStockItem());
+  }, []);
 
   return (
     <div className={`${s.allStocks}`}>
