@@ -5,24 +5,26 @@ import {
   selectStockItem,
   deselectStockItem,
 } from "../../store/stock/stock-slice";
+import { useEffect, useState } from "react";
 
 export function StockListItem({ element, clickName }) {
-  getStatusIcon(element);
+  const [status, setStatus] = useState();
   const dispatch = useDispatch();
   const nameFoodClasses = `${s.cellStockList} ${s.nameFood}`;
   const indiceFoodClasses = `${s.cellStockList} ${s.indexFood}`;
 
-  function getStatusIcon(element) {
+  useEffect(() => {
     var peremtion = new Date(element.DatePeremption);
     var today = new Date();
     if (peremtion < today) {
-      element.Status = "error";
+      setStatus("error");
     } else {
-      const diffTime = Math.abs(peremtion - today);
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays < 2) element.Status = "warning";
+      var diffTime = Math.abs(peremtion - today);
+      var diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays < 2) setStatus("warning");
+      else setStatus("ok");
     }
-  }
+  }, [element]);
 
   function selectStockElement(stockElement, element) {
     var isChecked = element.target.checked;
@@ -44,7 +46,7 @@ export function StockListItem({ element, clickName }) {
       </div>
       <div className={`col-2 ${indiceFoodClasses}`}>{element.Quantity}</div>
       <div className={`col-2 ${s.cellStockList}`}>
-        <Pictogramme pictoName={element.Status} height={50} width={50} />
+        <Pictogramme pictoName={status} height={50} width={50} />
       </div>
       <div className={`col-2 ${s.cellStockList}`}>
         <input
