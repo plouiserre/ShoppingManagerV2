@@ -7,9 +7,22 @@ import {
 } from "../../store/stock/stock-slice";
 
 export function StockListItem({ element, clickName }) {
+  getStatusIcon(element);
   const dispatch = useDispatch();
   const nameFoodClasses = `${s.cellStockList} ${s.nameFood}`;
   const indiceFoodClasses = `${s.cellStockList} ${s.indexFood}`;
+
+  function getStatusIcon(element) {
+    var peremtion = new Date(element.DatePeremption);
+    var today = new Date();
+    if (peremtion < today) {
+      element.Status = "error";
+    } else {
+      const diffTime = Math.abs(peremtion - today);
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays < 2) element.Status = "warning";
+    }
+  }
 
   function selectStockElement(stockElement, element) {
     var isChecked = element.target.checked;
