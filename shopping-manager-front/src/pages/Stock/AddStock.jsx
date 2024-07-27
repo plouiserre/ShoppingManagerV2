@@ -19,9 +19,9 @@ export function AddStock() {
 
   //TODO rewrite this code
   function setType(stock) {
-    if (stock.Type == "Viande blanche" || stock.Type == "Viande rouge")
+    if (stock.Type === "Viande blanche" || stock.Type === "Viande rouge")
       stock.Type = "meat";
-    else if (stock.Type == "Légumes") stock.Type = "vegetables";
+    else if (stock.Type === "Légumes") stock.Type = "vegetables";
     else stock.Type = "breakfast";
   }
 
@@ -42,8 +42,8 @@ export function AddStock() {
           <div className="col-3"></div>
           <div className="col-7">
             <h1 className={`${s.titleForm}`}>Nouvel élément</h1>
-            <div className="col-2"></div>
           </div>
+          <div className="col-2"></div>
         </div>
         {visibility && (
           <ErrorMessage messageError={"Le stock n'est pas valide"} />

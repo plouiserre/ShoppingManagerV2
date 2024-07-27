@@ -11,6 +11,7 @@ import { AddStock } from './pages/Stock/AddStock';
 import { Provider } from 'react-redux';
 import {store, persistor} from "./store"
 import { PersistGate } from 'redux-persist/integration/react';
+import { StockDetail } from './pages/Stock/StockDetail';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,6 +24,7 @@ root.render(
             <Route path="/" element={<Welcome/>}/>
             <Route path="/Stock/" element={<Stock/>}/>
             <Route path="/Stock/add" element={<AddStock/>}/>
+            <Route path="/Stock/:id" element={<StockDetail/>}/>
             <Route path="/Repas/" element={<Food/>}/>
             <Route path="/Liste/" element={<List/>}/>
           </Route>

@@ -33,14 +33,12 @@ export function StockListItem({ element, clickName }) {
   }
 
   return (
-    <div className={`row ${s.headerStockList}`}>
+    <div
+      className={`row ${s.headerStockList}`}
+      onClick={() => clickName(element.Id)}
+    >
       <div className={`col-2 ${indiceFoodClasses}`}>{element.Id}</div>
-      <div
-        className={`col-2 ${nameFoodClasses}`}
-        onClick={() => clickName(element.Name)}
-      >
-        {element.Name}
-      </div>
+      <div className={`col-2 ${nameFoodClasses}`}>{element.Name}</div>
       <div className={`col-2 ${s.cellStockList}`}>
         <Pictogramme pictoName={element.Type} height={50} width={50} />
       </div>

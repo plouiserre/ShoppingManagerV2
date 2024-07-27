@@ -5,13 +5,15 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { emptySelectStockItem } from "../../store/stock/stock-slice";
 import { Pictogramme } from "../../components/Pictogramme/Pictogramme";
+import { useNavigate } from "react-router-dom";
 
 export function StockList() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const stocks = useSelector((store) => store.STOCK.stocks);
 
-  function clickElementName(name) {
-    alert("You go to the page of " + name);
+  function clickStockElement(id) {
+    navigate("/stock/" + id);
   }
 
   useEffect(() => {
@@ -34,7 +36,9 @@ export function StockList() {
           <div className={`col-2 ${s.cellStockList}`}>Action</div>
         </div>
         {stocks.map((stock) => {
-          return <StockListItem element={stock} clickName={clickElementName} />;
+          return (
+            <StockListItem element={stock} clickName={clickStockElement} />
+          );
         })}
       </div>
     </>
