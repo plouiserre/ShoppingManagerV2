@@ -3,6 +3,7 @@ import { Pictogramme } from "../../components/Pictogramme/Pictogramme";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AddElement } from "../../components/AddElement/AddElement";
+import { Status } from "../../components/Status/Status";
 
 export function StockDetail() {
   var navigate = useNavigate();
@@ -37,7 +38,7 @@ export function StockDetail() {
         <div className="col-3"></div>
         <div className="col-2">Status</div>
         <div className={`col-3 ${s.quantityNumber}`}>
-          <Pictogramme pictoName={stock.Status} height={50} width={50} />
+          <Status element={stock} />
         </div>
         <div className="col-3"></div>
       </div>
