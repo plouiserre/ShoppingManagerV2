@@ -5,6 +5,7 @@ import s from "./style.module.css";
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 import { useDispatch } from "react-redux";
 import { addStockItem } from "../../store/stock/stock-slice";
+import { StockSubElement } from "../../components/StockSubElement/StockSubElement";
 
 export function AddStock() {
   const dispatch = useDispatch();
@@ -25,6 +26,10 @@ export function AddStock() {
     else stock.Type = "breakfast";
   }
 
+  function addSubElements() {
+    alert("test");
+  }
+
   //TODO rewrite this code
   function saveStock() {
     var result = ValidateStock(stock);
@@ -41,7 +46,7 @@ export function AddStock() {
         <div className="row">
           <div className="col-3"></div>
           <div className="col-7">
-            <h1 className={`${s.titleForm}`}>Nouvel élément</h1>
+            <h1 className={`${s.titleForm}`}>Nouvel stock</h1>
           </div>
           <div className="col-2"></div>
         </div>
@@ -81,34 +86,13 @@ export function AddStock() {
           </div>
           <div className="col-2"></div>
         </div>
+        <StockSubElement />
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
-          <div className="col-3">Quantité</div>
-          <div className="col-4">
-            <input
-              type="number"
-              value={stock.Quantity}
-              onChange={(event) => {
-                setStock({ ...stock, Quantity: event.target.value });
-              }}
-            />
-          </div>
-          <div className="col-2"></div>
-        </div>
-        <div className={`row ${s.lineForm}`}>
-          <div className="col-3"></div>
-          <div className="col-3">Date de péremption</div>
-          <div className="col-4">
-            <input
-              type="date"
-              value={stock.DatePeremption}
-              onChange={(event) => {
-                setStock({
-                  ...stock,
-                  DatePeremption: event.target.value,
-                  IsDateSelected: true,
-                });
-              }}
+          <div className="col-7">
+            <AddElement
+              labelButton={"Nouveaux sous éléments"}
+              actionButton={() => addSubElements()}
             />
           </div>
           <div className="col-2"></div>
