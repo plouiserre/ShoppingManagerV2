@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 export function StockResume() {
   const navigate = useNavigate();
   const stocks = useSelector((store) => store.STOCK.stocks);
-  const elementsLoaded = stocks.length > 0;
+  const elementsLoaded = stocks !== undefined && stocks.length > 0;
   return (
     <div>
       <h1>Stock Actuel</h1>
@@ -20,8 +20,10 @@ export function StockResume() {
       <div style={{ display: elementsLoaded ? "block" : "none" }}>
         <p>
           Aujourd'hui il y a{" "}
-          <span className={`${s.elementStock}`}>{stocks.length}</span> éléments
-          dans le stock
+          <span className={`${s.elementStock}`}>
+            {stocks !== undefined ? stocks.length : 0}
+          </span>{" "}
+          éléments dans le stock
         </p>
         <AddElement
           labelButton={"Liste Stock actuel"}

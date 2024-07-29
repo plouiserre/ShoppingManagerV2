@@ -19,7 +19,8 @@ export const stockSlice = createSlice({
     name:"stockSlice",
     initialState:{
         stocks:[],
-        stocksSelected:[]
+        stocksSelected:[], 
+        stock : {}
     },
     reducers:{
         addStockItem:(currentSlice, action)=>{
