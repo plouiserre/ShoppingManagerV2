@@ -32,14 +32,18 @@ export function AddStock() {
   }
 
   function addSubElements() {
-    //externalize in a new method
-    var lastKey = keys[keys.length - 1];
-    var newKey = lastKey + 1;
-    setKeys([...keys, newKey]);
+    var newKey = manageKeysSubElements();
     setButtonAddSubElement([
       ...buttonAddSubElement,
       <StockSubElement stock={stock} setStock={setStock} key={newKey} />,
     ]);
+  }
+
+  function manageKeysSubElements() {
+    var lastKey = keys[keys.length - 1];
+    var newKey = lastKey + 1;
+    setKeys([...keys, newKey]);
+    return newKey;
   }
 
   //TODO rewrite this code
