@@ -1,12 +1,5 @@
-import { useState } from "react";
 import s from "./style.module.css";
-export function StockSubElement() {
-  const [stock, setStock] = useState({
-    Name: "",
-    Type: "",
-    Quantity: 1,
-    DatePeremption: Date(),
-  });
+export function StockSubElement({ stock, setStock }) {
   return (
     <>
       <div className={`row ${s.lineForm}`}>

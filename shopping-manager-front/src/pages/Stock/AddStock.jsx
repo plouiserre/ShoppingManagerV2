@@ -8,6 +8,7 @@ import { addStockItem } from "../../store/stock/stock-slice";
 import { StockSubElement } from "../../components/StockSubElement/StockSubElement";
 
 export function AddStock() {
+  //var keys = [0];
   const dispatch = useDispatch();
   const [stock, setStock] = useState({
     Name: "",
@@ -16,7 +17,11 @@ export function AddStock() {
     DatePeremption: Date(),
   });
 
+  const [buttonAddSubElement, setButtonAddSubElement] = useState([]);
+
   const [visibility, setVisibility] = useState(false);
+
+  const [keys, setKeys] = useState([0]);
 
   //TODO rewrite this code
   function setType(stock) {
@@ -27,7 +32,14 @@ export function AddStock() {
   }
 
   function addSubElements() {
-    alert("test");
+    //externalize in a new method
+    var lastKey = keys[keys.length - 1];
+    var newKey = lastKey + 1;
+    setKeys([...keys, newKey]);
+    setButtonAddSubElement([
+      ...buttonAddSubElement,
+      <StockSubElement stock={stock} setStock={setStock} key={newKey} />,
+    ]);
   }
 
   //TODO rewrite this code
@@ -86,7 +98,8 @@ export function AddStock() {
           </div>
           <div className="col-2"></div>
         </div>
-        <StockSubElement />
+        <StockSubElement stock={stock} setStock={setStock} />
+        {buttonAddSubElement}
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-7">
