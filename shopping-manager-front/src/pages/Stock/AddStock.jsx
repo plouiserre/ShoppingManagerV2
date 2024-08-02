@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AddElement } from "../../components/AddElement/AddElement";
+import { CustomButton } from "../../components/CustomButton/CustomButton";
 import { ValidateStock } from "../../domain/validateStock";
 import s from "./style.module.css";
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
@@ -86,7 +86,7 @@ export function AddStock() {
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-7">
-            <AddElement
+            <CustomButton
               labelButton={"Enregistrer"}
               actionButton={() => saveStock()}
             />

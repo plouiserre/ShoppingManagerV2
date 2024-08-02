@@ -1,5 +1,4 @@
 import s from "./style.module.css";
-import { AddElement } from "../../components/AddElement/AddElement";
 export function StockSubElement({ stock, setStock }) {
   return (
     <>

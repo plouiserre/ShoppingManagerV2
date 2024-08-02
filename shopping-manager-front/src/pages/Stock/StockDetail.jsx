@@ -2,7 +2,7 @@ import s from "./style.module.css";
 import { Pictogramme } from "../../components/Pictogramme/Pictogramme";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { AddElement } from "../../components/AddElement/AddElement";
+import { CustomButton } from "../../components/CustomButton/CustomButton";
 import { Status } from "../../components/Status/Status";
 
 export function StockDetail() {
@@ -45,7 +45,7 @@ export function StockDetail() {
       <div className="row">
         <div className="col-3"></div>
         <div className="col-2">
-          <AddElement
+          <CustomButton
             labelButton={"Mettre à jour cet élément"}
             actionButton={() => navigate("/stock/edit/" + id)}
           />

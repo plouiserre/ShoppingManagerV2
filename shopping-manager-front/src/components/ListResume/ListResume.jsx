@@ -1,5 +1,5 @@
 import s from "./style.module.css";
-import { AddElement } from "../AddElement/AddElement";
+import { CustomButton } from "../CustomButton/CustomButton";
 
 export function ListResume() {
   function simulateBehavior() {
@@ -9,7 +9,7 @@ export function ListResume() {
     <div>
       <h1>Listes de course enregistrées</h1>
       <p className={`${s.text}`}>Aucun liste programmée pour le moment</p>
-      <AddElement
+      <CustomButton
         labelButton={"Ajouter une nouvelle liste"}
         actionButton={simulateBehavior}
       />

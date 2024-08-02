@@ -1,4 +1,4 @@
-import { AddElement } from "../../components/AddElement/AddElement";
+import { CustomButton } from "../../components/CustomButton/CustomButton";
 import { useNavigate } from "react-router-dom";
 import s from "./style.module.css";
 import { useSelector } from "react-redux";
@@ -12,7 +12,7 @@ export function StockResume() {
       <h1>Stock Actuel</h1>
       <div style={{ display: !elementsLoaded ? "block" : "none" }}>
         <p className={`${s.text}`}>Aucun stock programmé pour le moment</p>
-        <AddElement
+        <CustomButton
           labelButton={"Ajouter un nouvel élément"}
           actionButton={() => navigate("/stock/add/")}
         />
@@ -25,7 +25,7 @@ export function StockResume() {
           </span>{" "}
           éléments dans le stock
         </p>
-        <AddElement
+        <CustomButton
           labelButton={"Liste Stock actuel"}
           actionButton={() => navigate("/stock/")}
         />

@@ -1,4 +1,4 @@
-import { AddElement } from "../../components/AddElement/AddElement";
+import { CustomButton } from "../../components/CustomButton/CustomButton";
 import { StockList } from "../../containers/StockList/StockList";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ export function Stock() {
   return (
     <>
       <StockList />
-      <AddElement
+      <CustomButton
         labelButton={"Ajouter un nouvel élément"}
         actionButton={() => navigate("/stock/add/")}
       />
