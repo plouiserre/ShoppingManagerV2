@@ -3,8 +3,10 @@ import { StockListItem } from "../../components/StockListItem/StockListItem";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { emptySelectStockItem } from "../../store/stock/stock-slice";
-import { Pictogramme } from "../../components/Pictogramme/Pictogramme";
+import {
+  emptySelectStockItem,
+  deleteSelectStockItem,
+} from "../../store/stock/stock-slice";
 import { CustomButton } from "../../components/CustomButton/CustomButton";
 import { useNavigate } from "react-router-dom";
 
@@ -23,16 +25,19 @@ export function StockList() {
     dispatch(emptySelectStockItem());
   }, []);
 
+  function deleteStockSelected() {
+    dispatch(deleteSelectStockItem());
+  }
+
   var cssVisibility = visibility ? "visibleDiv" : "hiddenDiv";
   return (
     <>
       {" "}
       {visibility && (
         <div className={cssVisibility}>
-          <Pictogramme pictoName="delete" height={50} width={50} />
           <CustomButton
             labelButton={"Supprimer élément"}
-            actionButton={() => alert("ça supprime!!!")}
+            actionButton={() => deleteStockSelected()}
             customClass="btn btn-danger"
           />
         </div>

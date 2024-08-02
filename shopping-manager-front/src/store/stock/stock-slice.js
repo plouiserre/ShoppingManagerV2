@@ -36,10 +36,23 @@ export const stockSlice = createSlice({
         },
         emptySelectStockItem:(currentSlice, action) =>{
             currentSlice.stocksSelected = []
+        },
+        deleteSelectStockItem:(currentSlice, action)=>{
+            var index = []
+            for(var i = 0;i < currentSlice.stocks;i++){
+                for(var j = 0; j < currentSlice.stocksSelected; j++){
+                    if(currentSlice.stocks[i].Id === currentSlice.stocksSelected[j].Id){
+                        index.push(i)
+                    }
+                }
+            }
+            index.map(element =>{
+                currentSlice.stocksSelected.splice(element, 1)
+            })
         }
     }
 })
 
-const {addStockItem, selectStockItem, emptySelectStockItem, deselectStockItem} = stockSlice.actions;
+const {addStockItem, selectStockItem, emptySelectStockItem,deleteSelectStockItem, deselectStockItem} = stockSlice.actions;
 
-export {addStockItem, selectStockItem, emptySelectStockItem, deselectStockItem}
+export {addStockItem, selectStockItem, emptySelectStockItem, deleteSelectStockItem, deselectStockItem}
