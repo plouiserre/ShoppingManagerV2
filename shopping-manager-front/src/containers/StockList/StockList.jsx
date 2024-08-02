@@ -5,12 +5,15 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { emptySelectStockItem } from "../../store/stock/stock-slice";
 import { Pictogramme } from "../../components/Pictogramme/Pictogramme";
+import { CustomButton } from "../../components/CustomButton/CustomButton";
 import { useNavigate } from "react-router-dom";
 
 export function StockList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const stocks = useSelector((store) => store.STOCK.stocks);
+  const selectedStock = useSelector((store) => store.STOCK.stocksSelected);
+  const visibility = selectedStock.length === 0 ? false : true;
 
   function clickStockElement(id) {
     navigate("/stock/" + id);
@@ -20,12 +23,20 @@ export function StockList() {
     dispatch(emptySelectStockItem());
   }, []);
 
+  var cssVisibility = visibility ? "visibleDiv" : "hiddenDiv";
   return (
     <>
       {" "}
-      <div>
-        <Pictogramme pictoName="delete" height={50} width={50} />
-      </div>
+      {visibility && (
+        <div className={cssVisibility}>
+          <Pictogramme pictoName="delete" height={50} width={50} />
+          <CustomButton
+            labelButton={"Supprimer élément"}
+            actionButton={() => alert("ça supprime!!!")}
+            customClass="btn btn-danger"
+          />
+        </div>
+      )}
       <div className={`${s.allStocks}`}>
         <div className={`row ${s.headerStockList}`}>
           <div className={`col-2 ${s.cellStockList}`}>ID</div>

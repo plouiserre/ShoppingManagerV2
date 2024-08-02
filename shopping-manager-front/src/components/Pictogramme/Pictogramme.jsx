@@ -3,7 +3,6 @@ import meat from "../../assets/images/viande.png";
 import vegetables from "../../assets/images/legumes.png";
 import error from "../../assets/images/error.png";
 import ok from "../../assets/images/ok.png";
-import deleteIcon from "../../assets/images/delete.png";
 import warning from "../../assets/images/warning.png";
 
 export function Pictogramme({
@@ -21,7 +20,6 @@ export function Pictogramme({
     else if (name === "error") return error;
     else if (name === "ok") return ok;
     else if (name === "warning") return warning;
-    else if (name == "delete") return deleteIcon;
     else return "";
   }
 
