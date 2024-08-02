@@ -40,15 +40,6 @@ export function StockSubElement({ stock, setStock }) {
         </div>
         <div className="col-2"></div>
       </div>
-      <div className={`row ${s.lineForm}`}>
-        <div className="col-4"></div>
-        <div className="col-8">
-          <AddElement
-            labelButton={"Supprimer sous-éléments"}
-            actionButton={() => alert("ça supprime!!!")}
-          />
-        </div>
-      </div>
     </>
   );
 }
