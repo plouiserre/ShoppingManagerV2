@@ -38,16 +38,17 @@ export const stockSlice = createSlice({
             currentSlice.stocksSelected = []
         },
         deleteSelectStockItem:(currentSlice, action)=>{
-            var index = []
-            for(var i = 0;i < currentSlice.stocks;i++){
-                for(var j = 0; j < currentSlice.stocksSelected; j++){
-                    if(currentSlice.stocks[i].Id === currentSlice.stocksSelected[j].Id){
-                        index.push(i)
+            var indexs = []
+            currentSlice.stocks.map((stock, index) =>{
+                currentSlice.stocksSelected.map(selected =>{
+                    if(stock.Id === selected.Id){
+                        indexs.push(index)
                     }
-                }
-            }
-            index.map(element =>{
-                currentSlice.stocksSelected.splice(element, 1)
+                })  
+            })
+
+            indexs.map(element =>{
+                currentSlice.stocks.splice(element, 1)
             })
         }
     }
