@@ -1,4 +1,4 @@
-.formStock{
+.formStock, .detailStock{
     padding-top: 20px;
 }
 
@@ -10,4 +10,42 @@
 .lineForm{
     padding-bottom: 10px;
     font-size: 20px;
+}
+
+.nameStock{
+    font-size: 28px;
+    font-weight: 500;
+    color : #879efa;
+}
+
+.lineDetail{
+    font-size:18px;
+    margin-bottom: 10px;
+}
+
+.detailStock{
+    padding-top: 40px;
+}
+
+.typeStock{
+    display: flex;
+    justify-content: center;
+}
+
+.stockName{
+    padding-top: 40px;
+    padding-left: 90px;
+    font-size: 60px;
+    color:#dcb31a;
+    font-family: 'Roboto';
+}
+
+.quantityStock{
+    font-size: xx-large;
+    color:#676565;
+}
+
+.quantityNumber{
+    display: flex;
+    justify-content: center;
 }

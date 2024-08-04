@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { AddElement } from "../../components/AddElement/AddElement";
+import { CustomButton } from "../../components/CustomButton/CustomButton";
 import { ValidateStock } from "../../domain/validateStock";
 import s from "./style.module.css";
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 import { useDispatch } from "react-redux";
 import { addStockItem } from "../../store/stock/stock-slice";
+import { StockSubElement } from "../../components/StockSubElement/StockSubElement";
+import { useNavigate } from "react-router-dom";
 
 export function AddStock() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [stock, setStock] = useState({
     Name: "",
     Type: "",
@@ -19,9 +22,9 @@ export function AddStock() {
 
   //TODO rewrite this code
   function setType(stock) {
-    if (stock.Type == "Viande blanche" || stock.Type == "Viande rouge")
+    if (stock.Type === "Viande blanche" || stock.Type === "Viande rouge")
       stock.Type = "meat";
-    else if (stock.Type == "Légumes") stock.Type = "vegetables";
+    else if (stock.Type === "Légumes") stock.Type = "vegetables";
     else stock.Type = "breakfast";
   }
 
@@ -32,6 +35,7 @@ export function AddStock() {
     if (result) {
       setType(stock);
       dispatch(addStockItem(stock));
+      navigate("/stock/");
     }
   }
 
@@ -41,9 +45,9 @@ export function AddStock() {
         <div className="row">
           <div className="col-3"></div>
           <div className="col-7">
-            <h1 className={`${s.titleForm}`}>Nouvel élément</h1>
-            <div className="col-2"></div>
+            <h1 className={`${s.titleForm}`}>Nouvel stock</h1>
           </div>
+          <div className="col-2"></div>
         </div>
         {visibility && (
           <ErrorMessage messageError={"Le stock n'est pas valide"} />
@@ -81,42 +85,11 @@ export function AddStock() {
           </div>
           <div className="col-2"></div>
         </div>
-        <div className={`row ${s.lineForm}`}>
-          <div className="col-3"></div>
-          <div className="col-3">Quantité</div>
-          <div className="col-4">
-            <input
-              type="number"
-              value={stock.Quantity}
-              onChange={(event) => {
-                setStock({ ...stock, Quantity: event.target.value });
-              }}
-            />
-          </div>
-          <div className="col-2"></div>
-        </div>
-        <div className={`row ${s.lineForm}`}>
-          <div className="col-3"></div>
-          <div className="col-3">Date de péremption</div>
-          <div className="col-4">
-            <input
-              type="date"
-              value={stock.DatePeremption}
-              onChange={(event) => {
-                setStock({
-                  ...stock,
-                  DatePeremption: event.target.value,
-                  IsDateSelected: true,
-                });
-              }}
-            />
-          </div>
-          <div className="col-2"></div>
-        </div>
+        <StockSubElement stock={stock} setStock={setStock} key={0} />
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-7">
-            <AddElement
+            <CustomButton
               labelButton={"Enregistrer"}
               actionButton={() => saveStock()}
             />
