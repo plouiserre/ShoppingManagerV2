@@ -3,7 +3,6 @@ import { Pictogramme } from "../Pictogramme/Pictogramme";
 import { Status } from "../Status/Status";
 import { useDispatch } from "react-redux";
 import { deleteStockItem } from "../../store/stock/stock-slice";
-import { CustomButton } from "../../components/CustomButton/CustomButton";
 
 export function StockListItem({ element, clickName }) {
   const dispatch = useDispatch();

@@ -2,8 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 function getId(elements, elementToAdd){
     if(elements !== undefined){
-        var elementsCount = elements.length
-        var id = elementsCount+1;
+        var indexs = []
+        elements.map((element)=>{
+            indexs.push(element.Id)
+        })
+        var maxId = Math.max(...indexs)
+        var id = maxId+1;
         elementToAdd.Id = id;
     }
     else {

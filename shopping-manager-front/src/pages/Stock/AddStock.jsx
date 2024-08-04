@@ -6,9 +6,11 @@ import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 import { useDispatch } from "react-redux";
 import { addStockItem } from "../../store/stock/stock-slice";
 import { StockSubElement } from "../../components/StockSubElement/StockSubElement";
+import { useNavigate } from "react-router-dom";
 
 export function AddStock() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [stock, setStock] = useState({
     Name: "",
     Type: "",
@@ -33,6 +35,7 @@ export function AddStock() {
     if (result) {
       setType(stock);
       dispatch(addStockItem(stock));
+      navigate("/stock/");
     }
   }
 
