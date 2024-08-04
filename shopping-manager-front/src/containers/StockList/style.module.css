@@ -15,11 +15,3 @@
     font-size: large;
     text-align: center;
 }
-
-.hiddenDiv{
-    visibility: hidden;
-}
-
-.visibleDiv{
-    visibility: visible;
-}

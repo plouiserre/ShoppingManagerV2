@@ -2,20 +2,16 @@ import s from "./style.module.css";
 import { Pictogramme } from "../Pictogramme/Pictogramme";
 import { Status } from "../Status/Status";
 import { useDispatch } from "react-redux";
-import {
-  selectStockItem,
-  deselectStockItem,
-} from "../../store/stock/stock-slice";
+import { deleteStockItem } from "../../store/stock/stock-slice";
+import { CustomButton } from "../../components/CustomButton/CustomButton";
 
 export function StockListItem({ element, clickName }) {
   const dispatch = useDispatch();
   const nameFoodClasses = `${s.cellStockList} ${s.nameFood}`;
   const indiceFoodClasses = `${s.cellStockList} ${s.indexFood}`;
 
-  function selectStockElement(stockElement, element) {
-    var isChecked = element.target.checked;
-    if (isChecked) dispatch(selectStockItem(stockElement));
-    else dispatch(deselectStockItem(stockElement));
+  function deleteStock(element) {
+    dispatch(deleteStockItem(element));
   }
 
   return (
@@ -34,14 +30,22 @@ export function StockListItem({ element, clickName }) {
       <div className={`col-2 ${s.cellStockList}`}>
         <Status element={element} />
       </div>
-      <div className={`col-2 ${s.cellStockList}`}>
+      {/* <div className={`col-2 ${s.cellStockList}`}>
         <input
           className={`form-check-input ${s.deleteStockItem}`}
           type="checkbox"
           value=""
+          checked={selected}
           id="flexCheckDefault"
           onChange={(e) => selectStockElement(element, e)}
         ></input>
+      </div> */}
+      <div className={`col-2 ${s.cellStockList}`}>
+        <CustomButton
+          labelButton={"Supprimer élément"}
+          actionButton={() => deleteStock(element)}
+          customClass="btn btn-danger"
+        />
       </div>
     </div>
   );

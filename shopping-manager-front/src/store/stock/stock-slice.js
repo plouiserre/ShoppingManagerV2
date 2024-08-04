@@ -19,7 +19,6 @@ export const stockSlice = createSlice({
     name:"stockSlice",
     initialState:{
         stocks:[],
-        stocksSelected:[], 
         stock : {}
     },
     reducers:{
@@ -27,15 +26,6 @@ export const stockSlice = createSlice({
             getId(currentSlice.stocks, action.payload);
             setStatus(action.payload)
             currentSlice.stocks.push({...action.payload});
-        },
-        selectStockItem:(currentSlice, action) =>{
-            currentSlice.stocksSelected.push({...action.payload});
-        },
-        deselectStockItem:(currentSlice, action)=>{
-            currentSlice.stocksSelected = currentSlice.stocksSelected.filter(item => item.Id !== action.payload.Id)
-        },
-        emptySelectStockItem:(currentSlice, action) =>{
-            currentSlice.stocksSelected = []
         },
         deleteSelectStockItem:(currentSlice, action)=>{
             var indexs = []
@@ -46,14 +36,18 @@ export const stockSlice = createSlice({
                     }
                 })  
             })
-
             indexs.map(element =>{
                 currentSlice.stocks.splice(element, 1)
             })
+            currentSlice.stocksSelected = []
+        },
+        deleteStockItem:(currentSlice, action)=>{
+            var newStocks = currentSlice.stocks.filter((item)=>item.Id !==action.payload.Id);
+            currentSlice.stocks = newStocks;
         }
     }
 })
 
-const {addStockItem, selectStockItem, emptySelectStockItem,deleteSelectStockItem, deselectStockItem} = stockSlice.actions;
+const {addStockItem, deleteStockItem} = stockSlice.actions;
 
-export {addStockItem, selectStockItem, emptySelectStockItem, deleteSelectStockItem, deselectStockItem}
+export {addStockItem, deleteStockItem}
