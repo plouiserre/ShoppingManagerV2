@@ -48,10 +48,17 @@ export const stockSlice = createSlice({
         deleteStockItem:(currentSlice, action)=>{
             var newStocks = currentSlice.stocks.filter((item)=>item.Id !==action.payload.Id);
             currentSlice.stocks = newStocks;
+        }, 
+        getStock:(currentSlice, action)=>{
+            currentSlice.stocks.map((element) =>{
+                    if(element.Id === action.Id){
+                        currentSlice.stock = element
+                    }
+            })
         }
     }
 })
 
-const {addStockItem, deleteStockItem} = stockSlice.actions;
+const {addStockItem, deleteStockItem, getStock} = stockSlice.actions;
 
-export {addStockItem, deleteStockItem}
+export {addStockItem, deleteStockItem, getStock}
