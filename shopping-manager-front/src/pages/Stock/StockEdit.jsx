@@ -4,7 +4,7 @@ import { ValidateStock } from "../../domain/validateStock";
 import s from "./style.module.css";
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 import { useDispatch, useSelector } from "react-redux";
-import { addStockItem } from "../../store/stock/stock-slice";
+import { editStock } from "../../store/stock/stock-slice";
 import { StockSubElement } from "../../components/StockSubElement/StockSubElement";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -37,8 +37,6 @@ export function StockEdit() {
     else return "Petit déjeuner";
   }
 
-  const azoef = "aozef";
-
   //TODO rewrite this code
   function setType(stock) {
     if (stock.Type === "Viande blanche" || stock.Type === "Viande rouge")
@@ -47,12 +45,15 @@ export function StockEdit() {
     else stock.Type = "breakfast";
   }
 
+  //TODO rewrite this code
   function saveStock() {
+    stock.IsDateSelected = true;
+    stock.Id = id;
     var result = ValidateStock(stock);
     setVisibility(!result);
     if (result) {
       setType(stock);
-      dispatch(addStockItem(stock));
+      dispatch(editStock(stock));
       navigate("/stock/");
     }
   }

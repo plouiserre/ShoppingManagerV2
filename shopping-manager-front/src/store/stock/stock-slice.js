@@ -55,10 +55,21 @@ export const stockSlice = createSlice({
                         currentSlice.stock = element
                     }
             })
+        },
+        editStock:(currentSlice, action)=>{
+            var index = 0;
+            for(var i = 0; i<currentSlice.stocks.length;i++){
+                var element = currentSlice.stocks[i]
+                if(element.Id === action.payload.Id){
+                    break
+                }
+                index+=1
+            }
+            currentSlice.stocks.splice(index, 1, action.payload)
         }
     }
 })
 
-const {addStockItem, deleteStockItem, getStock} = stockSlice.actions;
+const {addStockItem, deleteStockItem, getStock, editStock} = stockSlice.actions;
 
-export {addStockItem, deleteStockItem, getStock}
+export {addStockItem, deleteStockItem, getStock, editStock}
