@@ -39,8 +39,7 @@ export function StockEdit() {
 
   //TODO rewrite this code
   function setType(stock) {
-    if (stock.Type === "Viande blanche" || stock.Type === "Viande rouge")
-      stock.Type = "meat";
+    if (stock.Type === "Viande") stock.Type = "meat";
     else if (stock.Type === "Légumes") stock.Type = "vegetables";
     else stock.Type = "breakfast";
   }
@@ -97,8 +96,7 @@ export function StockEdit() {
             >
               <option>Sélectionner une valeur</option>
               <option>Légumes</option>
-              <option>Viande rouge</option>
-              <option>Viande blanche</option>
+              <option>Viande</option>
               <option>Petit déjeuner</option>
             </select>
           </div>
