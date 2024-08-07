@@ -10,6 +10,11 @@ export function StockList() {
   function clickStockElement(id) {
     navigate("/stock/" + id);
   }
+
+  function goEditPage(id) {
+    navigate("/stock/edit/" + id);
+  }
+
   return (
     <>
       <div className={`${s.allStocks}`}>
@@ -19,11 +24,15 @@ export function StockList() {
           <div className={`col-2 ${s.cellStockList}`}>Type</div>
           <div className={`col-2 ${s.cellStockList}`}>Quantité</div>
           <div className={`col-2 ${s.cellStockList}`}>Status</div>
-          <div className={`col-2 ${s.cellStockList}`}>Action</div>
+          <div className={`col-2 ${s.cellStockList}`}>Actions</div>
         </div>
         {stocks.map((stock) => {
           return (
-            <StockListItem element={stock} clickName={clickStockElement} />
+            <StockListItem
+              element={stock}
+              clickName={clickStockElement}
+              goEditPage={goEditPage}
+            />
           );
         })}
       </div>
