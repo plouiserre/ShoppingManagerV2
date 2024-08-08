@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 function getId(elements, elementToAdd){
-    if(elements !== undefined){
+    if(elements !== undefined && elements.length >0){
         var indexs = []
         elements.map((element)=>{
             indexs.push(element.Id)
@@ -45,6 +45,17 @@ export const stockSlice = createSlice({
             })
             currentSlice.stocksSelected = []
         },
+        deleteExpiredStock:(currentSlice, action)=>{
+            var today = new Date();
+            var stockNotExpired = []
+            currentSlice.stocks.map((item)=>{
+                var datePeremption = new Date(item.DatePeremption)
+                if(today < datePeremption){
+                    stockNotExpired.push(item)
+                }
+            })
+            currentSlice.stocks = stockNotExpired;
+        },
         deleteStockItem:(currentSlice, action)=>{
             var newStocks = currentSlice.stocks.filter((item)=>item.Id !==action.payload.Id);
             currentSlice.stocks = newStocks;
@@ -70,6 +81,6 @@ export const stockSlice = createSlice({
     }
 })
 
-const {addStockItem, deleteStockItem, getStock, editStock} = stockSlice.actions;
+const {addStockItem, deleteExpiredStock, deleteStockItem, getStock, editStock} = stockSlice.actions;
 
-export {addStockItem, deleteStockItem, getStock, editStock}
+export {addStockItem, deleteExpiredStock, deleteStockItem, getStock, editStock}
