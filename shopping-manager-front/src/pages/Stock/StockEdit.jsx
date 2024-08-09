@@ -60,6 +60,7 @@ export function StockEdit() {
       visibility={visibility}
       setStock={setStock}
       saveStock={saveStock}
+      defaultValueTypeStock={stock.Type}
     />
   );
 }

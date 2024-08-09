@@ -1,7 +1,9 @@
+import { MealForm } from "../../components/MealForm/MealForm";
+
 export function AddMeal() {
   return (
     <>
-      <h1>Nouveau repas!!!</h1>
+      <MealForm />
     </>
   );
 }

@@ -41,6 +41,7 @@ export function AddStock() {
       visibility={visibility}
       setStock={setStock}
       saveStock={saveStock}
+      defaultValueTypeStock={"Sélectionner une valeur"}
     />
   );
 }
