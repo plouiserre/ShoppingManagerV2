@@ -50,7 +50,7 @@ export function StockForm({
           <div className="col-3">Type</div>
           <div className="col-4">
             <BootstrapDropdown
-              setDropDownValues={clickDropdownlist}
+              clickDropDownAction={clickDropdownlist}
               dropdownValues={typeStock}
               values={allTypesStock}
             />

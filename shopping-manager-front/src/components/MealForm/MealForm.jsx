@@ -3,7 +3,7 @@ import { CustomButton } from "../CustomButton/CustomButton";
 import { BootstrapDropdown } from "../BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
 
-export function MealForm() {
+export function MealForm({ meal, setMeal }) {
   var defaultDropdownValue = "Sélectionner une valeur";
   const [dropdownValueDays, setDropDownValueDays] =
     useState(defaultDropdownValue);
@@ -19,6 +19,22 @@ export function MealForm() {
     "Dimanche",
   ];
   const moments = ["Petit-déjeuner", "Déjeuner", "Goûter", "Dîner"];
+
+  function clickDropdownlistDays(value) {
+    setDropDownValueDays(value);
+    setMeal({ ...meal, Day: value });
+  }
+
+  function clickDropdownListMoments(value) {
+    setDropDownValueMoments(value);
+    setMeal({ ...meal, Moment: value });
+  }
+
+  function saveMeal() {
+    alert(meal.Day);
+    alert(meal.Moment);
+  }
+
   return (
     <div>
       <form className={`container-fluid ${s.formStock}`}>
@@ -35,7 +51,7 @@ export function MealForm() {
           <div className="col-4">
             <BootstrapDropdown
               dropdownValues={dropdownValueDays}
-              setDropDownValues={setDropDownValueDays}
+              clickDropDownAction={clickDropdownlistDays}
               values={days}
             />
           </div>
@@ -47,16 +63,9 @@ export function MealForm() {
           <div className="col-4">
             <BootstrapDropdown
               dropdownValues={dropdownValueMoments}
-              setDropDownValues={setDropDownValueMoments}
+              clickDropDownAction={clickDropdownListMoments}
               values={moments}
             />
-            {/* <select>
-              <option>Sélectionner une valeur</option>
-              <option>Petit-déjeuner</option>
-              <option>Déjeuner</option>
-              <option>Goûter</option>
-              <option>Dîner</option>
-            </select> */}
           </div>
           <div className="col-2"></div>
         </div>
@@ -65,7 +74,7 @@ export function MealForm() {
           <div className="col-7">
             <CustomButton
               labelButton={"Enregistrer"}
-              actionButton={() => alert("nouveau repas enregistré!!!")}
+              actionButton={() => saveMeal()}
             />
           </div>
           <div className="col-2"></div>
