@@ -28,3 +28,7 @@
 .cellMealsSubListDarkBackgroundColor{
     background-color: #e8eef0;
 }
+
+.numberQuantityMealItem{
+    width: 100px;
+}

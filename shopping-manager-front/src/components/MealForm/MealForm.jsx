@@ -8,7 +8,9 @@ export function MealForm({ meal, setMeal }) {
   var defaultDropdownValue = "Sélectionner une valeur";
   const stocks = useSelector((store) => store.STOCK.stocks);
   const stocksName = [];
-  const [typeStock, setTypeStock] = useState("Viande");
+  //TODO externalize in the component
+  const [typeStock, setTypeStock] = useState("Type");
+  const [quantityMealItem, setQuantityMealItem] = useState(0);
   orderedStockName();
   function orderedStockName() {
     stocks.map((stock) => {
@@ -146,7 +148,16 @@ export function MealForm({ meal, setMeal }) {
               />
             </div>
             <div className={`col-2 ${s.cellMealsSubList}`}>{typeStock}</div>
-            <div className={`col-1 ${s.cellMealsSubList}`}>1</div>
+            <div className={`col-1 ${s.cellMealsSubList}`}>
+              <input
+                type="number"
+                value={quantityMealItem}
+                onChange={(quantity) => {
+                  setQuantityMealItem(quantity);
+                }}
+                className={`${s.numberQuantityMealItem}`}
+              />
+            </div>
             <div className={`col-1 ${s.cellMealsSubList}`}>OK</div>
             <div
               className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListRight}`}
