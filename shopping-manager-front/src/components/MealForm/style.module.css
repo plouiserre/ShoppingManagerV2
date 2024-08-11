@@ -12,6 +12,7 @@
 }
 
 .cellMealsSubList{
+    padding: 10px;
     border-top : 1px solid #d2d7db;
     border-left: 1px solid #d2d7db;
 }

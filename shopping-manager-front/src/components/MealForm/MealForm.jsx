@@ -2,14 +2,24 @@ import s from "./style.module.css";
 import { CustomButton } from "../CustomButton/CustomButton";
 import { BootstrapDropdown } from "../BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
-import { Status } from "../Status/Status";
+import { useSelector } from "react-redux";
 
 export function MealForm({ meal, setMeal }) {
   var defaultDropdownValue = "Sélectionner une valeur";
+  const stocks = useSelector((store) => store.STOCK.stocks);
+  const stocksName = [];
+  orderedStockName();
+  function orderedStockName() {
+    stocks.map((stock) => {
+      stocksName.push(stock.Name);
+    });
+  }
   const [dropdownValueDays, setDropDownValueDays] =
     useState(defaultDropdownValue);
   const [dropdownValueMoments, setDropDownValueMoments] =
     useState(defaultDropdownValue);
+  //TODO externalize in the component
+  const [stocksValue, setStocksValue] = useState(defaultDropdownValue);
   const days = [
     "Lundi",
     "Mardi",
@@ -29,6 +39,11 @@ export function MealForm({ meal, setMeal }) {
   function clickDropdownListMoments(value) {
     setDropDownValueMoments(value);
     setMeal({ ...meal, Moment: value });
+  }
+
+  //TODO externalise in the component
+  function clickDropdownListStock(value) {
+    setStocksValue(value);
   }
 
   function saveMeal() {
@@ -108,7 +123,13 @@ export function MealForm({ meal, setMeal }) {
           <div className={`row ${s.headerMealsSubList}`}>
             <div className={`col-3`}></div>
             <div className={`col-1 ${s.cellMealsSubList}`}>1</div>
-            <div className={`col-2 ${s.cellMealsSubList}`}>Mouton</div>
+            <div className={`col-2 ${s.cellMealsSubList}`}>
+              <BootstrapDropdown
+                dropdownValues={stocksValue}
+                clickDropDownAction={clickDropdownListStock}
+                values={stocksName}
+              />
+            </div>
             <div className={`col-2 ${s.cellMealsSubList}`}>Viande</div>
             <div className={`col-1 ${s.cellMealsSubList}`}>1</div>
             <div className={`col-1 ${s.cellMealsSubList}`}>OK</div>
