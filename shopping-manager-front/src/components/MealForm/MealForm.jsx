@@ -2,6 +2,7 @@ import s from "./style.module.css";
 import { CustomButton } from "../CustomButton/CustomButton";
 import { BootstrapDropdown } from "../BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
+import { Status } from "../Status/Status";
 
 export function MealForm({ meal, setMeal }) {
   var defaultDropdownValue = "Sélectionner une valeur";
@@ -65,6 +66,101 @@ export function MealForm({ meal, setMeal }) {
               dropdownValues={dropdownValueMoments}
               clickDropDownAction={clickDropdownListMoments}
               values={moments}
+            />
+          </div>
+          <div className="col-2"></div>
+        </div>
+        <div className={`${s.mealsSub}`}>
+          <div className={`row ${s.headerMealsSubList}`}>
+            <div className={`col-3`}></div>
+            <div
+              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
+            >
+              ID
+            </div>
+            <div
+              className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
+            >
+              Nom
+            </div>
+            <div
+              className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
+            >
+              Type
+            </div>
+            <div
+              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
+            >
+              Quantité
+            </div>
+            <div
+              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
+            >
+              Status
+            </div>
+            <div
+              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListRight} ${s.cellMealsSubListDarkBackgroundColor}`}
+            >
+              Actions
+            </div>
+            <div className={`col-2`}></div>
+          </div>
+          <div className={`row ${s.headerMealsSubList}`}>
+            <div className={`col-3`}></div>
+            <div className={`col-1 ${s.cellMealsSubList}`}>1</div>
+            <div className={`col-2 ${s.cellMealsSubList}`}>Mouton</div>
+            <div className={`col-2 ${s.cellMealsSubList}`}>Viande</div>
+            <div className={`col-1 ${s.cellMealsSubList}`}>1</div>
+            <div className={`col-1 ${s.cellMealsSubList}`}>OK</div>
+            <div
+              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListRight}`}
+            >
+              Edit Supprimer
+            </div>
+            <div className={`col-2`}></div>
+          </div>
+          <div className={`row ${s.headerMealsSubList}`}>
+            <div className={`col-3`}></div>
+            <div
+              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom} ${s.cellMealsSubListDarkBackgroundColor}`}
+            >
+              2
+            </div>
+            <div
+              className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListbottom} ${s.cellMealsSubListDarkBackgroundColor}`}
+            >
+              Pâtes
+            </div>
+            <div
+              className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListbottom} ${s.cellMealsSubListDarkBackgroundColor}`}
+            >
+              Légumes
+            </div>
+            <div
+              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom} ${s.cellMealsSubListDarkBackgroundColor}`}
+            >
+              1
+            </div>
+            <div
+              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom} ${s.cellMealsSubListDarkBackgroundColor}`}
+            >
+              OK
+            </div>
+            <div
+              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListRight} ${s.cellMealsSubListbottom} ${s.cellMealsSubListDarkBackgroundColor}`}
+            >
+              Edit Supprimer
+            </div>
+            <div className={`col-2`}></div>
+          </div>
+        </div>
+        <div className={`row ${s.lineForm}`}>
+          <div className="col-3"></div>
+          <div className="col-7">
+            <CustomButton
+              labelButton={"Nouvel élément repas"}
+              actionButton={() => alert("Nouvelle ligne")}
+              customClass={"btn btn-info"}
             />
           </div>
           <div className="col-2"></div>
