@@ -8,6 +8,7 @@ export function MealForm({ meal, setMeal }) {
   var defaultDropdownValue = "Sélectionner une valeur";
   const stocks = useSelector((store) => store.STOCK.stocks);
   const stocksName = [];
+  const [typeStock, setTypeStock] = useState("Viande");
   orderedStockName();
   function orderedStockName() {
     stocks.map((stock) => {
@@ -44,6 +45,20 @@ export function MealForm({ meal, setMeal }) {
   //TODO externalise in the component
   function clickDropdownListStock(value) {
     setStocksValue(value);
+    for (var i = 0; i < stocks.length; i++) {
+      if (stocks[i].Name == value) {
+        var stockType = getType(stocks[i].Type);
+        setTypeStock(stockType);
+        break;
+      }
+    }
+  }
+
+  //TODO factorize with the method in stockEdit.jsx
+  function getType(typeName) {
+    if (typeName === "meat") return "Viande";
+    else if (typeName === "vegetables") return "Légumes";
+    else return "Petit déjeuner";
   }
 
   function saveMeal() {
@@ -130,7 +145,7 @@ export function MealForm({ meal, setMeal }) {
                 values={stocksName}
               />
             </div>
-            <div className={`col-2 ${s.cellMealsSubList}`}>Viande</div>
+            <div className={`col-2 ${s.cellMealsSubList}`}>{typeStock}</div>
             <div className={`col-1 ${s.cellMealsSubList}`}>1</div>
             <div className={`col-1 ${s.cellMealsSubList}`}>OK</div>
             <div
