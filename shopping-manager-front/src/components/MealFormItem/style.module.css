@@ -1,16 +1,3 @@
-.formStock, .detailStock{
-    padding-top: 20px;
-}
-
-.lineForm{
-    padding-bottom: 10px;
-    font-size: 20px;
-}
-
-.mealsSub{
-    margin-top: 40px;
-}
-
 .cellMealsSubList{
     padding: 10px;
     border-top : 1px solid #d2d7db;
