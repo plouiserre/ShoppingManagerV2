@@ -27,3 +27,9 @@
 .validationSubElement{
     padding-top: 0px;
 }
+
+.actionsMeals{
+    display: inline-flex;
+    column-gap: 30px;
+    justify-content: space-between;
+}

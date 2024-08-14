@@ -2,7 +2,7 @@ import s from "./style.module.css";
 import { CustomButton } from "../CustomButton/CustomButton";
 import { BootstrapDropdown } from "../BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
-import { MealFormItem } from "../MealFormItem/MealFormItem";
+import { MealFormList } from "../MealFormList/MealFormList";
 
 //TODO move in container
 export function MealForm({ meal, setMeal }) {
@@ -21,6 +21,7 @@ export function MealForm({ meal, setMeal }) {
     "Dimanche",
   ];
   const moments = ["Petit-déjeuner", "Déjeuner", "Goûter", "Dîner"];
+  const [iteration, setIteration] = useState(1);
 
   function clickDropdownlistDays(value) {
     setDropDownValueDays(value);
@@ -30,6 +31,11 @@ export function MealForm({ meal, setMeal }) {
   function clickDropdownListMoments(value) {
     setDropDownValueMoments(value);
     setMeal({ ...meal, Moment: value });
+  }
+
+  function addIteration() {
+    var newIteration = iteration + 1;
+    setIteration(newIteration);
   }
 
   function saveMeal() {
@@ -106,14 +112,14 @@ export function MealForm({ meal, setMeal }) {
             </div>
             <div className={`col-2`}></div>
           </div>
-          <MealFormItem idMealItem={1} />
+          <MealFormList iteration={iteration} />
         </div>
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-7">
             <CustomButton
               labelButton={"Nouvel élément repas"}
-              actionButton={() => alert("Nouvelle ligne")}
+              actionButton={() => addIteration()}
               customClass={"btn btn-info"}
             />
           </div>

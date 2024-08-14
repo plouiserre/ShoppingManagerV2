@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { CustomButton } from "../CustomButton/CustomButton";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 
-export function MealFormItem({ idMealItem }) {
+export function MealFormListItem({ idMealItem }) {
   var defaultDropdownValue = "Sélectionner une valeur";
   const stocks = useSelector((store) => store.STOCK.stocks);
   const stocksName = [];
@@ -23,13 +23,11 @@ export function MealFormItem({ idMealItem }) {
     stock: {},
   });
 
-  //TODO delete by mealitem useState
-  const [typeStock, setTypeStock] = useState("Type");
-  const [stockSelected, setStockSelected] = useState([]);
   const [visibilityStatus, setVisibilityStatus] = useState(false);
   const [stocksValue, setStocksValue] = useState(defaultDropdownValue);
   const [errorMessageValue, setErrorMessageValue] = useState("");
   const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
+  const [visibilityValidation, setVisibilityValidation] = useState(false);
 
   function clickDropdownListStock(value) {
     setStocksValue(value);
@@ -41,9 +39,7 @@ export function MealFormItem({ idMealItem }) {
 
     for (var i = 0; i < stocks.length; i++) {
       if (stocks[i].Name === value) {
-        var stockType = getType(stocks[i].Type);
-        setTypeStock(stockType);
-        setStockSelected(stocks[i]);
+        stocks[i].Type = getType(stocks[i].Type);
         setVisibilityStatus(true);
         break;
       }
@@ -58,7 +54,7 @@ export function MealFormItem({ idMealItem }) {
   }
 
   function ValidateMealItem() {
-    if (mealItem.stock.Name == undefined) {
+    if (mealItem.stock.Name === undefined) {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Merci de choisir un élément du stock");
     } else if (mealItem.quantity <= 0) {
@@ -74,6 +70,7 @@ export function MealFormItem({ idMealItem }) {
       );
     } else {
       setErrorMessageVisibility(false);
+      setVisibilityValidation(true);
     }
   }
 
@@ -89,42 +86,65 @@ export function MealFormItem({ idMealItem }) {
         <div
           className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          <BootstrapDropdown
-            dropdownValues={stocksValue}
-            clickDropDownAction={clickDropdownListStock}
-            values={stocksName}
-          />
+          {!visibilityValidation && (
+            <BootstrapDropdown
+              dropdownValues={stocksValue}
+              clickDropDownAction={clickDropdownListStock}
+              values={stocksName}
+            />
+          )}
+          {visibilityValidation && mealItem.stock.Name}
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          {typeStock}
+          {mealItem.stock.Type}
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          <input
-            type="number"
-            defaultValue={mealItem.quantity}
-            onChange={(event) => {
-              setMealItem({ ...mealItem, quantity: event.target.value });
-            }}
-            className={`${s.numberQuantityMealItem}`}
-          />
+          {!visibilityValidation && (
+            <input
+              type="number"
+              defaultValue={mealItem.quantity}
+              onChange={(event) => {
+                setMealItem({ ...mealItem, quantity: event.target.value });
+              }}
+              className={`${s.numberQuantityMealItem}`}
+            />
+          )}
+
+          {visibilityValidation && mealItem.quantity}
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.mealItemStatus} ${s.cellMealsSubListbottom}`}
         >
-          {visibilityStatus && <Status element={stockSelected} />}
+          {visibilityStatus && <Status element={mealItem.stock} />}
         </div>
         <div
           className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListRight} ${s.cellMealsSubListbottom}`}
         >
-          <CustomButton
-            labelButton={"Valider élément repas"}
-            actionButton={() => ValidateMealItem()}
-            customClass={"btn btn-success"}
-          />
+          {!visibilityValidation && (
+            <CustomButton
+              labelButton={"Valider élément repas"}
+              actionButton={() => ValidateMealItem()}
+              customClass={"btn btn-success"}
+            />
+          )}
+          {visibilityValidation && (
+            <div className={`${s.actionsMeals}`}>
+              <CustomButton
+                labelButton={"Edit"}
+                actionButton={() => alert("edit")}
+                customClass={"btn btn-success"}
+              />
+              <CustomButton
+                labelButton={"Supprimer"}
+                actionButton={() => alert("delete")}
+                customClass={"btn btn-danger"}
+              />
+            </div>
+          )}
         </div>
         <div className={`col-2`}></div>
       </div>
