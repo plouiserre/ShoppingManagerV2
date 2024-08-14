@@ -135,8 +135,8 @@ export function MealFormListItem({ idMealItem }) {
             <div className={`${s.actionsMeals}`}>
               <CustomButton
                 labelButton={"Edit"}
-                actionButton={() => alert("edit")}
-                customClass={"btn btn-success"}
+                actionButton={() => setVisibilityValidation(false)}
+                customClass={"btn btn-secondary"}
               />
               <CustomButton
                 labelButton={"Supprimer"}
