@@ -21,6 +21,7 @@ export function MealFormListItem({ idMealItem }) {
     quantity: 0,
     status: "",
     stock: {},
+    isActivated: true,
   });
 
   const [visibilityStatus, setVisibilityStatus] = useState(false);
@@ -76,78 +77,82 @@ export function MealFormListItem({ idMealItem }) {
 
   return (
     <>
-      <div className="row">
-        <div className={`col-3`}></div>
-        <div
-          className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
-        >
-          {idMealItem}
-        </div>
-        <div
-          className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
-        >
-          {!visibilityValidation && (
-            <BootstrapDropdown
-              dropdownValues={stocksValue}
-              clickDropDownAction={clickDropdownListStock}
-              values={stocksName}
-            />
-          )}
-          {visibilityValidation && mealItem.stock.Name}
-        </div>
-        <div
-          className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
-        >
-          {mealItem.stock.Type}
-        </div>
-        <div
-          className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
-        >
-          {!visibilityValidation && (
-            <input
-              type="number"
-              defaultValue={mealItem.quantity}
-              onChange={(event) => {
-                setMealItem({ ...mealItem, quantity: event.target.value });
-              }}
-              className={`${s.numberQuantityMealItem}`}
-            />
-          )}
+      {mealItem.isActivated && (
+        <div className="row">
+          <div className={`col-3`}></div>
+          <div
+            className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
+          >
+            {idMealItem}
+          </div>
+          <div
+            className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
+          >
+            {!visibilityValidation && (
+              <BootstrapDropdown
+                dropdownValues={stocksValue}
+                clickDropDownAction={clickDropdownListStock}
+                values={stocksName}
+              />
+            )}
+            {visibilityValidation && mealItem.stock.Name}
+          </div>
+          <div
+            className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
+          >
+            {mealItem.stock.Type}
+          </div>
+          <div
+            className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
+          >
+            {!visibilityValidation && (
+              <input
+                type="number"
+                defaultValue={mealItem.quantity}
+                onChange={(event) => {
+                  setMealItem({ ...mealItem, quantity: event.target.value });
+                }}
+                className={`${s.numberQuantityMealItem}`}
+              />
+            )}
 
-          {visibilityValidation && mealItem.quantity}
-        </div>
-        <div
-          className={`col-1 ${s.cellMealsSubList} ${s.mealItemStatus} ${s.cellMealsSubListbottom}`}
-        >
-          {visibilityStatus && <Status element={mealItem.stock} />}
-        </div>
-        <div
-          className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListRight} ${s.cellMealsSubListbottom}`}
-        >
-          {!visibilityValidation && (
-            <CustomButton
-              labelButton={"Valider élément repas"}
-              actionButton={() => ValidateMealItem()}
-              customClass={"btn btn-success"}
-            />
-          )}
-          {visibilityValidation && (
-            <div className={`${s.actionsMeals}`}>
+            {visibilityValidation && mealItem.quantity}
+          </div>
+          <div
+            className={`col-1 ${s.cellMealsSubList} ${s.mealItemStatus} ${s.cellMealsSubListbottom}`}
+          >
+            {visibilityStatus && <Status element={mealItem.stock} />}
+          </div>
+          <div
+            className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListRight} ${s.cellMealsSubListbottom}`}
+          >
+            {!visibilityValidation && (
               <CustomButton
-                labelButton={"Edit"}
-                actionButton={() => setVisibilityValidation(false)}
-                customClass={"btn btn-secondary"}
+                labelButton={"Valider élément repas"}
+                actionButton={() => ValidateMealItem()}
+                customClass={"btn btn-success"}
               />
-              <CustomButton
-                labelButton={"Supprimer"}
-                actionButton={() => alert("delete")}
-                customClass={"btn btn-danger"}
-              />
-            </div>
-          )}
+            )}
+            {visibilityValidation && (
+              <div className={`${s.actionsMeals}`}>
+                <CustomButton
+                  labelButton={"Edit"}
+                  actionButton={() => setVisibilityValidation(false)}
+                  customClass={"btn btn-secondary"}
+                />
+                <CustomButton
+                  labelButton={"Supprimer"}
+                  actionButton={() =>
+                    setMealItem({ ...mealItem, isActivated: false })
+                  }
+                  customClass={"btn btn-danger"}
+                />
+              </div>
+            )}
+          </div>
+          <div className={`col-2`}></div>
         </div>
-        <div className={`col-2`}></div>
-      </div>
+      )}
       {errorMessageVisibility && (
         <ErrorMessage messageError={errorMessageValue} />
       )}
