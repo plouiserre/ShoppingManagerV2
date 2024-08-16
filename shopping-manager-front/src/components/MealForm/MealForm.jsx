@@ -3,10 +3,13 @@ import { CustomButton } from "../CustomButton/CustomButton";
 import { BootstrapDropdown } from "../BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
 import { MealFormList } from "../MealFormList/MealFormList";
+import { useDispatch } from "react-redux";
+import { addmeal } from "../../store/meal/meal-slice";
 
 //TODO move in container
 export function MealForm({ meal, setMeal }) {
   var defaultDropdownValue = "Sélectionner une valeur";
+  const dispatch = useDispatch();
   const [dropdownValueDays, setDropDownValueDays] =
     useState(defaultDropdownValue);
   const [dropdownValueMoments, setDropDownValueMoments] =
@@ -21,7 +24,16 @@ export function MealForm({ meal, setMeal }) {
     "Dimanche",
   ];
   const moments = ["Petit-déjeuner", "Déjeuner", "Goûter", "Dîner"];
-  const [iteration, setIteration] = useState(1);
+  const [iteration, setIteration] = useState(2);
+  const [mealItems, setMealItems] = useState([
+    {
+      type: "",
+      quantity: 0,
+      status: "",
+      stock: {},
+      id: 1,
+    },
+  ]);
 
   function clickDropdownlistDays(value) {
     setDropDownValueDays(value);
@@ -36,11 +48,18 @@ export function MealForm({ meal, setMeal }) {
   function addIteration() {
     var newIteration = iteration + 1;
     setIteration(newIteration);
+    setMealItems([
+      ...mealItems,
+      {
+        quantity: 0,
+        stock: {},
+        id: iteration,
+      },
+    ]);
   }
 
   function saveMeal() {
-    alert(meal.Day);
-    alert(meal.Moment);
+    dispatch(addmeal(meal));
   }
 
   return (
@@ -112,7 +131,7 @@ export function MealForm({ meal, setMeal }) {
             </div>
             <div className={`col-2`}></div>
           </div>
-          <MealFormList iteration={iteration} />
+          <MealFormList iteration={iteration} mealItems={mealItems} />
         </div>
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>

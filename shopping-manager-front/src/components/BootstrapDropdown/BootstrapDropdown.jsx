@@ -15,8 +15,10 @@ export function BootstrapDropdown({
       </button>
       <ul className="dropdown-menu">
         {values.map((value, i) => (
-          <li onClick={() => clickDropDownAction(value)}>
-            <a className="dropdown-item">{value}</a>
+          <li onClick={() => clickDropDownAction(value)} key={i}>
+            <a className="dropdown-item" key={i}>
+              {value}
+            </a>
           </li>
         ))}
       </ul>

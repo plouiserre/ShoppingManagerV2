@@ -6,45 +6,39 @@ import { useSelector } from "react-redux";
 import { CustomButton } from "../CustomButton/CustomButton";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 
-export function MealFormListItem({ idMealItem }) {
+export function MealFormListItem({ mealItem }) {
   var defaultDropdownValue = "Sélectionner une valeur";
   const stocks = useSelector((store) => store.STOCK.stocks);
   const stocksName = [];
   orderedStockName();
   function orderedStockName() {
     stocks.map((stock) => {
-      stocksName.push(stock.Name);
+      if (checkStatusNotError(stock)) stocksName.push(stock.Name);
     });
   }
-  const [mealItem, setMealItem] = useState({
-    type: "",
-    quantity: 0,
-    status: "",
-    stock: {},
-    isActivated: true,
-  });
+
+  function checkStatusNotError(stock) {
+    var peremtion = new Date(stock.DatePeremption);
+    var today = new Date();
+    return today < peremtion;
+  }
 
   const [visibilityStatus, setVisibilityStatus] = useState(false);
   const [stocksValue, setStocksValue] = useState(defaultDropdownValue);
   const [errorMessageValue, setErrorMessageValue] = useState("");
   const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
   const [visibilityValidation, setVisibilityValidation] = useState(false);
+  const [isActivated, setIsActivated] = useState(true);
 
   function clickDropdownListStock(value) {
     setStocksValue(value);
     stocks.map((stock) => {
       if (stock.Name === value) {
-        setMealItem({ ...mealItem, stock: stock });
+        mealItem.stock = stock;
+        mealItem.stock.Type = getType(mealItem.stock.Type);
+        setVisibilityStatus(true);
       }
     });
-
-    for (var i = 0; i < stocks.length; i++) {
-      if (stocks[i].Name === value) {
-        stocks[i].Type = getType(stocks[i].Type);
-        setVisibilityStatus(true);
-        break;
-      }
-    }
   }
 
   //TODO factorize with the method in stockEdit.jsx
@@ -77,13 +71,13 @@ export function MealFormListItem({ idMealItem }) {
 
   return (
     <>
-      {mealItem.isActivated && (
+      {isActivated && (
         <div className="row">
           <div className={`col-3`}></div>
           <div
             className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
           >
-            {idMealItem}
+            {mealItem.id}
           </div>
           <div
             className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
@@ -110,7 +104,7 @@ export function MealFormListItem({ idMealItem }) {
                 type="number"
                 defaultValue={mealItem.quantity}
                 onChange={(event) => {
-                  setMealItem({ ...mealItem, quantity: event.target.value });
+                  mealItem.quantity = event.target.value;
                 }}
                 className={`${s.numberQuantityMealItem}`}
               />
@@ -142,9 +136,7 @@ export function MealFormListItem({ idMealItem }) {
                 />
                 <CustomButton
                   labelButton={"Supprimer"}
-                  actionButton={() =>
-                    setMealItem({ ...mealItem, isActivated: false })
-                  }
+                  actionButton={() => setIsActivated(false)}
                   customClass={"btn btn-danger"}
                 />
               </div>

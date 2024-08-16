@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Pictogramme } from "../Pictogramme/Pictogramme";
+//TODO externalize the code of check status in a centralized class
 export function Status({ element }) {
   const [status, setStatus] = useState();
   useEffect(() => {
