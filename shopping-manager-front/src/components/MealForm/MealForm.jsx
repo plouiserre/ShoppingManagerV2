@@ -3,13 +3,32 @@ import { CustomButton } from "../CustomButton/CustomButton";
 import { BootstrapDropdown } from "../BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
 import { MealFormList } from "../MealFormList/MealFormList";
-import { useDispatch } from "react-redux";
-import { initiateMealItems } from "../../store/meal/meal-slice";
+import { useDispatch, useSelector } from "react-redux";
+import { addMealItemsEmpty } from "../../store/meal/meal-slice";
 
 //TODO move in container
 export function MealForm({ meal, setMeal }) {
-  var defaultDropdownValue = "Sélectionner une valeur";
   const dispatch = useDispatch();
+  const stocks = useSelector((store) => store.STOCK.stocks);
+  const mealItems = useSelector((store) => store.MEAL.mealItems);
+  if (mealItems.length === 0) dispatch(addMealItemsEmpty());
+
+  //TODO factoriser ce code!!!
+  const stocksName = [];
+  orderedStockName();
+  function orderedStockName() {
+    stocks.map((stock) => {
+      if (checkStatusNotError(stock)) stocksName.push(stock.Name);
+    });
+  }
+
+  function checkStatusNotError(stock) {
+    var peremtion = new Date(stock.DatePeremption);
+    var today = new Date();
+    return today < peremtion;
+  }
+
+  var defaultDropdownValue = "Sélectionner une valeur";
   const [dropdownValueDays, setDropDownValueDays] =
     useState(defaultDropdownValue);
   const [dropdownValueMoments, setDropDownValueMoments] =
@@ -25,16 +44,6 @@ export function MealForm({ meal, setMeal }) {
   ];
   const moments = ["Petit-déjeuner", "Déjeuner", "Goûter", "Dîner"];
   const [iteration, setIteration] = useState(2);
-  const [mealItems, setMealItems] = useState([
-    {
-      type: "",
-      quantity: 0,
-      status: "",
-      stock: {},
-      id: 1,
-    },
-  ]);
-
   function clickDropdownlistDays(value) {
     setDropDownValueDays(value);
     setMeal({ ...meal, Day: value });
@@ -46,16 +55,7 @@ export function MealForm({ meal, setMeal }) {
   }
 
   function addIteration() {
-    var newIteration = iteration + 1;
-    setIteration(newIteration);
-    var newMealItem = { quantity: 0, stock: {}, id: iteration };
-    setMealItems([
-      ...mealItems,
-      {
-        newMealItem,
-      },
-    ]);
-    dispatch(initiateMealItems(newMealItem));
+    dispatch(addMealItemsEmpty());
   }
 
   function saveMeal() {

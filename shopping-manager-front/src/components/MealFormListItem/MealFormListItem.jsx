@@ -93,12 +93,14 @@ export function MealFormListItem({ mealItem }) {
                 values={stocksName}
               />
             )}
-            {visibilityValidation && mealItem.stock.Name}
+            {visibilityValidation &&
+              mealItem.stock != undefined &&
+              mealItem.stock.Name}
           </div>
           <div
             className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
           >
-            {mealItem.stock.Type}
+            {mealItem.stock != undefined && mealItem.stock.Type}
           </div>
           <div
             className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
