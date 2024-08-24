@@ -7,14 +7,14 @@ export const mealSlice=createSlice({
         mealItems:[]
     },
     reducers:{
-        addMeal:(currentSlice, action)=>{
-            currentSlice.meals.push({...action.payload});
+        addMeal:(currentState, action)=>{
+            currentState.meals.push({...action.payload});
         },
-        addMealItems:(currentSlice, action)=>{
-            currentSlice.mealItems.push({...action.payload});
+        addMealItems:(currentState, action)=>{
+            currentState.mealItems.push({...action.payload});
         },
-        initiateMealItems:(currentSlice, action)=>{
-            currentSlice.mealItems.push({...action.payload});
+        initiateMealItems:(currentState, action)=>{
+            currentState.mealItems.push({...action.payload});
         }
     }
 })
