@@ -5,8 +5,11 @@ import { BootstrapDropdown } from "../BootstrapDropdown/BootstrapDropdown";
 import { useSelector } from "react-redux";
 import { CustomButton } from "../CustomButton/CustomButton";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
+import { useDispatch } from "react-redux";
+import { addMealItems } from "../../store/meal/meal-slice";
 
 export function MealFormListItem({ mealItem }) {
+  const dispatch = useDispatch();
   var defaultDropdownValue = "Sélectionner une valeur";
   const stocks = useSelector((store) => store.STOCK.stocks);
   const stocksName = [];
@@ -66,6 +69,7 @@ export function MealFormListItem({ mealItem }) {
     } else {
       setErrorMessageVisibility(false);
       setVisibilityValidation(true);
+      //dispatch(addmealItems(mealItem));
     }
   }
 

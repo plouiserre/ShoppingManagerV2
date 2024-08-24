@@ -3,15 +3,22 @@ import { createSlice } from "@reduxjs/toolkit";
 export const mealSlice=createSlice({
     name:"mealSlice",
     initialState:{
-        meals:[]
+        meals:[],
+        mealItems:[]
     },
     reducers:{
-        addmeal:(currentSlice, action)=>{
-            currentSlice.mealItems.push(action.payload);
+        addMeal:(currentSlice, action)=>{
+            currentSlice.meals.push({...action.payload});
+        },
+        addMealItems:(currentSlice, action)=>{
+            currentSlice.mealItems.push({...action.payload});
+        },
+        initiateMealItems:(currentSlice, action)=>{
+            currentSlice.mealItems.push({...action.payload});
         }
     }
 })
 
-const {addmeal} = mealSlice.actions;
+const {addMeal, addMealItems, initiateMealItems} = mealSlice.actions;
 
-export {addmeal}
+export {addMeal, addMealItems, initiateMealItems}

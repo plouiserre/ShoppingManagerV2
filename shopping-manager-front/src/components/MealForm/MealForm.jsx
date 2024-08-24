@@ -4,7 +4,7 @@ import { BootstrapDropdown } from "../BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
 import { MealFormList } from "../MealFormList/MealFormList";
 import { useDispatch } from "react-redux";
-import { addmeal } from "../../store/meal/meal-slice";
+import { initiateMealItems } from "../../store/meal/meal-slice";
 
 //TODO move in container
 export function MealForm({ meal, setMeal }) {
@@ -48,18 +48,19 @@ export function MealForm({ meal, setMeal }) {
   function addIteration() {
     var newIteration = iteration + 1;
     setIteration(newIteration);
+    var newMealItem = { quantity: 0, stock: {}, id: iteration };
     setMealItems([
       ...mealItems,
       {
-        quantity: 0,
-        stock: {},
-        id: iteration,
+        newMealItem,
       },
     ]);
+    dispatch(initiateMealItems(newMealItem));
   }
 
   function saveMeal() {
-    dispatch(addmeal(meal));
+    //dispatch(addmealItems(meal));
+    alert("lol");
   }
 
   return (
