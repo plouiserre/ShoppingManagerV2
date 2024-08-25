@@ -24,7 +24,8 @@ export const mealSlice = createSlice({
             {
                 id:1,
                 stock:{},
-                quantity:0}]
+                quantity:0,
+                isComplete : false}]
             },
     reducers:{
         addMeal:(currentState, action)=>{
@@ -33,10 +34,6 @@ export const mealSlice = createSlice({
         addMealItems:(currentState, action)=>{
             currentState.mealItems.push({...action.payload});
         },
-        //TODO delete this useless method
-        initiateMealItems:(currentState, action)=>{
-            currentState.mealItems.push({...action.payload});
-        }, 
         addMealItemsEmpty:(currentState, action)=>{
             var mealItems = JSON.parse(JSON.stringify(currentState.mealItems))
             var id = getId(mealItems, {
@@ -46,7 +43,8 @@ export const mealSlice = createSlice({
             currentState.mealItems.push({     
                     id:id,
                     stock:{},
-                    quantity:0               
+                    quantity:0,
+                    isComplete : false               
             })
         },
         deleteMealItems:(currentState, action)=>{
@@ -59,7 +57,9 @@ export const mealSlice = createSlice({
                 if(item.id !== action.payload.id){
                     newMealItems.push(item)
                 }else{
-                    newMealItems.push(action.payload)
+                    var newItem = action.payload
+                    newItem.isComplete = true
+                    newMealItems.push(newItem)
                 }
             })
             currentState.mealItems = newMealItems
@@ -67,6 +67,6 @@ export const mealSlice = createSlice({
     }
 })
 
-const {addMeal, addMealItems, initiateMealItems, addMealItemsEmpty, completeMealItem, deleteMealItems} = mealSlice.actions;
+const {addMeal, addMealItems, addMealItemsEmpty, completeMealItem, deleteMealItems} = mealSlice.actions;
 
-export {addMeal, addMealItems, initiateMealItems, addMealItemsEmpty,completeMealItem, deleteMealItems}
+export {addMeal, addMealItems, addMealItemsEmpty,completeMealItem, deleteMealItems}

@@ -91,14 +91,11 @@ export function MealFormListItem({ mealItemWorking }) {
               values={stocksName}
             />
           )}
-          {mealItem.stock !== undefined &&
-            mealItem.stock.Name != undefined &&
-            mealItem.stock.Name}
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          {(mealItem.stock.Name != undefined || stockType !== "") && (
+          {stockType !== "" && (
             <LabelTypeStock foodType={mealItem.stock.Type} />
           )}
         </div>
@@ -115,16 +112,11 @@ export function MealFormListItem({ mealItemWorking }) {
               className={`${s.numberQuantityMealItem}`}
             />
           )}
-
-          {mealItem.stock.Name !== undefined && mealItem.quantity}
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.mealItemStatus} ${s.cellMealsSubListbottom}`}
         >
-          {(mealItem.stock.Name !== undefined ||
-            stockWorking.Name !== undefined) && (
-            <Status element={stockWorking} />
-          )}
+          {stockWorking.Name !== undefined && <Status element={stockWorking} />}
         </div>
         <div
           className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListRight} ${s.cellMealsSubListbottom}`}
