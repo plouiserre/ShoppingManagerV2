@@ -1,26 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-function getId(elements, elementToAdd){
+function getId(elements){
+    var id = 0 
     if(elements !== undefined && elements.length >0){
         var indexs = []
         elements.map((element)=>{
-            indexs.push(element.Id)
+            indexs.push(element.id)
         })
         var maxId = Math.max(...indexs)
-        var id = maxId+1;
-        elementToAdd.Id = id;
+        id = maxId+1;
     }
     else {
-        elementToAdd.Id = 1;
+        id = 1;
     }
+    return id;
 }
 
 export const mealSlice = createSlice({
     name:"mealSlice",
     initialState:{
         meals:[],
-        mealItems:[]
-    },
+        mealItems:[
+            {
+                id:1,
+                stock:{},
+                quantity:0}]
+            },
     reducers:{
         addMeal:(currentState, action)=>{
             currentState.meals.push({...action.payload});
@@ -33,14 +38,15 @@ export const mealSlice = createSlice({
             currentState.mealItems.push({...action.payload});
         }, 
         addMealItemsEmpty:(currentState, action)=>{
-            var newItem = {
-                id:id,
+            var mealItems = JSON.parse(JSON.stringify(currentState.mealItems))
+            var id = getId(mealItems, {
                 stock:{},
                 quantity:0
-            };
-            var id = getId(currentState.mealItems, newItem);
-            currentState.mealItems.push({
-                newItem
+            });
+            currentState.mealItems.push({     
+                    id:id,
+                    stock:{},
+                    quantity:0               
             })
         },
         deleteMealItems:(currentState, action)=>{

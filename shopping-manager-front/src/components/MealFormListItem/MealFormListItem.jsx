@@ -28,18 +28,17 @@ export function MealFormListItem({ mealItemWorking }) {
     return today < peremtion;
   }
   const [stockWorking, setStockWorking] = useState({});
-  const [visibilityStatus, setVisibilityStatus] = useState(false);
+  const [stockType, setStockType] = useState("");
   const [stocksValue, setStocksValue] = useState(defaultDropdownValue);
   const [errorMessageValue, setErrorMessageValue] = useState("");
   const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
-  const [visibilityValidation, setVisibilityValidation] = useState(false);
 
   function clickDropdownListStock(value) {
     setStocksValue(value);
     stocks.map((stock) => {
       if (stock.Name === value) {
         setStockWorking({ ...stock });
-        setVisibilityStatus(true);
+        setStockType(stock.Type);
       }
     });
   }
@@ -66,7 +65,6 @@ export function MealFormListItem({ mealItemWorking }) {
       );
     } else {
       setErrorMessageVisibility(false);
-      setVisibilityValidation(true);
       //TODO externalize in a method
       const newMealItem = { ...mealItem };
       newMealItem.stock = stockWorking;
@@ -86,19 +84,21 @@ export function MealFormListItem({ mealItemWorking }) {
         <div
           className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          {mealItem.stock.Name == undefined && (
+          {mealItem.stock.Name === undefined && (
             <BootstrapDropdown
               dropdownValues={stocksValue}
               clickDropDownAction={clickDropdownListStock}
               values={stocksName}
             />
           )}
-          {mealItem.stock.Name != undefined && mealItem.stock.Name}
+          {mealItem.stock !== undefined &&
+            mealItem.stock.Name != undefined &&
+            mealItem.stock.Name}
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          {mealItem.stock.Name != undefined && (
+          {(mealItem.stock.Name != undefined || stockType !== "") && (
             <LabelTypeStock foodType={mealItem.stock.Type} />
           )}
         </div>
@@ -121,7 +121,8 @@ export function MealFormListItem({ mealItemWorking }) {
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.mealItemStatus} ${s.cellMealsSubListbottom}`}
         >
-          {mealItem.stock.Name !== undefined && (
+          {(mealItem.stock.Name !== undefined ||
+            stockWorking.Name !== undefined) && (
             <Status element={stockWorking} />
           )}
         </div>
@@ -139,7 +140,7 @@ export function MealFormListItem({ mealItemWorking }) {
             <div className={`${s.actionsMeals}`}>
               <CustomButton
                 labelButton={"Edit"}
-                actionButton={() => setVisibilityValidation(false)}
+                actionButton={() => alert("to implement")}
                 customClass={"btn btn-secondary"}
               />
               <CustomButton
