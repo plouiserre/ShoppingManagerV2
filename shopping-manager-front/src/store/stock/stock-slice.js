@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//TODO mutualize with this method in meal-slice.js
 function getId(elements, elementToAdd){
     if(elements !== undefined && elements.length >0){
         var indexs = []

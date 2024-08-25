@@ -132,7 +132,7 @@ export function MealForm({ meal, setMeal }) {
             </div>
             <div className={`col-2`}></div>
           </div>
-          <MealFormList iteration={iteration} mealItems={mealItems} />
+          <MealFormList iteration={iteration} />
         </div>
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>

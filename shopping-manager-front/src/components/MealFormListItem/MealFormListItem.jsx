@@ -6,9 +6,10 @@ import { useSelector } from "react-redux";
 import { CustomButton } from "../CustomButton/CustomButton";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import { useDispatch } from "react-redux";
-import { addMealItems } from "../../store/meal/meal-slice";
+import { deleteMealItems, completeMealItem } from "../../store/meal/meal-slice";
 
-export function MealFormListItem({ mealItem }) {
+export function MealFormListItem({ mealItemWorking }) {
+  const mealItem = { ...mealItemWorking };
   const dispatch = useDispatch();
   var defaultDropdownValue = "Sélectionner une valeur";
   const stocks = useSelector((store) => store.STOCK.stocks);
@@ -25,7 +26,8 @@ export function MealFormListItem({ mealItem }) {
     var today = new Date();
     return today < peremtion;
   }
-
+  const [stockWorking, setStockWorking] = useState({});
+  const [stockType, setStockType] = useState("");
   const [visibilityStatus, setVisibilityStatus] = useState(false);
   const [stocksValue, setStocksValue] = useState(defaultDropdownValue);
   const [errorMessageValue, setErrorMessageValue] = useState("");
@@ -37,8 +39,8 @@ export function MealFormListItem({ mealItem }) {
     setStocksValue(value);
     stocks.map((stock) => {
       if (stock.Name === value) {
-        mealItem.stock = stock;
-        mealItem.stock.Type = getType(mealItem.stock.Type);
+        setStockWorking({ ...stock });
+        setStockType(getType(stock.Type));
         setVisibilityStatus(true);
       }
     });
@@ -51,25 +53,32 @@ export function MealFormListItem({ mealItem }) {
     else return "Petit déjeuner";
   }
 
+  function deleteMealItem() {
+    dispatch(deleteMealItems(mealItem));
+  }
+
   function ValidateMealItem() {
-    if (mealItem.stock.Name === undefined) {
+    if (stockWorking.Name === undefined) {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Merci de choisir un élément du stock");
     } else if (mealItem.quantity <= 0) {
       setErrorMessageVisibility(true);
       setErrorMessageValue(
         "Merci de sélectionner une quantité supérieure à 0 pour " +
-          mealItem.stock.Name
+          stockWorking.Name
       );
-    } else if (mealItem.stock.Quantity < mealItem.quantity) {
+    } else if (stockWorking.Quantity < mealItem.quantity) {
       setErrorMessageVisibility(true);
       setErrorMessageValue(
-        mealItem.stock.Name + " a un stock inférieur à " + mealItem.quantity
+        stockWorking.Name + " a un stock inférieur à " + mealItem.quantity
       );
     } else {
       setErrorMessageVisibility(false);
       setVisibilityValidation(true);
-      //dispatch(addmealItems(mealItem));
+      //TODO externalize in a method
+      const newMealItem = { ...mealItem };
+      newMealItem.stock = stockWorking;
+      dispatch(completeMealItem(newMealItem));
     }
   }
 
@@ -94,13 +103,13 @@ export function MealFormListItem({ mealItem }) {
               />
             )}
             {visibilityValidation &&
-              mealItem.stock != undefined &&
-              mealItem.stock.Name}
+              stockWorking != undefined &&
+              stockWorking.Name}
           </div>
           <div
             className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
           >
-            {mealItem.stock != undefined && mealItem.stock.Type}
+            {stockWorking != undefined && stockType}
           </div>
           <div
             className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
@@ -121,7 +130,7 @@ export function MealFormListItem({ mealItem }) {
           <div
             className={`col-1 ${s.cellMealsSubList} ${s.mealItemStatus} ${s.cellMealsSubListbottom}`}
           >
-            {visibilityStatus && <Status element={mealItem.stock} />}
+            {visibilityStatus && <Status element={stockWorking} />}
           </div>
           <div
             className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListRight} ${s.cellMealsSubListbottom}`}
@@ -142,7 +151,7 @@ export function MealFormListItem({ mealItem }) {
                 />
                 <CustomButton
                   labelButton={"Supprimer"}
-                  actionButton={() => setIsActivated(false)}
+                  actionButton={() => deleteMealItem()}
                   customClass={"btn btn-danger"}
                 />
               </div>
