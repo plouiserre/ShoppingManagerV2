@@ -35,7 +35,7 @@ export const mealSlice = createSlice({
             currentState.mealItems.push({...action.payload});
         },
         addMealItemsEmpty:(currentState, action)=>{
-            var mealItems = JSON.parse(JSON.stringify(currentState.mealItems))
+            var mealItems = JSON.parse(JSON.stringify(currentState.mealItems));
             var id = getId(mealItems, {
                 stock:{},
                 quantity:0
@@ -48,7 +48,7 @@ export const mealSlice = createSlice({
             })
         },
         deleteMealItems:(currentState, action)=>{
-            var newMealItems = currentState.mealItems.filter((item)=>item.Id !==action.payload.Id);
+            var newMealItems = currentState.mealItems.filter((item)=>item.id !==action.payload.id);
             currentState.mealItems = newMealItems;
         },
         completeMealItem:(currentState, action)=>{
