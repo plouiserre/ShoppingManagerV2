@@ -95,9 +95,7 @@ export function MealFormListItem({ mealItemWorking }) {
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          {stockType !== "" && (
-            <LabelTypeStock foodType={mealItem.stock.Type} />
-          )}
+          {stockType !== "" && <LabelTypeStock foodType={stockType} />}
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
