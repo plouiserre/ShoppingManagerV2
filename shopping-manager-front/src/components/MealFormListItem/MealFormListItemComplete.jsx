@@ -2,13 +2,19 @@ import s from "./style.module.css";
 import { LabelTypeStock } from "../LabelTypeStock/LabelTypeStock";
 import { Status } from "../Status/Status";
 import { CustomButton } from "../CustomButton/CustomButton";
-import { deleteMealItems } from "../../store/meal/meal-slice";
+import {
+  deleteMealItems,
+  stopCompleteMealItem,
+} from "../../store/meal/meal-slice";
 import { useDispatch } from "react-redux";
 
 export function MealFormListItemComplete({ mealItemWorking }) {
   const dispatch = useDispatch();
   function deleteMealItem() {
     dispatch(deleteMealItems(mealItem));
+  }
+  function editMealItem() {
+    dispatch(stopCompleteMealItem(mealItem));
   }
   const mealItem = { ...mealItemWorking };
   return (
@@ -24,13 +30,13 @@ export function MealFormListItemComplete({ mealItemWorking }) {
           className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
           {mealItem.stock !== undefined &&
-            mealItem.stock.Name != undefined &&
+            mealItem.stock.Name !== undefined &&
             mealItem.stock.Name}
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          {mealItem.stock.Name != undefined && (
+          {mealItem.stock.Name !== undefined && (
             <LabelTypeStock foodType={mealItem.stock.Type} />
           )}
         </div>
@@ -53,7 +59,7 @@ export function MealFormListItemComplete({ mealItemWorking }) {
             <div className={`${s.actionsMeals}`}>
               <CustomButton
                 labelButton={"Edit"}
-                actionButton={() => alert("to implement")}
+                actionButton={() => editMealItem()}
                 customClass={"btn btn-secondary"}
               />
               <CustomButton

@@ -9,10 +9,14 @@ import { useDispatch } from "react-redux";
 import { deleteMealItems, completeMealItem } from "../../store/meal/meal-slice";
 import { LabelTypeStock } from "../LabelTypeStock/LabelTypeStock";
 
+//Todo centralize all code for edit view
 export function MealFormListItem({ mealItemWorking }) {
   const mealItem = { ...mealItemWorking };
   const dispatch = useDispatch();
-  var defaultDropdownValue = "Sélectionner une valeur";
+  var defaultDropdownValue =
+    mealItem.stock.Name !== undefined
+      ? mealItem.stock.Name
+      : "Sélectionner une valeur";
   const stocks = useSelector((store) => store.STOCK.stocks);
   const stocksName = [];
   orderedStockName();
@@ -49,7 +53,7 @@ export function MealFormListItem({ mealItemWorking }) {
 
   //TODO externalize in other page
   function ValidateMealItem() {
-    if (stockWorking.Name === undefined) {
+    if (stockWorking.Name === undefined && mealItem.stock.Name === undefined) {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Merci de choisir un élément du stock");
     } else if (mealItem.quantity <= 0) {
@@ -67,7 +71,7 @@ export function MealFormListItem({ mealItemWorking }) {
       setErrorMessageVisibility(false);
       //TODO externalize in a method
       const newMealItem = { ...mealItem };
-      newMealItem.stock = stockWorking;
+      if (stockWorking.Name !== undefined) newMealItem.stock = stockWorking;
       dispatch(completeMealItem(newMealItem));
     }
   }
@@ -84,62 +88,48 @@ export function MealFormListItem({ mealItemWorking }) {
         <div
           className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          {mealItem.stock.Name === undefined && (
-            <BootstrapDropdown
-              dropdownValues={stocksValue}
-              clickDropDownAction={clickDropdownListStock}
-              values={stocksName}
-            />
+          <BootstrapDropdown
+            dropdownValues={stocksValue}
+            clickDropDownAction={clickDropdownListStock}
+            values={stocksName}
+          />
+        </div>
+        <div
+          className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
+        >
+          {stockType !== "" ? (
+            <LabelTypeStock foodType={stockType} />
+          ) : (
+            mealItem.stock.Type !== undefined && (
+              <LabelTypeStock foodType={mealItem.stock.Type} />
+            )
           )}
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          {stockType !== "" && <LabelTypeStock foodType={stockType} />}
-        </div>
-        <div
-          className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
-        >
-          {mealItem.stock.Name === undefined && (
-            <input
-              type="number"
-              defaultValue={mealItem.quantity}
-              onChange={(event) => {
-                mealItem.quantity = event.target.value;
-              }}
-              className={`${s.numberQuantityMealItem}`}
-            />
-          )}
+          <input
+            type="number"
+            defaultValue={mealItem.quantity}
+            onChange={(event) => {
+              mealItem.quantity = event.target.value;
+            }}
+            className={`${s.numberQuantityMealItem}`}
+          />
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.mealItemStatus} ${s.cellMealsSubListbottom}`}
         >
-          {stockWorking.Name !== undefined && <Status element={stockWorking} />}
+          <Status element={stockWorking} />
         </div>
         <div
           className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListRight} ${s.cellMealsSubListbottom}`}
         >
-          {mealItem.stock.Name === undefined && (
-            <CustomButton
-              labelButton={"Valider élément repas"}
-              actionButton={() => ValidateMealItem()}
-              customClass={"btn btn-success"}
-            />
-          )}
-          {mealItem.stock.Name !== undefined && (
-            <div className={`${s.actionsMeals}`}>
-              <CustomButton
-                labelButton={"Edit"}
-                actionButton={() => alert("to implement")}
-                customClass={"btn btn-secondary"}
-              />
-              <CustomButton
-                labelButton={"Supprimer"}
-                actionButton={() => deleteMealItem()}
-                customClass={"btn btn-danger"}
-              />
-            </div>
-          )}
+          <CustomButton
+            labelButton={"Valider élément repas"}
+            actionButton={() => ValidateMealItem()}
+            customClass={"btn btn-success"}
+          />
         </div>
         <div className={`col-2`}></div>
       </div>
