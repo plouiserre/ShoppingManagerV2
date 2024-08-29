@@ -25,7 +25,7 @@ export const mealSlice = createSlice({
                 id:1,
                 stock:{},
                 quantity:0,
-                isComplete : false}]
+                statusMeal : "Creation"}]
             },
     reducers:{
         addMeal:(currentState, action)=>{
@@ -44,7 +44,7 @@ export const mealSlice = createSlice({
                     id:id,
                     stock:{},
                     quantity:0,
-                    isComplete : false               
+                    statusMeal : "Creation"              
             })
         },
         deleteMealItems:(currentState, action)=>{
@@ -58,7 +58,7 @@ export const mealSlice = createSlice({
                     newMealItems.push(item)
                 }else{
                     var newItem = action.payload
-                    newItem.isComplete = true
+                    newItem.statusMeal = "Validation"
                     newMealItems.push(newItem)
                 }
             })
@@ -68,7 +68,7 @@ export const mealSlice = createSlice({
             var newMealItems = []
             currentState.mealItems.map((item)=>{
                 if(item.id === action.payload.id){
-                    item.isComplete = false
+                    item.statusMeal = "Edit";
                 }   
                 newMealItems.push(item)
             })

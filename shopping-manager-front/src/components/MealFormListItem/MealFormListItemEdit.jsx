@@ -10,13 +10,11 @@ import { completeMealItem } from "../../store/meal/meal-slice";
 import { LabelTypeStock } from "../LabelTypeStock/LabelTypeStock";
 
 //Todo centralize all code for edit view
-export function MealFormListItem({ mealItemWorking }) {
+export function MealFormListItemEdit({ mealItemWorking }) {
   const mealItem = { ...mealItemWorking };
-  const dispatch = useDispatch();
-  var defaultDropdownValue =
-    mealItem.stock.Name !== undefined
-      ? mealItem.stock.Name
-      : "Sélectionner une valeur";
+  var dispatch = useDispatch();
+  var defaultDropdownValue = mealItem.stock.Name;
+  const [stocksValue, setStocksValue] = useState(defaultDropdownValue);
   const stocks = useSelector((store) => store.STOCK.stocks);
   const stocksName = [];
   orderedStockName();
@@ -26,17 +24,18 @@ export function MealFormListItem({ mealItemWorking }) {
     });
   }
 
+  const [stockType, setStockType] = useState(mealItem.stock.Type);
+  const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
+  const [errorMessageValue, setErrorMessageValue] = useState("");
+
+  //TODO check if it is useful
+  const [stockWorking, setStockWorking] = useState({});
+
   function checkStatusNotError(stock) {
     var peremtion = new Date(stock.DatePeremption);
     var today = new Date();
     return today < peremtion;
   }
-  const [stockWorking, setStockWorking] = useState({});
-  const [stockType, setStockType] = useState("");
-  const [stocksValue, setStocksValue] = useState(defaultDropdownValue);
-  const [errorMessageValue, setErrorMessageValue] = useState("");
-  const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
-
   function clickDropdownListStock(value) {
     setStocksValue(value);
     stocks.map((stock) => {
@@ -46,8 +45,6 @@ export function MealFormListItem({ mealItemWorking }) {
       }
     });
   }
-
-  //TODO externalize in other page
   function ValidateMealItem() {
     if (stockWorking.Name === undefined && mealItem.stock.Name === undefined) {
       setErrorMessageVisibility(true);
@@ -58,10 +55,10 @@ export function MealFormListItem({ mealItemWorking }) {
         "Merci de sélectionner une quantité supérieure à 0 pour " +
           stockWorking.Name
       );
-    } else if (stockWorking.Quantity < mealItem.quantity) {
+    } else if (mealItem.stock.Quantity < mealItem.quantity) {
       setErrorMessageVisibility(true);
       setErrorMessageValue(
-        stockWorking.Name + " a un stock inférieur à " + mealItem.quantity
+        mealItem.stock.Name + " a un stock inférieur à " + mealItem.quantity
       );
     } else {
       setErrorMessageVisibility(false);
@@ -71,7 +68,6 @@ export function MealFormListItem({ mealItemWorking }) {
       dispatch(completeMealItem(newMealItem));
     }
   }
-
   return (
     <>
       <div className="row">
@@ -93,13 +89,7 @@ export function MealFormListItem({ mealItemWorking }) {
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          {stockType !== "" ? (
-            <LabelTypeStock foodType={stockType} />
-          ) : (
-            mealItem.stock.Type !== undefined && (
-              <LabelTypeStock foodType={mealItem.stock.Type} />
-            )
-          )}
+          <LabelTypeStock foodType={stockType} />
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
