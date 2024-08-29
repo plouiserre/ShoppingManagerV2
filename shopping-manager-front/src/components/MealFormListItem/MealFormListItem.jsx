@@ -12,11 +12,11 @@ import { LabelTypeStock } from "../LabelTypeStock/LabelTypeStock";
 //Todo centralize all code for edit view
 export function MealFormListItem({ mealItemWorking }) {
   const mealItem = { ...mealItemWorking };
+  const isEditing = mealItem.stock.Name !== undefined ? true : false;
   const dispatch = useDispatch();
-  var defaultDropdownValue =
-    mealItem.stock.Name !== undefined
-      ? mealItem.stock.Name
-      : "Sélectionner une valeur";
+  var defaultDropdownValue = isEditing
+    ? mealItem.stock.Name
+    : "Sélectionner une valeur";
   const stocks = useSelector((store) => store.STOCK.stocks);
   const stocksName = [];
   orderedStockName();
@@ -32,7 +32,8 @@ export function MealFormListItem({ mealItemWorking }) {
     return today < peremtion;
   }
   const [stockWorking, setStockWorking] = useState({});
-  const [stockType, setStockType] = useState("");
+  const defaultStockType = isEditing ? mealItem.stock.Type : "";
+  const [stockType, setStockType] = useState(defaultStockType);
   const [stocksValue, setStocksValue] = useState(defaultDropdownValue);
   const [errorMessageValue, setErrorMessageValue] = useState("");
   const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
@@ -49,6 +50,10 @@ export function MealFormListItem({ mealItemWorking }) {
 
   //TODO externalize in other page
   function ValidateMealItem() {
+    const stockQuantity = isEditing
+      ? parseInt(mealItem.stock.Quantity)
+      : parseInt(stockWorking.Quantity);
+    const mealItemQuantity = parseInt(mealItem.quantity);
     if (stockWorking.Name === undefined && mealItem.stock.Name === undefined) {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Merci de choisir un élément du stock");
@@ -58,10 +63,11 @@ export function MealFormListItem({ mealItemWorking }) {
         "Merci de sélectionner une quantité supérieure à 0 pour " +
           stockWorking.Name
       );
-    } else if (stockWorking.Quantity < mealItem.quantity) {
+    } else if (stockQuantity < mealItemQuantity) {
+      const stockName = isEditing ? mealItem.stock.Name : stockWorking.Name;
       setErrorMessageVisibility(true);
       setErrorMessageValue(
-        stockWorking.Name + " a un stock inférieur à " + mealItem.quantity
+        stockName + " a un stock inférieur à " + mealItem.quantity
       );
     } else {
       setErrorMessageVisibility(false);
