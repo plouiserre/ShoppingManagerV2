@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { completeMealItem } from "../../store/meal/meal-slice";
 import { LabelTypeStock } from "../LabelTypeStock/LabelTypeStock";
 
-//Todo centralize all code for edit view
 export function MealFormListItem({ mealItemWorking }) {
   const mealItem = { ...mealItemWorking };
   const isEditing = mealItem.stock.Name !== undefined ? true : false;
@@ -50,9 +49,10 @@ export function MealFormListItem({ mealItemWorking }) {
 
   //TODO externalize in other page
   function ValidateMealItem() {
-    const stockQuantity = isEditing
-      ? parseInt(mealItem.stock.Quantity)
-      : parseInt(stockWorking.Quantity);
+    const stockQuantity =
+      isEditing && stockWorking.Name === undefined
+        ? parseInt(mealItem.stock.Quantity)
+        : parseInt(stockWorking.Quantity);
     const mealItemQuantity = parseInt(mealItem.quantity);
     if (stockWorking.Name === undefined && mealItem.stock.Name === undefined) {
       setErrorMessageVisibility(true);
@@ -71,7 +71,6 @@ export function MealFormListItem({ mealItemWorking }) {
       );
     } else {
       setErrorMessageVisibility(false);
-      //TODO externalize in a method
       const newMealItem = { ...mealItem };
       if (stockWorking.Name !== undefined) newMealItem.stock = stockWorking;
       dispatch(completeMealItem(newMealItem));
