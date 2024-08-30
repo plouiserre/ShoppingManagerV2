@@ -121,7 +121,11 @@ export function MealFormListItem({ mealItemWorking }) {
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.mealItemStatus} ${s.cellMealsSubListbottom}`}
         >
-          <Status element={stockWorking} />
+          {stockWorking.Name !== undefined ? (
+            <Status element={stockWorking} />
+          ) : (
+            <Status element={mealItem.stock} />
+          )}
         </div>
         <div
           className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListRight} ${s.cellMealsSubListbottom}`}
