@@ -64,6 +64,9 @@ export const mealSlice = createSlice({
             })
             currentState.mealItems = newMealItems
         },
+        saveMeal:(currentState, action)=>{
+            currentState.meals.push({...action.payload});
+        },
         stopCompleteMealItem:(currentState, action)=>{
             var newMealItems = []
             currentState.mealItems.map((item)=>{
@@ -77,6 +80,6 @@ export const mealSlice = createSlice({
     }
 })
 
-const {addMeal, addMealItems, addMealItemsEmpty, completeMealItem, deleteMealItems, stopCompleteMealItem} = mealSlice.actions;
+const {addMeal, addMealItems, addMealItemsEmpty, completeMealItem, deleteMealItems, saveMeal, stopCompleteMealItem} = mealSlice.actions;
 
-export {addMeal, addMealItems, addMealItemsEmpty,completeMealItem, deleteMealItems, stopCompleteMealItem}
+export {addMeal, addMealItems, addMealItemsEmpty,completeMealItem, deleteMealItems, saveMeal, stopCompleteMealItem}

@@ -5,6 +5,8 @@ import { useState } from "react";
 import { MealFormList } from "../MealFormList/MealFormList";
 import { useDispatch, useSelector } from "react-redux";
 import { addMealItemsEmpty } from "../../store/meal/meal-slice";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
+import { saveMeal } from "../../store/meal/meal-slice";
 
 //TODO move in container
 export function MealForm({ meal, setMeal }) {
@@ -44,6 +46,9 @@ export function MealForm({ meal, setMeal }) {
   ];
   const moments = ["Petit-déjeuner", "Déjeuner", "Goûter", "Dîner"];
   const [iteration, setIteration] = useState(2);
+  const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
+  const [errorMessageValue, setErrorMessageValue] = useState("");
+
   function clickDropdownlistDays(value) {
     setDropDownValueDays(value);
     setMeal({ ...meal, Day: value });
@@ -58,9 +63,60 @@ export function MealForm({ meal, setMeal }) {
     dispatch(addMealItemsEmpty());
   }
 
-  function saveMeal() {
-    //dispatch(addmealItems(meal));
-    alert("lol");
+  function saveAllMeal() {
+    var isValidate = validateMeal();
+    if (isValidate) {
+      mergeAllMealsData();
+      const newMeal = { ...meal };
+      dispatch(saveMeal(newMeal));
+    }
+  }
+
+  function validateMeal() {
+    if (dropdownValueMoments == defaultDropdownValue) {
+      setErrorMessageVisibility(true);
+      setErrorMessageValue(
+        "Merci de choisir un moment pour l'enregistrement de ce repas"
+      );
+      return false;
+    } else if (dropdownValueDays == defaultDropdownValue) {
+      setErrorMessageVisibility(true);
+      setErrorMessageValue(
+        "Merci de choisir un jour pour l'enregistrement de ce repas"
+      );
+      return false;
+    } else if (
+      (mealItems.length === 1 && mealItems[0].statusMeal === "Creation") ||
+      mealItems[0].statusMeal === "Edit"
+    ) {
+      setErrorMessageVisibility(true);
+      setErrorMessageValue("Merci d'ajouter des éléments pour ce repas");
+      return false;
+    } else if (!checkAllMealItemsAreComplete()) {
+      setErrorMessageVisibility(true);
+      setErrorMessageValue("Certains éléments du repas ne sont pas complets");
+      return false;
+    } else {
+      setErrorMessageVisibility(false);
+      setErrorMessageValue("");
+      return true;
+    }
+  }
+
+  function checkAllMealItemsAreComplete() {
+    var allAreComplete = true;
+    for (var i = 0; i < mealItems.length; i++) {
+      const item = mealItems[i];
+      if (item.statusMeal === "Creation" || item.statusMeal === "Edit") {
+        allAreComplete = false;
+        break;
+      }
+    }
+    return allAreComplete;
+  }
+
+  function mergeAllMealsData() {
+    meal.mealItems = mealItems;
   }
 
   return (
@@ -134,6 +190,9 @@ export function MealForm({ meal, setMeal }) {
           </div>
           <MealFormList iteration={iteration} />
         </div>
+        {errorMessageVisibility && (
+          <ErrorMessage messageError={errorMessageValue} />
+        )}
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-7">
@@ -150,7 +209,7 @@ export function MealForm({ meal, setMeal }) {
           <div className="col-7">
             <CustomButton
               labelButton={"Enregistrer"}
-              actionButton={() => saveMeal()}
+              actionButton={() => saveAllMeal()}
             />
           </div>
           <div className="col-2"></div>
