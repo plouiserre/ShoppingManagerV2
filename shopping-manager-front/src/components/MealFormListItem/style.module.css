@@ -33,3 +33,9 @@
     column-gap: 30px;
     justify-content: space-between;
 }
+
+.actionsMealsLittle{
+    display: inline-flex;
+    column-gap: 10px;
+    justify-content: space-between;
+}

@@ -8,6 +8,7 @@ import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import { useDispatch } from "react-redux";
 import { completeMealItem } from "../../store/meal/meal-slice";
 import { LabelTypeStock } from "../LabelTypeStock/LabelTypeStock";
+import { deleteMealItems } from "../../store/meal/meal-slice";
 
 export function MealFormListItem({ mealItemWorking }) {
   const mealItem = { ...mealItemWorking };
@@ -77,6 +78,10 @@ export function MealFormListItem({ mealItemWorking }) {
     }
   }
 
+  function deleteEmptyLine() {
+    dispatch(deleteMealItems(mealItem));
+  }
+
   return (
     <>
       <div className="row">
@@ -130,11 +135,18 @@ export function MealFormListItem({ mealItemWorking }) {
         <div
           className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListRight} ${s.cellMealsSubListbottom}`}
         >
-          <CustomButton
-            labelButton={"Valider élément repas"}
-            actionButton={() => ValidateMealItem()}
-            customClass={"btn btn-success"}
-          />
+          <div className={`${s.actionsMealsLittle}`}>
+            <CustomButton
+              labelButton={"Valider"}
+              actionButton={() => ValidateMealItem()}
+              customClass={"btn btn-success"}
+            />
+            <CustomButton
+              labelButton={"Supprimer"}
+              actionButton={() => deleteEmptyLine()}
+              customClass={"btn btn-danger"}
+            />
+          </div>
         </div>
         <div className={`col-2`}></div>
       </div>
