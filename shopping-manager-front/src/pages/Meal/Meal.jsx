@@ -1,3 +1,5 @@
+import { MealList } from "../../components/MealList/MealList";
+
 export function Meal() {
-  return <h1>Meal!!!!</h1>;
+  return <MealList />;
 }
