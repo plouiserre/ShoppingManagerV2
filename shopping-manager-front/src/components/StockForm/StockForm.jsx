@@ -2,8 +2,22 @@ import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import { StockSubElement } from "../StockSubElement/StockSubElement";
 import { CustomButton } from "../CustomButton/CustomButton";
 import s from "./style.module.css";
+import { BootstrapDropdown } from "../BootstrapDropdown/BootstrapDropdown";
+import { useState } from "react";
 
-export function StockForm({ stock, visibility, setStock, saveStock }) {
+export function StockForm({
+  stock,
+  visibility,
+  setStock,
+  saveStock,
+  defaultValueTypeStock,
+}) {
+  const allTypesStock = ["Légumes", "Viande", "Petit déjeuner"];
+  const [typeStock, setTypeStock] = useState(defaultValueTypeStock);
+  function clickDropdownlist(value) {
+    setStock({ ...stock, Type: value });
+    setTypeStock(value);
+  }
   return (
     <div>
       <form className={`container-fluid ${s.formStock}`}>
@@ -35,17 +49,11 @@ export function StockForm({ stock, visibility, setStock, saveStock }) {
           <div className="col-3"></div>
           <div className="col-3">Type</div>
           <div className="col-4">
-            <select
-              value={stock.Type}
-              onChange={(event) => {
-                setStock({ ...stock, Type: event.target.value });
-              }}
-            >
-              <option>Sélectionner une valeur</option>
-              <option>Légumes</option>
-              <option>Viande</option>
-              <option>Petit déjeuner</option>
-            </select>
+            <BootstrapDropdown
+              clickDropDownAction={clickDropdownlist}
+              dropdownValues={typeStock}
+              values={allTypesStock}
+            />
           </div>
           <div className="col-2"></div>
         </div>

@@ -5,7 +5,7 @@ import { App } from "./App";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Welcome } from './pages/Welcome/Welcome';
 import { Stock } from './pages/Stock/Stock';
-import { Food } from './pages/Food/Food';
+import { Meal } from './pages/Meal/Meal';
 import { List } from './pages/List/List';
 import { AddStock } from './pages/Stock/AddStock';
 import { Provider } from 'react-redux';
@@ -13,6 +13,7 @@ import {store, persistor} from "./store"
 import { PersistGate } from 'redux-persist/integration/react';
 import { StockDetail } from './pages/Stock/StockDetail';
 import { StockEdit } from './pages/Stock/StockEdit';
+import { AddMeal } from './pages/Meal/AddMeal';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -27,7 +28,8 @@ root.render(
             <Route path="/Stock/add" element={<AddStock/>}/>
             <Route path="/Stock/:id" element={<StockDetail/>}/>
             <Route path="/Stock/edit/:id" element={<StockEdit/>}/>
-            <Route path="/Repas/" element={<Food/>}/>
+            <Route path="/Meal/" element={<Meal/>}/>
+            <Route path="/Meal/add" element={<AddMeal/>}/>
             <Route path="/Liste/" element={<List/>}/>
           </Route>
         </Routes>

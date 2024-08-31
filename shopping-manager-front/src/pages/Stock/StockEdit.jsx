@@ -29,7 +29,7 @@ export function StockEdit() {
   });
 
   function getType(typeName) {
-    if (typeName === "meat") return "Viande blanche";
+    if (typeName === "meat") return "Viande";
     else if (typeName === "vegetables") return "Légumes";
     else return "Petit déjeuner";
   }
@@ -60,6 +60,7 @@ export function StockEdit() {
       visibility={visibility}
       setStock={setStock}
       saveStock={saveStock}
+      defaultValueTypeStock={stock.Type}
     />
   );
 }

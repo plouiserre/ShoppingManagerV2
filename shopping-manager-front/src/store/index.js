@@ -1,6 +1,7 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
 import storage from "redux-persist/lib/storage"
 import { stockSlice } from "./stock/stock-slice"
+import { mealSlice } from "./meal/meal-slice"
 import { persistStore, persistReducer, 
     FLUSH, 
     REHYDRATE, 
@@ -17,7 +18,8 @@ const persistConfig = {
 }
 
 const rootReducers = combineReducers({
-    STOCK : stockSlice.reducer
+    STOCK : stockSlice.reducer,
+    MEAL : mealSlice.reducer
 })
 
 const persistReducers = persistReducer(persistConfig, rootReducers)

@@ -1,0 +1,41 @@
+.cellMealsSubList{
+    padding: 10px;
+    border-top : 1px solid #d2d7db;
+    border-left: 1px solid #d2d7db;
+}
+
+.cellMealsSubListRight{
+    border-right : 1px solid #d2d7db;
+}
+
+.cellMealsSubListbottom{
+    border-bottom : 1px solid #d2d7db;
+}
+
+.cellMealsSubListDarkBackgroundColor{
+    background-color: #e8eef0;
+}
+
+.numberQuantityMealItem{
+    width: 100px;
+}
+
+.mealItemStatus{
+    padding-left: 20px;
+}
+
+.validationSubElement{
+    padding-top: 0px;
+}
+
+.actionsMeals{
+    display: inline-flex;
+    column-gap: 30px;
+    justify-content: space-between;
+}
+
+.actionsMealsLittle{
+    display: inline-flex;
+    column-gap: 10px;
+    justify-content: space-between;
+}

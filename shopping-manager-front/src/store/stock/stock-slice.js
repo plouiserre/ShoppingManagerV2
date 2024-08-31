@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//TODO mutualize with this method in meal-slice.js
 function getId(elements, elementToAdd){
     if(elements !== undefined && elements.length >0){
         var indexs = []
@@ -26,57 +27,43 @@ export const stockSlice = createSlice({
         stock : {}
     },
     reducers:{
-        addStockItem:(currentSlice, action)=>{
-            getId(currentSlice.stocks, action.payload);
+        addStockItem:(currentState, action)=>{
+            getId(currentState.stocks, action.payload);
             setStatus(action.payload)
-            currentSlice.stocks.push({...action.payload});
+            currentState.stocks.push({...action.payload});
         },
-        deleteSelectStockItem:(currentSlice, action)=>{
-            var indexs = []
-            currentSlice.stocks.map((stock, index) =>{
-                currentSlice.stocksSelected.map(selected =>{
-                    if(stock.Id === selected.Id){
-                        indexs.push(index)
-                    }
-                })  
-            })
-            indexs.map(element =>{
-                currentSlice.stocks.splice(element, 1)
-            })
-            currentSlice.stocksSelected = []
-        },
-        deleteExpiredStock:(currentSlice, action)=>{
+        deleteExpiredStock:(currentState, action)=>{
             var today = new Date();
             var stockNotExpired = []
-            currentSlice.stocks.map((item)=>{
+            currentState.stocks.map((item)=>{
                 var datePeremption = new Date(item.DatePeremption)
                 if(today < datePeremption){
                     stockNotExpired.push(item)
                 }
             })
-            currentSlice.stocks = stockNotExpired;
+            currentState.stocks = stockNotExpired;
         },
-        deleteStockItem:(currentSlice, action)=>{
-            var newStocks = currentSlice.stocks.filter((item)=>item.Id !==action.payload.Id);
-            currentSlice.stocks = newStocks;
+        deleteStockItem:(currentState, action)=>{
+            var newStocks = currentState.stocks.filter((item)=>item.Id !==action.payload.Id);
+            currentState.stocks = newStocks;
         }, 
-        getStock:(currentSlice, action)=>{
-            currentSlice.stocks.map((element) =>{
+        getStock:(currentState, action)=>{
+            currentState.stocks.map((element) =>{
                     if(element.Id === action.Id){
-                        currentSlice.stock = element
+                        currentState.stock = element
                     }
             })
         },
-        editStock:(currentSlice, action)=>{
+        editStock:(currentState, action)=>{
             var index = 0;
-            for(var i = 0; i<currentSlice.stocks.length;i++){
-                var element = currentSlice.stocks[i]
+            for(var i = 0; i<currentState.stocks.length;i++){
+                var element = currentState.stocks[i]
                 if(element.Id === action.payload.Id){
                     break
                 }
                 index+=1
             }
-            currentSlice.stocks.splice(index, 1, action.payload)
+            currentState.stocks.splice(index, 1, action.payload)
         }
     }
 })

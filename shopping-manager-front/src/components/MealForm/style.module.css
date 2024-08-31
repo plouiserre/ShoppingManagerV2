@@ -1,0 +1,42 @@
+.formStock, .detailStock{
+    padding-top: 20px;
+}
+
+.lineForm{
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
+.mealsSub{
+    margin-top: 40px;
+}
+
+.cellMealsSubList{
+    padding: 10px;
+    border-top : 1px solid #d2d7db;
+    border-left: 1px solid #d2d7db;
+}
+
+.cellMealsSubListRight{
+    border-right : 1px solid #d2d7db;
+}
+
+.cellMealsSubListbottom{
+    border-bottom : 1px solid #d2d7db;
+}
+
+.cellMealsSubListDarkBackgroundColor{
+    background-color: #e8eef0;
+}
+
+.numberQuantityMealItem{
+    width: 100px;
+}
+
+.mealItemStatus{
+    padding-left: 20px;
+}
+
+.validationSubElement{
+    padding-top: 0px;
+}
