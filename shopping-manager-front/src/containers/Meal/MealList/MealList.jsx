@@ -7,6 +7,11 @@ import { useNavigate } from "react-router-dom";
 export function MealList() {
   const navigate = useNavigate();
   const meals = useSelector((store) => store.MEAL.meals);
+
+  function goMealDetail(id) {
+    alert("go to meal id " + id);
+  }
+
   return (
     <>
       <div className={`${s.allMeals}`}>
@@ -17,7 +22,9 @@ export function MealList() {
           <div className={`col-3 ${s.cellMealList}`}>Actions</div>
         </div>
         {meals.map((meal) => {
-          return <MealListItem meal={meal} />;
+          return (
+            <MealListItem meal={meal} key={meal.id} clickPage={goMealDetail} />
+          );
         })}
       </div>
       <div class="row">
