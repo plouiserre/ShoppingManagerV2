@@ -15,7 +15,7 @@ export function StockListItem({ element, clickName, goEditPage }) {
   }
 
   return (
-    <div className={`row ${s.headerStockList}`}>
+    <div className={`row`}>
       <div className={`col-2 ${indiceFoodClasses}`}>{element.Id}</div>
       <div
         className={`col-2 ${nameFoodClasses}`}

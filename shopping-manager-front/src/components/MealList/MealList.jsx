@@ -1,5 +1,34 @@
+import { MealListItem } from "../MealListItem/MealListItem";
 import s from "./style.module.css";
+import { useSelector } from "react-redux";
+import { CustomButton } from "../CustomButton/CustomButton";
+import { useNavigate } from "react-router-dom";
 
 export function MealList() {
-  return <h1>Je suis ton père</h1>;
+  const navigate = useNavigate();
+  const meals = useSelector((store) => store.MEAL.meals);
+  return (
+    <>
+      <div className={`${s.allMeals}`}>
+        <div className={`row ${s.headerMealList}`}>
+          <div className={`col-3 ${s.cellMealList}`}>Nom du repas</div>
+          <div className={`col-3 ${s.cellMealList}`}>Numéro élément</div>
+          <div className={`col-3 ${s.cellMealList}`}>Status</div>
+          <div className={`col-3 ${s.cellMealList}`}>Actions</div>
+        </div>
+        {meals.map((meal) => {
+          return <MealListItem meal={meal} />;
+        })}
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <CustomButton
+            labelButton={"Ajouter un nouvel élément"}
+            actionButton={() => navigate("/meal/add/")}
+          />
+        </div>
+        <div class="col-8" />
+      </div>
+    </>
+  );
 }
