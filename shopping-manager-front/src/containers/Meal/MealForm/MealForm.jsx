@@ -1,12 +1,11 @@
 import s from "./style.module.css";
-import { CustomButton } from "../../components/CustomButton/CustomButton";
-import { BootstrapDropdown } from "../../components/BootstrapDropdown/BootstrapDropdown";
+import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
+import { BootstrapDropdown } from "../../../components/Reusable/BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
 import { MealFormList } from "../MealFormList/MealFormList";
 import { useDispatch, useSelector } from "react-redux";
-import { addMealItemsEmpty } from "../../store/meal/meal-slice";
-import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
-import { saveMeal } from "../../store/meal/meal-slice";
+import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
+import { saveMeal, addMealItemsEmpty } from "../../../store/meal/meal-slice";
 
 //TODO move in container
 export function MealForm({ meal, setMeal }) {

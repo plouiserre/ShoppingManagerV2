@@ -1,11 +1,11 @@
 import s from "./style.module.css";
-import { LabelTypeStock } from "../../components/LabelTypeStock/LabelTypeStock";
-import { Status } from "../../components/Status/Status";
-import { CustomButton } from "../../components/CustomButton/CustomButton";
+import { LabelTypeStock } from "../../../components/LabelTypeStock/LabelTypeStock";
+import { Status } from "../../../components/Reusable/Status/Status";
+import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import {
   deleteMealItems,
   stopCompleteMealItem,
-} from "../../store/meal/meal-slice";
+} from "../../../store/meal/meal-slice";
 import { useDispatch } from "react-redux";
 
 export function MealFormListItemComplete({ mealItemWorking }) {

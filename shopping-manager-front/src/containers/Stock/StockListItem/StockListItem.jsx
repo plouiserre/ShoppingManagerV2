@@ -1,9 +1,9 @@
 import s from "./style.module.css";
-import { Pictogramme } from "../../components/Pictogramme/Pictogramme";
-import { Status } from "../../components/Status/Status";
+import { Pictogramme } from "../../../components/Reusable/Pictogramme/Pictogramme";
+import { Status } from "../../../components/Reusable/Status/Status";
 import { useDispatch } from "react-redux";
-import { deleteStockItem } from "../../store/stock/stock-slice";
-import { BootstrapIcon } from "../../components/BootstrapIcon/BootstrapIcon";
+import { deleteStockItem } from "../../../store/stock/stock-slice";
+import { BootstrapIcon } from "../../../components/Reusable/BootstrapIcon/BootstrapIcon";
 
 export function StockListItem({ element, clickName, goEditPage }) {
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 import s from "./style.module.css";
-import { CustomButton } from "../CustomButton/CustomButton";
+import { CustomButton } from "../../Reusable/CustomButton/CustomButton";
 
 export function ListResume() {
   function simulateBehavior() {

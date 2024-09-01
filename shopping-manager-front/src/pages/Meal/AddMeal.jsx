@@ -1,4 +1,4 @@
-import { MealForm } from "../../containers/MealForm/MealForm";
+import { MealForm } from "../../containers/Meal/MealForm/MealForm";
 import { useState } from "react";
 
 export function AddMeal() {

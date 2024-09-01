@@ -1,5 +1,5 @@
-import { CustomButton } from "../../components/CustomButton/CustomButton";
-import { StockList } from "../../containers/StockList/StockList";
+import { CustomButton } from "../../components/Reusable/CustomButton/CustomButton";
+import { StockList } from "../../containers/Stock/StockList/StockList";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteExpiredStock } from "../../store/stock/stock-slice";

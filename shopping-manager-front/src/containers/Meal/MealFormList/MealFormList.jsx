@@ -1,6 +1,6 @@
-import { MealFormListItem } from "../../containers/MealFormListItem/MealFormListItem";
+import { MealFormListItem } from "../../../containers/Meal/MealFormListItem/MealFormListItem";
 import { useSelector } from "react-redux";
-import { MealFormListItemComplete } from "../../containers/MealFormListItem/MealFormListItemComplete";
+import { MealFormListItemComplete } from "../../../containers/Meal/MealFormListItem/MealFormListItemComplete";
 
 export function MealFormList() {
   const mealItems = useSelector((store) => store.MEAL.mealItems);

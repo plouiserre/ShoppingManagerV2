@@ -1,5 +1,5 @@
-import { BootstrapIcon } from "../BootstrapIcon/BootstrapIcon";
-import { Pictogramme } from "../Pictogramme/Pictogramme";
+import { BootstrapIcon } from "../../Reusable/BootstrapIcon/BootstrapIcon";
+import { Pictogramme } from "../../Reusable/Pictogramme/Pictogramme";
 import s from "./style.module.css";
 
 export function MealListItem({ meal }) {

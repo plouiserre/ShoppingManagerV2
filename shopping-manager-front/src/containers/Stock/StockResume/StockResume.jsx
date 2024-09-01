@@ -1,4 +1,4 @@
-import { CustomButton } from "../../components/CustomButton/CustomButton";
+import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import { useNavigate } from "react-router-dom";
 import s from "./style.module.css";
 import { useSelector } from "react-redux";

@@ -1,9 +1,9 @@
-import coffee from "../../assets/images/cafe.png";
-import meat from "../../assets/images/viande.png";
-import vegetables from "../../assets/images/legumes.png";
-import error from "../../assets/images/error.png";
-import ok from "../../assets/images/ok.png";
-import warning from "../../assets/images/warning.png";
+import coffee from "../../../assets/images/cafe.png";
+import meat from "../../../assets/images/viande.png";
+import vegetables from "../../../assets/images/legumes.png";
+import error from "../../../assets/images/error.png";
+import ok from "../../../assets/images/ok.png";
+import warning from "../../../assets/images/warning.png";
 
 export function Pictogramme({
   pictoName,

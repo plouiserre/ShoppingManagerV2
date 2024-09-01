@@ -3,7 +3,7 @@ import { ValidateStock } from "../../domain/validateStock";
 import { useDispatch } from "react-redux";
 import { addStockItem } from "../../store/stock/stock-slice";
 import { useNavigate } from "react-router-dom";
-import { StockForm } from "../../components/StockForm/StockForm";
+import { StockForm } from "../../components/Stock/StockForm/StockForm";
 
 export function AddStock() {
   const dispatch = useDispatch();

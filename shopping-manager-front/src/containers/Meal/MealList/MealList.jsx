@@ -1,7 +1,7 @@
-import { MealListItem } from "../../components/MealListItem/MealListItem";
+import { MealListItem } from "../../../components/Meal/MealListItem/MealListItem";
 import s from "./style.module.css";
 import { useSelector } from "react-redux";
-import { CustomButton } from "../../components/CustomButton/CustomButton";
+import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import { useNavigate } from "react-router-dom";
 
 export function MealList() {

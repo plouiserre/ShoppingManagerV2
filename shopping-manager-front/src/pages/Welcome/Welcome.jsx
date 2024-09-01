@@ -1,6 +1,6 @@
-import { ListResume } from "../../components/ListResume/ListResume";
-import { MealResume } from "../../components/MealResume/MealResume";
-import { StockResume } from "../../containers/StockResume/StockResume";
+import { ListResume } from "../../components/List/ListResume/ListResume";
+import { MealResume } from "../../components/Meal/MealResume/MealResume";
+import { StockResume } from "../../containers/Stock/StockResume/StockResume";
 import s from "./style.module.css";
 
 export function Welcome() {

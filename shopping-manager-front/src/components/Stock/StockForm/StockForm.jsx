@@ -1,8 +1,8 @@
-import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
+import { ErrorMessage } from "../../Global/ErrorMessage/ErrorMessage";
 import { StockSubElement } from "../StockSubElement/StockSubElement";
-import { CustomButton } from "../CustomButton/CustomButton";
+import { CustomButton } from "../../Reusable/CustomButton/CustomButton";
 import s from "./style.module.css";
-import { BootstrapDropdown } from "../BootstrapDropdown/BootstrapDropdown";
+import { BootstrapDropdown } from "../../Reusable/BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
 
 export function StockForm({
