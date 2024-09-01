@@ -1,4 +1,4 @@
-import { MealList } from "../../components/MealList/MealList";
+import { MealList } from "../../containers/MealList/MealList";
 
 export function Meal() {
   return <MealList />;

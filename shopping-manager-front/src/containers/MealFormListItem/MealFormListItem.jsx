@@ -1,13 +1,13 @@
-import { Status } from "../Status/Status";
+import { Status } from "../../components/Status/Status";
 import s from "./style.module.css";
 import { useState } from "react";
-import { BootstrapDropdown } from "../BootstrapDropdown/BootstrapDropdown";
+import { BootstrapDropdown } from "../../components/BootstrapDropdown/BootstrapDropdown";
 import { useSelector } from "react-redux";
-import { CustomButton } from "../CustomButton/CustomButton";
-import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
+import { CustomButton } from "../../components/CustomButton/CustomButton";
+import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 import { useDispatch } from "react-redux";
 import { completeMealItem } from "../../store/meal/meal-slice";
-import { LabelTypeStock } from "../LabelTypeStock/LabelTypeStock";
+import { LabelTypeStock } from "../../components/LabelTypeStock/LabelTypeStock";
 import { deleteMealItems } from "../../store/meal/meal-slice";
 
 export function MealFormListItem({ mealItemWorking }) {

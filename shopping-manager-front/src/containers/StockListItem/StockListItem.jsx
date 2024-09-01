@@ -1,9 +1,9 @@
 import s from "./style.module.css";
-import { Pictogramme } from "../Pictogramme/Pictogramme";
-import { Status } from "../Status/Status";
+import { Pictogramme } from "../../components/Pictogramme/Pictogramme";
+import { Status } from "../../components/Status/Status";
 import { useDispatch } from "react-redux";
 import { deleteStockItem } from "../../store/stock/stock-slice";
-import { BootstrapIcon } from "../BootstrapIcon/BootstrapIcon";
+import { BootstrapIcon } from "../../components/BootstrapIcon/BootstrapIcon";
 
 export function StockListItem({ element, clickName, goEditPage }) {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export function StockListItem({ element, clickName, goEditPage }) {
   }
 
   return (
-    <div className={`row`}>
+    <div className={`row ${s.headerStockList}`}>
       <div className={`col-2 ${indiceFoodClasses}`}>{element.Id}</div>
       <div
         className={`col-2 ${nameFoodClasses}`}

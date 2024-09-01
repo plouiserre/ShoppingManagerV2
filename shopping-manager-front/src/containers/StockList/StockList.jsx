@@ -1,5 +1,5 @@
 import s from "./style.module.css";
-import { StockListItem } from "../../components/StockListItem/StockListItem";
+import { StockListItem } from "../../containers/StockListItem/StockListItem";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 

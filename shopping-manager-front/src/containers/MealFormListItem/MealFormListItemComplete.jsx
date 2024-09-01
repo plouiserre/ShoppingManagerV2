@@ -1,7 +1,7 @@
 import s from "./style.module.css";
-import { LabelTypeStock } from "../LabelTypeStock/LabelTypeStock";
-import { Status } from "../Status/Status";
-import { CustomButton } from "../CustomButton/CustomButton";
+import { LabelTypeStock } from "../../components/LabelTypeStock/LabelTypeStock";
+import { Status } from "../../components/Status/Status";
+import { CustomButton } from "../../components/CustomButton/CustomButton";
 import {
   deleteMealItems,
   stopCompleteMealItem,
