@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ValidateStock } from "../../domain/validateStock";
 import { useDispatch } from "react-redux";
-import { addStockItem } from "../../store/stock/stock-slice";
+import { addStock } from "../../store/stock/stock-slice";
 import { useNavigate } from "react-router-dom";
 import { StockForm } from "../../components/Stock/StockForm/StockForm";
 
@@ -30,7 +30,7 @@ export function AddStock() {
     setVisibility(!result);
     if (result) {
       setType(stock);
-      dispatch(addStockItem(stock));
+      dispatch(addStock(stock));
       navigate("/stock/");
     }
   }

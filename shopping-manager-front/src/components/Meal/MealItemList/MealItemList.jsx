@@ -1,6 +1,5 @@
 import { MealItemByType } from "../MealItemByType/MealItemByType";
 
-//TODO rename this component
 export function MealItemList({ mealItems }) {
   {
     function getType(typeName) {

@@ -27,7 +27,7 @@ export const stockSlice = createSlice({
         stock : {}
     },
     reducers:{
-        addStockItem:(currentState, action)=>{
+        addStock:(currentState, action)=>{
             getId(currentState.stocks, action.payload);
             setStatus(action.payload)
             currentState.stocks.push({...action.payload});
@@ -43,7 +43,7 @@ export const stockSlice = createSlice({
             })
             currentState.stocks = stockNotExpired;
         },
-        deleteStockItem:(currentState, action)=>{
+        deleteStock:(currentState, action)=>{
             var newStocks = currentState.stocks.filter((item)=>item.Id !==action.payload.Id);
             currentState.stocks = newStocks;
         }, 
@@ -68,6 +68,6 @@ export const stockSlice = createSlice({
     }
 })
 
-const {addStockItem, deleteExpiredStock, deleteStockItem, getStock, editStock} = stockSlice.actions;
+const {addStock, deleteExpiredStock, deleteStock, getStock, editStock} = stockSlice.actions;
 
-export {addStockItem, deleteExpiredStock, deleteStockItem, getStock, editStock}
+export {addStock, deleteExpiredStock, deleteStock, getStock, editStock}

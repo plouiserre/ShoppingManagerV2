@@ -2,7 +2,7 @@ import s from "./style.module.css";
 import { Pictogramme } from "../../../components/Reusable/Pictogramme/Pictogramme";
 import { Status } from "../../../components/Reusable/Status/Status";
 import { useDispatch } from "react-redux";
-import { deleteStockItem } from "../../../store/stock/stock-slice";
+import { deleteStock } from "../../../store/stock/stock-slice";
 import { BootstrapIcon } from "../../../components/Reusable/BootstrapIcon/BootstrapIcon";
 
 export function StockListItem({ element, clickName, goEditPage }) {
@@ -10,8 +10,8 @@ export function StockListItem({ element, clickName, goEditPage }) {
   const nameFoodClasses = `${s.cellStockList} ${s.nameFood}`;
   const indiceFoodClasses = `${s.cellStockList} ${s.indexFood}`;
 
-  function deleteStock(element) {
-    dispatch(deleteStockItem(element));
+  function deleteStockFromList(element) {
+    dispatch(deleteStock(element));
   }
 
   return (
@@ -33,7 +33,7 @@ export function StockListItem({ element, clickName, goEditPage }) {
       <div className={`col-2 ${s.cellStockList}`}>
         <BootstrapIcon
           cssClass={"bi bi-trash btn btn-outline-danger"}
-          onClickAction={deleteStock}
+          onClickAction={deleteStockFromList}
           param={element}
         />
         <BootstrapIcon
