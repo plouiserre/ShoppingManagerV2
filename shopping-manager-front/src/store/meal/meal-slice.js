@@ -47,10 +47,14 @@ export const mealSlice = createSlice({
                     statusMeal : "Creation"              
             })
         },
+        deleteMeal:(currentState, action)=>{
+            var newMeals = currentState.meals.filter((item)=>item.id !==action.payload.id);
+            currentState.meals = newMeals;
+        },
         deleteMealItems:(currentState, action)=>{
             var newMealItems = currentState.mealItems.filter((item)=>item.id !==action.payload.id);
             currentState.mealItems = newMealItems;
-        },
+        }, 
         completeMealItem:(currentState, action)=>{
             var newMealItems = []
             currentState.mealItems.map((item)=>{
@@ -83,6 +87,6 @@ export const mealSlice = createSlice({
     }
 })
 
-const {addMeal, addMealItems, addMealItemsEmpty, completeMealItem, deleteMealItems, saveMeal, stopCompleteMealItem} = mealSlice.actions;
+const {addMeal, addMealItems, addMealItemsEmpty, completeMealItem, deleteMeal, deleteMealItems, saveMeal, stopCompleteMealItem} = mealSlice.actions;
 
-export {addMeal, addMealItems, addMealItemsEmpty,completeMealItem, deleteMealItems, saveMeal, stopCompleteMealItem}
+export {addMeal, addMealItems, addMealItemsEmpty,completeMealItem, deleteMeal, deleteMealItems, saveMeal, stopCompleteMealItem}

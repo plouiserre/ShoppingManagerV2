@@ -1,4 +1,4 @@
-import { MealListItem } from "../../../components/Meal/MealListItem/MealListItem";
+import { MealListItem } from "../../MealListItem/MealListItem";
 import s from "./style.module.css";
 import { useSelector } from "react-redux";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";

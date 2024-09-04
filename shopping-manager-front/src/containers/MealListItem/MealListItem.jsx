@@ -1,9 +1,15 @@
-import { BootstrapIcon } from "../../Reusable/BootstrapIcon/BootstrapIcon";
-import { Pictogramme } from "../../Reusable/Pictogramme/Pictogramme";
+import { BootstrapIcon } from "../../components/Reusable/BootstrapIcon/BootstrapIcon";
+import { Pictogramme } from "../../components/Reusable/Pictogramme/Pictogramme";
 import s from "./style.module.css";
-import { DayMomentMeal } from "../DayMomentMeal/DayMomentMeal";
+import { DayMomentMeal } from "../../components/Meal/DayMomentMeal/DayMomentMeal";
+import { deleteMeal } from "../../store/meal/meal-slice";
+import { useDispatch } from "react-redux";
 
 export function MealListItem({ meal, clickPage }) {
+  var dispatch = useDispatch();
+  function deleteMealFromList() {
+    dispatch(deleteMeal(meal));
+  }
   return (
     <div className={`row ${s.cellMealList}`}>
       <div className={`col-3 ${s.idMeal}`} onClick={() => clickPage(meal.id)}>
@@ -16,7 +22,7 @@ export function MealListItem({ meal, clickPage }) {
       <div className={`col-3 ${s.actionMeal}`}>
         <BootstrapIcon
           cssClass={"bi bi-trash btn btn-outline-danger"}
-          onClickAction={() => alert("go delete")}
+          onClickAction={() => deleteMealFromList()}
           param={meal}
         />
         <BootstrapIcon
