@@ -1,12 +1,13 @@
 import { BootstrapIcon } from "../../Reusable/BootstrapIcon/BootstrapIcon";
 import { Pictogramme } from "../../Reusable/Pictogramme/Pictogramme";
 import s from "./style.module.css";
+import { DayMomentMeal } from "../DayMomentMeal/DayMomentMeal";
 
 export function MealListItem({ meal, clickPage }) {
   return (
     <div className={`row ${s.cellMealList}`}>
-      <div className={`col-3 ${s.idMeal}`} onClick={() => clickPage(meal.Id)}>
-        {meal.Day} {meal.Moment}
+      <div className={`col-3 ${s.idMeal}`} onClick={() => clickPage(meal.id)}>
+        <DayMomentMeal meal={meal} />
       </div>
       <div className={`col-3 ${s.quantityItems}`}>{meal.mealItems.length}</div>
       <div className={`col-2 ${s.statusMeal}`}>

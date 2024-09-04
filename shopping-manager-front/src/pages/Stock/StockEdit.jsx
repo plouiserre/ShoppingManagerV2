@@ -28,6 +28,7 @@ export function StockEdit() {
     DatePeremption: stockBdd.DatePeremption,
   });
 
+  //TODO centralize with the same code in MealItemByType
   function getType(typeName) {
     if (typeName === "meat") return "Viande";
     else if (typeName === "vegetables") return "Légumes";

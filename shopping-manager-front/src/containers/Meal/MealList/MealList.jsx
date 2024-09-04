@@ -9,7 +9,7 @@ export function MealList() {
   const meals = useSelector((store) => store.MEAL.meals);
 
   function goMealDetail(id) {
-    alert("go to meal id " + id);
+    navigate("/Meal/" + id);
   }
 
   return (

@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Welcome } from './pages/Welcome/Welcome';
 import { Stock } from './pages/Stock/Stock';
 import { Meal } from './pages/Meal/Meal';
+import { MealDetail } from './pages/Meal/MealDetail';
 import { List } from './pages/List/List';
 import { AddStock } from './pages/Stock/AddStock';
 import { Provider } from 'react-redux';
@@ -30,6 +31,7 @@ root.render(
             <Route path="/Stock/edit/:id" element={<StockEdit/>}/>
             <Route path="/Meal/" element={<Meal/>}/>
             <Route path="/Meal/add" element={<AddMeal/>}/>
+            <Route path="Meal/:id" element={<MealDetail/>}/>
             <Route path="/Liste/" element={<List/>}/>
           </Route>
         </Routes>

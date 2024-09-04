@@ -65,6 +65,9 @@ export const mealSlice = createSlice({
             currentState.mealItems = newMealItems
         },
         saveMeal:(currentState, action)=>{
+            var meals = JSON.parse(JSON.stringify(currentState.meals));
+            var id = getId(meals, action.payload);
+            action.payload.id = id
             currentState.meals.push({...action.payload});
         },
         stopCompleteMealItem:(currentState, action)=>{
