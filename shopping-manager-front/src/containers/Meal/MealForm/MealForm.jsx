@@ -6,16 +6,19 @@ import { MealFormList } from "../MealFormList/MealFormList";
 import { useDispatch, useSelector } from "react-redux";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 import { saveMeal, addMealItemsEmpty } from "../../../store/meal/meal-slice";
+import { useNavigate } from "react-router-dom";
 
 //TODO move in container
 export function MealForm({ meal, setMeal }) {
   const dispatch = useDispatch();
   const stocks = useSelector((store) => store.STOCK.stocks);
+  const mealsCreated = useSelector((store) => store.MEAL.meals);
   const mealItems = useSelector((store) => store.MEAL.mealItems);
   if (mealItems.length === 0) dispatch(addMealItemsEmpty());
 
   //TODO factoriser ce code!!!
   const stocksName = [];
+  const navigate = useNavigate();
   orderedStockName();
   function orderedStockName() {
     stocks.map((stock) => {
@@ -68,6 +71,7 @@ export function MealForm({ meal, setMeal }) {
       mergeAllMealsData();
       const newMeal = { ...meal };
       dispatch(saveMeal(newMeal));
+      navigate("/meal/");
     }
   }
 
@@ -95,11 +99,22 @@ export function MealForm({ meal, setMeal }) {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Certains éléments du repas ne sont pas complets");
       return false;
+    } else if (!checkNoneMealCreatedInSamePeriod()) {
+      setErrorMessageVisibility(true);
+      setErrorMessageValue("Un repas existe déjà au même moment");
     } else {
       setErrorMessageVisibility(false);
       setErrorMessageValue("");
       return true;
     }
+  }
+
+  function checkNoneMealCreatedInSamePeriod() {
+    var mealsSamePeriod = mealsCreated.find(
+      (item) =>
+        item.Day === dropdownValueDays && item.Moment === dropdownValueMoments
+    );
+    return mealsSamePeriod === undefined ? true : false;
   }
 
   function checkAllMealItemsAreComplete() {

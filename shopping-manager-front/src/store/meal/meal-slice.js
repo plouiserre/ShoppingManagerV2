@@ -16,21 +16,21 @@ function getId(elements){
     return id;
 }
 
+var firstNewMealItem = 
+    {
+        id:1,
+        stock:{},
+        quantity:0,
+        statusMeal : "Creation"
+    };
+
 export const mealSlice = createSlice({
     name:"mealSlice",
     initialState:{
         meals:[],
-        mealItems:[
-            {
-                id:1,
-                stock:{},
-                quantity:0,
-                statusMeal : "Creation"}]
-            },
+        mealItems:[firstNewMealItem ]
+                },
     reducers:{
-        addMeal:(currentState, action)=>{
-            currentState.meals.push({...action.payload});
-        },
         addMealItems:(currentState, action)=>{
             currentState.mealItems.push({...action.payload});
         },
@@ -73,6 +73,7 @@ export const mealSlice = createSlice({
             var id = getId(meals, action.payload);
             action.payload.id = id
             currentState.meals.push({...action.payload});
+            currentState.mealItems = [firstNewMealItem ];
         },
         stopCompleteMealItem:(currentState, action)=>{
             var newMealItems = []
@@ -87,6 +88,6 @@ export const mealSlice = createSlice({
     }
 })
 
-const {addMeal, addMealItems, addMealItemsEmpty, completeMealItem, deleteMeal, deleteMealItems, saveMeal, stopCompleteMealItem} = mealSlice.actions;
+const {addMealItems, addMealItemsEmpty, completeMealItem, deleteMeal, deleteMealItems, saveMeal, stopCompleteMealItem} = mealSlice.actions;
 
-export {addMeal, addMealItems, addMealItemsEmpty,completeMealItem, deleteMeal, deleteMealItems, saveMeal, stopCompleteMealItem}
+export {addMealItems, addMealItemsEmpty,completeMealItem, deleteMeal, deleteMealItems, saveMeal, stopCompleteMealItem}
