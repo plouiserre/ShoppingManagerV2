@@ -7,12 +7,13 @@ import { CustomButton } from "../../../components/Reusable/CustomButton/CustomBu
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 import { useDispatch } from "react-redux";
 import {
-  completeMealItem,
+  completeMealItemExistingMeal,
+  completeMealItemNewMeal,
   deleteMealItems,
 } from "../../../store/meal/meal-slice";
 import { LabelTypeStock } from "../../../components/LabelTypeStock/LabelTypeStock";
 
-export function MealFormListItem({ mealItemWorking }) {
+export function MealFormListItem({ mealItemWorking, actionType }) {
   const mealItem = { ...mealItemWorking };
   const isEditing = mealItem.stock.Name !== undefined ? true : false;
   const dispatch = useDispatch();
@@ -76,7 +77,11 @@ export function MealFormListItem({ mealItemWorking }) {
       setErrorMessageVisibility(false);
       const newMealItem = { ...mealItem };
       if (stockWorking.Name !== undefined) newMealItem.stock = stockWorking;
-      dispatch(completeMealItem(newMealItem));
+      if (actionType == "Add") {
+        dispatch(completeMealItemNewMeal(newMealItem));
+      } else if (actionType == "Edit") {
+        dispatch(completeMealItemExistingMeal(newMealItem));
+      }
     }
   }
 

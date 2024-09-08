@@ -5,11 +5,15 @@ import { useState } from "react";
 import { MealFormList } from "../MealFormList/MealFormList";
 import { useDispatch, useSelector } from "react-redux";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
-import { saveMeal, addMealItemsEmpty } from "../../../store/meal/meal-slice";
+import {
+  saveMeal,
+  addMealItemsEmpty,
+  editMeal,
+} from "../../../store/meal/meal-slice";
 import { useNavigate } from "react-router-dom";
 
 //TODO move in container
-export function MealForm({ meal, setMeal }) {
+export function MealForm({ meal, setMeal, actionType }) {
   const dispatch = useDispatch();
   const stocks = useSelector((store) => store.STOCK.stocks);
   const mealsCreated = useSelector((store) => store.MEAL.meals);
@@ -33,10 +37,12 @@ export function MealForm({ meal, setMeal }) {
   }
 
   var defaultDropdownValue = "Sélectionner une valeur";
-  const [dropdownValueDays, setDropDownValueDays] =
-    useState(defaultDropdownValue);
-  const [dropdownValueMoments, setDropDownValueMoments] =
-    useState(defaultDropdownValue);
+  const [dropdownValueDays, setDropDownValueDays] = useState(
+    getDefaultDropdownValueDay()
+  );
+  const [dropdownValueMoments, setDropDownValueMoments] = useState(
+    getDefaultDropdownValueMoment()
+  );
   const days = [
     "Lundi",
     "Mardi",
@@ -50,6 +56,14 @@ export function MealForm({ meal, setMeal }) {
   const [iteration, setIteration] = useState(2);
   const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
   const [errorMessageValue, setErrorMessageValue] = useState("");
+
+  function getDefaultDropdownValueDay() {
+    return actionType === "Add" ? defaultDropdownValue : meal.Day;
+  }
+
+  function getDefaultDropdownValueMoment() {
+    return actionType === "Add" ? defaultDropdownValue : meal.Moment;
+  }
 
   function clickDropdownlistDays(value) {
     setDropDownValueDays(value);
@@ -75,14 +89,24 @@ export function MealForm({ meal, setMeal }) {
     }
   }
 
+  function editAllMeal() {
+    var isValidate = validateMeal();
+    if (isValidate) {
+      mergeAllMealsData();
+      const newMeal = { ...meal };
+      dispatch(editMeal(newMeal));
+      navigate("/meal/");
+    }
+  }
+
   function validateMeal() {
-    if (dropdownValueMoments == defaultDropdownValue) {
+    if (dropdownValueMoments === defaultDropdownValue) {
       setErrorMessageVisibility(true);
       setErrorMessageValue(
         "Merci de choisir un moment pour l'enregistrement de ce repas"
       );
       return false;
-    } else if (dropdownValueDays == defaultDropdownValue) {
+    } else if (dropdownValueDays === defaultDropdownValue) {
       setErrorMessageVisibility(true);
       setErrorMessageValue(
         "Merci de choisir un jour pour l'enregistrement de ce repas"
@@ -99,7 +123,7 @@ export function MealForm({ meal, setMeal }) {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Certains éléments du repas ne sont pas complets");
       return false;
-    } else if (!checkNoneMealCreatedInSamePeriod()) {
+    } else if (!checkNoneMealCreatedInSamePeriod() && actionType === "Add") {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Un repas existe déjà au même moment");
     } else {
@@ -202,7 +226,11 @@ export function MealForm({ meal, setMeal }) {
             </div>
             <div className={`col-2`}></div>
           </div>
-          <MealFormList iteration={iteration} />
+          <MealFormList
+            iteration={iteration}
+            mealItemsEdit={meal.mealItems}
+            actionType={actionType}
+          />
         </div>
         {errorMessageVisibility && (
           <ErrorMessage messageError={errorMessageValue} />
@@ -221,10 +249,19 @@ export function MealForm({ meal, setMeal }) {
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-7">
-            <CustomButton
-              labelButton={"Enregistrer"}
-              actionButton={() => saveAllMeal()}
-            />
+            {actionType === "Add" && (
+              <CustomButton
+                labelButton={"Enregistrer"}
+                actionButton={() => saveAllMeal()}
+              />
+            )}
+            {actionType === "Edit" && (
+              <CustomButton
+                labelButton={"Mettre à jour"}
+                actionButton={() => editAllMeal()}
+                customClass={"btn btn-secondary"}
+              />
+            )}
           </div>
           <div className="col-2"></div>
         </div>

@@ -2,8 +2,9 @@ import { MealFormListItem } from "../../../containers/Meal/MealFormListItem/Meal
 import { useSelector } from "react-redux";
 import { MealFormListItemComplete } from "../../../containers/Meal/MealFormListItem/MealFormListItemComplete";
 
-export function MealFormList() {
+export function MealFormList({ mealItemsEdit, actionType }) {
   const mealItems = useSelector((store) => store.MEAL.mealItems);
+
   return (
     <>
       {mealItems.map((mealItem) => {
@@ -19,6 +20,7 @@ export function MealFormList() {
             <MealFormListItem
               mealItemWorking={mealItem}
               key={mealItem.iteration}
+              actionType={actionType}
             />
           );
         }

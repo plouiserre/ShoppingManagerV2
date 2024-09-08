@@ -15,6 +15,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { StockDetail } from './pages/Stock/StockDetail';
 import { StockEdit } from './pages/Stock/StockEdit';
 import { AddMeal } from './pages/Meal/AddMeal';
+import { MealEdit } from './pages/Meal/MealEdit';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -32,6 +33,7 @@ root.render(
             <Route path="/Meal/" element={<Meal/>}/>
             <Route path="/Meal/add" element={<AddMeal/>}/>
             <Route path="Meal/:id" element={<MealDetail/>}/>
+            <Route path="Meal/edit/:id" element={<MealEdit/>}/>
             <Route path="/Liste/" element={<List/>}/>
           </Route>
         </Routes>

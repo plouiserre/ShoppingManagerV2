@@ -4,11 +4,17 @@ import s from "./style.module.css";
 import { DayMomentMeal } from "../../components/Meal/DayMomentMeal/DayMomentMeal";
 import { deleteMeal } from "../../store/meal/meal-slice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export function MealListItem({ meal, clickPage }) {
   var dispatch = useDispatch();
+  var navigate = useNavigate();
   function deleteMealFromList() {
     dispatch(deleteMeal(meal));
+  }
+
+  function editMeal() {
+    navigate("/meal/edit/" + meal.id);
   }
   return (
     <div className={`row ${s.cellMealList}`}>
@@ -27,7 +33,7 @@ export function MealListItem({ meal, clickPage }) {
         />
         <BootstrapIcon
           cssClass={"bi bi-pencil-square btn btn-success"}
-          onClickAction={() => alert("go edit")}
+          onClickAction={() => editMeal()}
           param={meal.Id}
         />
       </div>
