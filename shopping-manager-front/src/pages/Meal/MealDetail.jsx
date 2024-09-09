@@ -17,7 +17,7 @@ export function MealDetail() {
   }
 
   function UpdateMeal() {
-    alert("Mise à jour de repas!!!!!");
+    navigate("/Meal/edit/" + id);
   }
 
   function GoMealList() {
