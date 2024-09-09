@@ -24,17 +24,51 @@ var firstNewMealItem =
         statusMeal : "Creation"
     };
 
-//TODO check if this method is useful
-function checkMealItemExisting(mealItemsSaved, newMealItems){
-    var isExisting = false;
-    mealItemsSaved.map((itemSaved)=>{
-        newMealItems.map((itemNew)=>{
-            if(itemSaved.stock!==undefined && itemSaved.stock.Name === itemNew.stock.Name){
-                isExisting = true;
-            }
-        })
-    })
-    return isExisting;
+function calculateDayMomentValue(meal){
+    var momentDayNumber = 0;
+    momentDayNumber+=determineDayNumber(meal.Day);
+    momentDayNumber+=determineMomentNumber(meal.Moment);
+    return momentDayNumber;
+}
+
+function determineDayNumber(day){
+    var dayNumber = 0;
+    if(day==="Lundi"){
+        dayNumber=10;
+    }
+    else if(day==="Mardi"){
+        dayNumber=20;
+    }
+    else if(day==="Mercredi"){
+        dayNumber=30;
+    }
+    else if(day==="Jeudi"){
+        dayNumber=40;
+    }
+    else if(day==="Vendredi"){
+        dayNumber=50;
+    }
+    else if(day==="Samedi"){
+        dayNumber=60;
+    }
+    else if(day==="Dimanche"){
+        dayNumber=70;
+    }
+    return dayNumber;
+}
+
+function determineMomentNumber(moment){
+    var momentNumber =0;
+    if(moment==="Petit-déjeuner"){
+        momentNumber=1;
+    }else if(moment==="Déjeuner"){
+        momentNumber=2;
+    }else if(moment==="Goûter"){
+        momentNumber=3;
+    }else if(moment==="Dîner"){
+        momentNumber=4;
+    }
+    return momentNumber;
 }
 
 export const mealSlice = createSlice({
@@ -99,8 +133,10 @@ export const mealSlice = createSlice({
         editMeal:(currentState, action)=>{
             var allMeals=[];
             currentState.meals.map((meal)=>{
-                if(meal.id===action.payload.id)
-                    allMeals.push(action.payload);
+                if(meal.id===action.payload.id){
+                    var mealUpdate = action.payload
+                    mealUpdate.DayMomentValue = calculateDayMomentValue(mealUpdate);
+                    allMeals.push(mealUpdate);}
                 else
                     allMeals.push(meal);
             })
@@ -110,10 +146,12 @@ export const mealSlice = createSlice({
             currentState.mealItems=[];
         },
         saveMeal:(currentState, action)=>{
+            var newMeal = action.payload;
             var meals = JSON.parse(JSON.stringify(currentState.meals));
             var id = getId(meals, action.payload);
-            action.payload.id = id
-            currentState.meals.push({...action.payload});
+            newMeal.id = id
+            newMeal.DayMomentValue = calculateDayMomentValue(newMeal);
+            currentState.meals.push({...newMeal});
             currentState.mealItems = [firstNewMealItem ];
         },
         stopCompleteMealItem:(currentState, action)=>{

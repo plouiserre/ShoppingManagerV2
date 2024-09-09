@@ -7,7 +7,10 @@ import { useNavigate } from "react-router-dom";
 export function MealList() {
   const navigate = useNavigate();
   const meals = useSelector((store) => store.MEAL.meals);
-
+  const mealsToOrdered = [...meals];
+  const mealsOrdered = mealsToOrdered.sort((mealFirst, mealSecond) => {
+    return mealFirst.DayMomentValue - mealSecond.DayMomentValue;
+  });
   function goMealDetail(id) {
     navigate("/Meal/" + id);
   }
@@ -21,7 +24,7 @@ export function MealList() {
           <div className={`col-3 ${s.cellMealList}`}>Status</div>
           <div className={`col-3 ${s.cellMealList}`}>Actions</div>
         </div>
-        {meals.map((meal) => {
+        {mealsOrdered.map((meal) => {
           return (
             <MealListItem meal={meal} key={meal.id} clickPage={goMealDetail} />
           );
