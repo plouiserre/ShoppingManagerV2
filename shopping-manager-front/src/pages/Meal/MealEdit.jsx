@@ -2,12 +2,9 @@ import { MealForm } from "../../containers/Meal/MealForm/MealForm";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  flushMealItem,
-  storeEditMeal,
-  storeEditMealItems,
-} from "../../store/meal/meal-slice";
+import { flushMealItem, storeEditMealItems } from "../../store/meal/meal-slice";
 
+//TODO try to rework the utility of storeEditMealItems because it is need on MealForm.jsx
 export function MealEdit() {
   var params = useParams();
   var id = parseInt(params.id);
@@ -18,7 +15,6 @@ export function MealEdit() {
   const [meal, setMeal] = useState({ ...mealSelected });
 
   dispatch(flushMealItem());
-  dispatch(storeEditMeal(mealSelected));
   dispatch(storeEditMealItems(mealSelected));
 
   return (

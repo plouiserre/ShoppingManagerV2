@@ -10,14 +10,22 @@ import {
   addMealItemsEmpty,
   editMeal,
 } from "../../../store/meal/meal-slice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 //TODO move in container
-export function MealForm({ meal, setMeal, actionType }) {
+export function MealForm({ actionType }) {
   const dispatch = useDispatch();
+  const params = useParams();
   const stocks = useSelector((store) => store.STOCK.stocks);
   const mealsCreated = useSelector((store) => store.MEAL.meals);
   const mealItems = useSelector((store) => store.MEAL.mealItems);
+  var mealEdit = {};
+  if (actionType === "Edit") {
+    var id = parseInt(params.id);
+    mealEdit = mealsCreated.find((item) => item.id === id);
+  }
+  const mealInit = actionType === "Add" ? {} : mealEdit;
+  const [mealWorking, setMealWorking] = useState(mealInit);
   if (mealItems.length === 0) dispatch(addMealItemsEmpty());
 
   //TODO factoriser ce code!!!
@@ -53,26 +61,26 @@ export function MealForm({ meal, setMeal, actionType }) {
     "Dimanche",
   ];
   const moments = ["Petit-déjeuner", "Déjeuner", "Goûter", "Dîner"];
-  const [iteration, setIteration] = useState(2);
+  var iteration = 2;
   const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
   const [errorMessageValue, setErrorMessageValue] = useState("");
 
   function getDefaultDropdownValueDay() {
-    return actionType === "Add" ? defaultDropdownValue : meal.Day;
+    return actionType === "Add" ? defaultDropdownValue : mealWorking.Day;
   }
 
   function getDefaultDropdownValueMoment() {
-    return actionType === "Add" ? defaultDropdownValue : meal.Moment;
+    return actionType === "Add" ? defaultDropdownValue : mealWorking.Moment;
   }
 
   function clickDropdownlistDays(value) {
     setDropDownValueDays(value);
-    setMeal({ ...meal, Day: value });
+    setMealWorking({ ...mealWorking, Day: value });
   }
 
   function clickDropdownListMoments(value) {
     setDropDownValueMoments(value);
-    setMeal({ ...meal, Moment: value });
+    setMealWorking({ ...mealWorking, Moment: value });
   }
 
   function addIteration() {
@@ -82,9 +90,8 @@ export function MealForm({ meal, setMeal, actionType }) {
   function saveAllMeal() {
     var isValidate = validateMeal();
     if (isValidate) {
-      mergeAllMealsData();
-      const newMeal = { ...meal };
-      dispatch(saveMeal(newMeal));
+      const newMeal = { ...mealWorking };
+      dispatch(saveMeal({ meal: newMeal, mealItems: mealItems }));
       navigate("/meal/");
     }
   }
@@ -92,9 +99,8 @@ export function MealForm({ meal, setMeal, actionType }) {
   function editAllMeal() {
     var isValidate = validateMeal();
     if (isValidate) {
-      mergeAllMealsData();
-      const newMeal = { ...meal };
-      dispatch(editMeal(newMeal));
+      const newMeal = { ...mealWorking };
+      dispatch(editMeal({ meal: newMeal, mealItems: mealItems }));
       navigate("/meal/");
     }
   }
@@ -151,10 +157,6 @@ export function MealForm({ meal, setMeal, actionType }) {
       }
     }
     return allAreComplete;
-  }
-
-  function mergeAllMealsData() {
-    meal.mealItems = mealItems;
   }
 
   return (
@@ -226,11 +228,7 @@ export function MealForm({ meal, setMeal, actionType }) {
             </div>
             <div className={`col-2`}></div>
           </div>
-          <MealFormList
-            iteration={iteration}
-            mealItemsEdit={meal.mealItems}
-            actionType={actionType}
-          />
+          <MealFormList iteration={iteration} actionType={actionType} />
         </div>
         {errorMessageVisibility && (
           <ErrorMessage messageError={errorMessageValue} />

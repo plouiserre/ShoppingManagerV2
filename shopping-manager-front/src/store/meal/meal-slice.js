@@ -75,9 +75,10 @@ export const mealSlice = createSlice({
     name:"mealSlice",
     initialState:{
         meals:[],
-        mealItems:[firstNewMealItem ],
-        editMealData :{}
-                },
+        mealItems:[firstNewMealItem],
+        mealUpdating : { 
+                    },
+                        },
     reducers:{
         addMealItems:(currentState, action)=>{
             currentState.mealItems.push({...action.payload});
@@ -131,10 +132,12 @@ export const mealSlice = createSlice({
             currentState.mealItems = newMealItems;
         }, 
         editMeal:(currentState, action)=>{
+            var mealToEdit = action.payload.meal;
+            mealToEdit.mealItems = action.payload.mealItems;
             var allMeals=[];
             currentState.meals.map((meal)=>{
-                if(meal.id===action.payload.id){
-                    var mealUpdate = action.payload
+                if(meal.id===mealToEdit.id){
+                    var mealUpdate = mealToEdit
                     mealUpdate.DayMomentValue = calculateDayMomentValue(mealUpdate);
                     allMeals.push(mealUpdate);}
                 else
@@ -145,10 +148,17 @@ export const mealSlice = createSlice({
         flushMealItem:(currentState, action)=>{
             currentState.mealItems=[];
         },
+        initialMealUpdating:(currentState, action)=>{
+            currentState.mealUpdating = {
+                                        Day: "",
+                                        Moment: ""
+                                    }
+        },
         saveMeal:(currentState, action)=>{
-            var newMeal = action.payload;
+            var newMeal = action.payload.meal;
+            newMeal.mealItems = action.payload.mealItems;
             var meals = JSON.parse(JSON.stringify(currentState.meals));
-            var id = getId(meals, action.payload);
+            var id = getId(meals, newMeal);
             newMeal.id = id
             newMeal.DayMomentValue = calculateDayMomentValue(newMeal);
             currentState.meals.push({...newMeal});
@@ -164,15 +174,12 @@ export const mealSlice = createSlice({
             })
             currentState.mealItems = newMealItems
         },
-        storeEditMeal:(currentState, action)=>{
-            currentState.editMealData = action.payload
-        }, 
         storeEditMealItems :(currentState, action)=>{
             currentState.mealItems = action.payload.mealItems;
         }
     }
 })
 
-const {addMealItems, addMealItemsEmpty, completeMealItemExistingMeal, completeMealItemNewMeal, deleteMeal, deleteMealItems, editMeal, flushMealItem, saveMeal, stopCompleteMealItem, storeEditMeal, storeEditMealItems} = mealSlice.actions;
+const {addMealItems, addMealItemsEmpty, completeMealItemExistingMeal, completeMealItemNewMeal, deleteMeal, deleteMealItems, editMeal, flushMealItem, initialMealUpdating, saveMeal, stopCompleteMealItem, storeEditMealItems} = mealSlice.actions;
 
-export {addMealItems, addMealItemsEmpty,completeMealItemExistingMeal, completeMealItemNewMeal, deleteMeal, deleteMealItems, editMeal, flushMealItem, saveMeal, stopCompleteMealItem, storeEditMeal, storeEditMealItems}
+export {addMealItems, addMealItemsEmpty,completeMealItemExistingMeal, completeMealItemNewMeal, deleteMeal, deleteMealItems, editMeal, flushMealItem, initialMealUpdating, saveMeal, stopCompleteMealItem, storeEditMealItems}

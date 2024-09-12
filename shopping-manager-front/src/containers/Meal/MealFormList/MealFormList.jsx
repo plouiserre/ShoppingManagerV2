@@ -2,7 +2,7 @@ import { MealFormListItem } from "../../../containers/Meal/MealFormListItem/Meal
 import { useSelector } from "react-redux";
 import { MealFormListItemComplete } from "../../../containers/Meal/MealFormListItem/MealFormListItemComplete";
 
-export function MealFormList({ mealItemsEdit, actionType }) {
+export function MealFormList({ actionType }) {
   const mealItems = useSelector((store) => store.MEAL.mealItems);
 
   return (
