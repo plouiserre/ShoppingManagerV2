@@ -1,0 +1,23 @@
+.detailMeal{
+    padding-top: 20px;
+}
+
+.titleDetailMeal{
+    font-size: 42px;
+    color: #dcb31a;
+}
+
+.headerMealItems{
+    text-align: center;
+    color: #dcb31a;
+    font-size: 24px;
+    font-weight: 700;
+    border-bottom: 1px solid #d7d9e1 ;
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+
+.globalButton{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

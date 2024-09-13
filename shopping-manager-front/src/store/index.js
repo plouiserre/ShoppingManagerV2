@@ -10,6 +10,7 @@ import { persistStore, persistReducer,
     PURGE, 
     REGISTER 
 } from "redux-persist";
+import { mealItemSlice } from "./meal/mealItem-slice";
 
 const persistConfig = {
     key : "root",
@@ -19,7 +20,8 @@ const persistConfig = {
 
 const rootReducers = combineReducers({
     STOCK : stockSlice.reducer,
-    MEAL : mealSlice.reducer
+    MEAL : mealSlice.reducer, 
+    MEALITEM : mealItemSlice.reducer
 })
 
 const persistReducers = persistReducer(persistConfig, rootReducers)

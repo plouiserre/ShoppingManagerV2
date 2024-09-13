@@ -1,0 +1,22 @@
+/*TODO factoriser avec MealListItem et StockList */
+.cellStockList{
+    padding: 20px;
+    font-size: large;
+    text-align: center;
+    border-bottom: 1px solid #d7d9e1 ;
+}
+
+.nameFood{
+    font-size: 28px;
+    font-weight: 500;
+    color : #879efa;
+}
+
+.nameFood:hover{
+    cursor: pointer;
+}
+
+.indexFood{
+    font-size: 20px;
+    padding: 27px;
+}

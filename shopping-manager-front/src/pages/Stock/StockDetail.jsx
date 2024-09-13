@@ -1,9 +1,9 @@
 import s from "./style.module.css";
-import { Pictogramme } from "../../components/Pictogramme/Pictogramme";
+import { Pictogramme } from "../../components/Reusable/Pictogramme/Pictogramme";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { CustomButton } from "../../components/CustomButton/CustomButton";
-import { Status } from "../../components/Status/Status";
+import { CustomButton } from "../../components/Reusable/CustomButton/CustomButton";
+import { Status } from "../../components/Reusable/Status/Status";
 
 export function StockDetail() {
   var navigate = useNavigate();

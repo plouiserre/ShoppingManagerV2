@@ -1,14 +1,13 @@
-import { MealForm } from "../../components/MealForm/MealForm";
-import { useState } from "react";
+import { MealForm } from "../../containers/Meal/MealForm/MealForm";
+import { useDispatch } from "react-redux";
+import { flushMealItem } from "../../store/meal/mealItem-slice";
 
 export function AddMeal() {
-  const [meal, setMeal] = useState({
-    Day: "",
-    Moment: "",
-  });
+  var dispatch = useDispatch();
+  dispatch(flushMealItem());
   return (
     <>
-      <MealForm meal={meal} setMeal={setMeal} />
+      <MealForm actionType={"Add"} />
     </>
   );
 }

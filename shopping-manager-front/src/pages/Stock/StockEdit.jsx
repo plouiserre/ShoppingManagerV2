@@ -3,7 +3,7 @@ import { ValidateStock } from "../../domain/validateStock";
 import { useDispatch, useSelector } from "react-redux";
 import { editStock } from "../../store/stock/stock-slice";
 import { useNavigate, useParams } from "react-router-dom";
-import { StockForm } from "../../components/StockForm/StockForm";
+import { StockForm } from "../../components/Stock/StockForm/StockForm";
 
 //TODO factorize with AddStock
 export function StockEdit() {
@@ -28,6 +28,7 @@ export function StockEdit() {
     DatePeremption: stockBdd.DatePeremption,
   });
 
+  //TODO centralize with the same code in MealItemByType
   function getType(typeName) {
     if (typeName === "meat") return "Viande";
     else if (typeName === "vegetables") return "Légumes";
