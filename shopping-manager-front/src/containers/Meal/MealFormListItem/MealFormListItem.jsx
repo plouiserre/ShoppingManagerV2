@@ -10,7 +10,7 @@ import {
   completeMealItemExistingMeal,
   completeMealItemNewMeal,
   deleteMealItems,
-} from "../../../store/meal/meal-slice";
+} from "../../../store/meal/mealItem-slice";
 import { LabelTypeStock } from "../../../components/LabelTypeStock/LabelTypeStock";
 
 export function MealFormListItem({ mealItemWorking, actionType }) {

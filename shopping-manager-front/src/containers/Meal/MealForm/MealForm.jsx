@@ -5,11 +5,8 @@ import { useState } from "react";
 import { MealFormList } from "../MealFormList/MealFormList";
 import { useDispatch, useSelector } from "react-redux";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
-import {
-  saveMeal,
-  addMealItemsEmpty,
-  editMeal,
-} from "../../../store/meal/meal-slice";
+import { addMealItemsEmpty } from "../../../store/meal/mealItem-slice";
+import { editMeal, saveMeal } from "../../../store/meal/meal-slice";
 import { useNavigate, useParams } from "react-router-dom";
 
 //TODO move in container
@@ -18,7 +15,7 @@ export function MealForm({ actionType }) {
   const params = useParams();
   const stocks = useSelector((store) => store.STOCK.stocks);
   const mealsCreated = useSelector((store) => store.MEAL.meals);
-  const mealItems = useSelector((store) => store.MEAL.mealItems);
+  const mealItems = useSelector((store) => store.MEALITEM.mealItems);
   var mealEdit = {};
   if (actionType === "Edit") {
     var id = parseInt(params.id);

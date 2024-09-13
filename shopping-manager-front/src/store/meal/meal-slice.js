@@ -80,57 +80,10 @@ export const mealSlice = createSlice({
                     },
                         },
     reducers:{
-        addMealItems:(currentState, action)=>{
-            currentState.mealItems.push({...action.payload});
-        },
-        addMealItemsEmpty:(currentState, action)=>{
-            var mealItems = JSON.parse(JSON.stringify(currentState.mealItems));
-            var id = getId(mealItems, {
-                stock:{},
-                quantity:0
-            });
-            currentState.mealItems.push({     
-                    id:id,
-                    stock:{},
-                    quantity:0,
-                    statusMeal : "Creation"              
-            })
-        },
-        completeMealItemExistingMeal:(currentState, action)=>{
-            var newMealItems = []
-            
-            currentState.mealItems.map((item)=>{
-                if(item.id !== action.payload.id){
-                    newMealItems.push(item)
-                }else{
-                    var newItem = action.payload
-                    newItem.statusMeal = "Validation"
-                    newMealItems.push(newItem)
-                }
-            })
-            currentState.mealItems = newMealItems
-        },
-        completeMealItemNewMeal:(currentState, action)=>{
-            var newMealItems = []
-            currentState.mealItems.map((item)=>{
-                if(item.id !== action.payload.id){
-                    newMealItems.push(item)
-                }else{
-                    var newItem = action.payload
-                    newItem.statusMeal = "Validation"
-                    newMealItems.push(newItem)
-                }
-            })
-            currentState.mealItems = newMealItems
-        },
         deleteMeal:(currentState, action)=>{
             var newMeals = currentState.meals.filter((item)=>item.id !==action.payload.id);
             currentState.meals = newMeals;
         },
-        deleteMealItems:(currentState, action)=>{
-            var newMealItems = currentState.mealItems.filter((item)=>item.id !==action.payload.id);
-            currentState.mealItems = newMealItems;
-        }, 
         editMeal:(currentState, action)=>{
             var mealToEdit = action.payload.meal;
             mealToEdit.mealItems = action.payload.mealItems;
@@ -145,15 +98,6 @@ export const mealSlice = createSlice({
             })
             currentState.meals = allMeals;
         },
-        flushMealItem:(currentState, action)=>{
-            currentState.mealItems=[];
-        },
-        initialMealUpdating:(currentState, action)=>{
-            currentState.mealUpdating = {
-                                        Day: "",
-                                        Moment: ""
-                                    }
-        },
         saveMeal:(currentState, action)=>{
             var newMeal = action.payload.meal;
             newMeal.mealItems = action.payload.mealItems;
@@ -163,23 +107,10 @@ export const mealSlice = createSlice({
             newMeal.DayMomentValue = calculateDayMomentValue(newMeal);
             currentState.meals.push({...newMeal});
             currentState.mealItems = [firstNewMealItem ];
-        },
-        stopCompleteMealItem:(currentState, action)=>{
-            var newMealItems = []
-            currentState.mealItems.map((item)=>{
-                if(item.id === action.payload.id){
-                    item.statusMeal = "Edit";
-                }   
-                newMealItems.push(item)
-            })
-            currentState.mealItems = newMealItems
-        },
-        storeEditMealItems :(currentState, action)=>{
-            currentState.mealItems = action.payload.mealItems;
         }
     }
 })
 
-const {addMealItems, addMealItemsEmpty, completeMealItemExistingMeal, completeMealItemNewMeal, deleteMeal, deleteMealItems, editMeal, flushMealItem, initialMealUpdating, saveMeal, stopCompleteMealItem, storeEditMealItems} = mealSlice.actions;
+const {deleteMeal, editMeal, saveMeal} = mealSlice.actions;
 
-export {addMealItems, addMealItemsEmpty,completeMealItemExistingMeal, completeMealItemNewMeal, deleteMeal, deleteMealItems, editMeal, flushMealItem, initialMealUpdating, saveMeal, stopCompleteMealItem, storeEditMealItems}
+export {deleteMeal, editMeal, saveMeal}

@@ -1,6 +1,6 @@
 import { MealForm } from "../../containers/Meal/MealForm/MealForm";
 import { useDispatch } from "react-redux";
-import { flushMealItem } from "../../store/meal/meal-slice";
+import { flushMealItem } from "../../store/meal/mealItem-slice";
 
 export function AddMeal() {
   var dispatch = useDispatch();

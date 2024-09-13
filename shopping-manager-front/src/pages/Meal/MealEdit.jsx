@@ -2,7 +2,10 @@ import { MealForm } from "../../containers/Meal/MealForm/MealForm";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { flushMealItem, storeEditMealItems } from "../../store/meal/meal-slice";
+import {
+  flushMealItem,
+  storeEditMealItems,
+} from "../../store/meal/mealItem-slice";
 
 //TODO try to rework the utility of storeEditMealItems because it is need on MealForm.jsx
 export function MealEdit() {

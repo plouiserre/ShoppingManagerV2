@@ -5,7 +5,7 @@ import { CustomButton } from "../../../components/Reusable/CustomButton/CustomBu
 import {
   deleteMealItems,
   stopCompleteMealItem,
-} from "../../../store/meal/meal-slice";
+} from "../../../store/meal/mealItem-slice";
 import { useDispatch } from "react-redux";
 
 export function MealFormListItemComplete({ mealItemWorking }) {

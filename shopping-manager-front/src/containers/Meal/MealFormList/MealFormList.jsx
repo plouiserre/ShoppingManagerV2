@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { MealFormListItemComplete } from "../../../containers/Meal/MealFormListItem/MealFormListItemComplete";
 
 export function MealFormList({ actionType }) {
-  const mealItems = useSelector((store) => store.MEAL.mealItems);
+  const mealItems = useSelector((store) => store.MEALITEM.mealItems);
 
   return (
     <>
