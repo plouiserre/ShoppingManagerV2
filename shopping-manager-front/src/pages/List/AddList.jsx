@@ -1,3 +1,5 @@
+import { ListForm } from "../../containers/List/ListForm/ListForm";
+
 export function AddList() {
-  return <h1>LOOOOOL</h1>;
+  return <ListForm />;
 }
