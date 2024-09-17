@@ -3,14 +3,22 @@ import { ListFormList } from "../ListFormList/ListFormList";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import s from "./style.module.css";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addListItemEmpty } from "../../../store/list/listItem-slice";
 
 export function ListForm() {
   const [valueDisplay, setvalueDisplayed] = useState("Sélectionner une valeur");
   const status = ["Brouillon", "Valide", "Obsolète"];
+  const dispatch = useDispatch();
 
   function clickStatusList(value) {
     setvalueDisplayed(value);
   }
+
+  function AddNewElement() {
+    dispatch(addListItemEmpty());
+  }
+
   return (
     <div>
       <form className={`container-fluid ${s.formList}`}>
@@ -35,7 +43,7 @@ export function ListForm() {
         </div>
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
-          <div className="col-3">Statut</div>
+          <div className="col-3">Type</div>
           <div className="col-4">
             <BootstrapDropdown
               dropdownValues={valueDisplay}
@@ -46,34 +54,6 @@ export function ListForm() {
           <div className="col-2"></div>
         </div>
         <div className={`${s.listSub}`}>
-          <div className={`row`}>
-            <div className={`col-3`}></div>
-            <div
-              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Numéro
-            </div>
-            <div
-              className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Nom
-            </div>
-            <div
-              className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Type
-            </div>
-            <div
-              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Quantité
-            </div>
-            <div
-              className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Actions
-            </div>
-          </div>
           <ListFormList />
         </div>
         <div className={`row ${s.lineForm}`}>
@@ -81,7 +61,7 @@ export function ListForm() {
           <div className="col-7">
             <CustomButton
               labelButton={"Nouvel élément liste"}
-              actionButton={() => alert("nouvel élément")}
+              actionButton={() => AddNewElement()}
               customClass={"btn btn-info"}
             />
           </div>
