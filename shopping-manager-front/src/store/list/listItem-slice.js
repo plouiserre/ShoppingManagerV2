@@ -62,6 +62,9 @@ export const listItemSlice = createSlice({
             var newListItems = currentState.listItems.filter((item)=>item.id!==action.payload.id);
             currentState.listItems = newListItems;
         },
+        flushListItem:(currentState, action)=>{
+            currentState.listItems = [firstListItem];
+        },
         stopCompleteListItem:(currentState, action)=>{
             var newListItems = []
             currentState.listItems.map((item)=>{
@@ -75,6 +78,6 @@ export const listItemSlice = createSlice({
     }
 })
 
-const {addListItemEmpty, completeListItemNewList, deleteListItems, stopCompleteListItem} = listItemSlice.actions;
+const {addListItemEmpty, completeListItemNewList, deleteListItems, flushListItem, stopCompleteListItem} = listItemSlice.actions;
 
-export {addListItemEmpty, completeListItemNewList, deleteListItems, stopCompleteListItem}
+export {addListItemEmpty, completeListItemNewList, deleteListItems, flushListItem, stopCompleteListItem}
