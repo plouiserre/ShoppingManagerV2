@@ -1,0 +1,27 @@
+.cellListsSubList{
+    padding: 10px;
+    border-top : 1px solid #d2d7db;
+    border-left: 1px solid #d2d7db;
+}
+
+.cellListsSubListRight{
+    border-right : 1px solid #d2d7db;
+}
+
+.cellListsSubListbottom{
+    border-bottom : 1px solid #d2d7db;
+}
+
+.cellListsSubListDarkBackgroundColor{
+    background-color: #e8eef0;
+}
+
+.numberQuantityListItem{
+    width: 100px;
+}
+
+.actionsListsLittle{
+    display: inline-flex;
+    column-gap: 10px;
+    justify-content: space-between;
+}
