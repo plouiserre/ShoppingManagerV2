@@ -15,11 +15,9 @@ export function ListFormListItem({ listItemWorking, length }) {
     listItemWorking.type !== undefined && listItemWorking.type !== ""
       ? listItemWorking.type
       : "Veuillez choisir un type";
-  const [typeElementListValues, setTypeElementListValues] =
-    useState(defaultValueType);
   var listItem = { ...listItemWorking };
-  const [nameListItem, setNameListItem] = useState("");
-  const [typeListItem, setTypeListItem] = useState("");
+  const [nameListItem, setNameListItem] = useState(listItem.name);
+  const [typeListItem, setTypeListItem] = useState(defaultValueType);
   var initQuantity =
     listItemWorking.quantity > 0 ? listItemWorking.quantity : 0;
   const [quantityListItem, setQuantityListItem] = useState(initQuantity);
@@ -29,7 +27,6 @@ export function ListFormListItem({ listItemWorking, length }) {
   const [errorMessageValue, setErrorMessageValue] = useState("");
 
   function clickDropdownListTypeElementList(value) {
-    setTypeElementListValues(value);
     setTypeListItem(value);
   }
 
@@ -76,7 +73,7 @@ export function ListFormListItem({ listItemWorking, length }) {
           <input
             type="text"
             className="form-control"
-            value={listItem.name}
+            value={nameListItem}
             onChange={(event) => {
               setNameListItem(event.target.value);
             }}
@@ -86,7 +83,7 @@ export function ListFormListItem({ listItemWorking, length }) {
           className={`col-2 ${s.cellListsSubList} ${s.cellListsSubListbottom}`}
         >
           <BootstrapDropdown
-            dropdownValues={typeElementListValues}
+            dropdownValues={typeListItem}
             clickDropDownAction={clickDropdownListTypeElementList}
             values={typeElementLists}
           />
