@@ -29,6 +29,10 @@ export const listSlice = createSlice({
         lists:[]
     },
     reducers:{
+        deleteShoppingList:(currentState, action)=>{
+            var okShoppingList = currentState.lists.filter((item)=>item.id !==action.payload.id);
+            currentState.lists = okShoppingList;
+        },
         saveList:(currentState, action)=>{
             var newList = action.payload.list;
             newList.listItems = action.payload.listItems;
@@ -41,6 +45,6 @@ export const listSlice = createSlice({
     }
 })
 
-const {saveList} = listSlice.actions;
+const {deleteShoppingList, saveList} = listSlice.actions;
 
-export {saveList}
+export {deleteShoppingList, saveList}

@@ -1,7 +1,14 @@
 import s from "./style.module.css";
 import { BootstrapIcon } from "../../Reusable/BootstrapIcon/BootstrapIcon";
+import { deleteShoppingList } from "../../../store/list/list-slice";
+import { useDispatch } from "react-redux";
 
 export function ShoppingListItemList({ shoppingListItem }) {
+  var dispatch = useDispatch();
+
+  function deleteShoppingListAction() {
+    dispatch(deleteShoppingList(shoppingListItem));
+  }
   return (
     <div className={`row ${s.cellShoppingListList}`}>
       <div className={`col-2 ${s.idShoppingList}`}>{shoppingListItem.id}</div>
@@ -11,17 +18,14 @@ export function ShoppingListItemList({ shoppingListItem }) {
       <div className={`col-2 ${s.statusShoppingList}`}>
         {shoppingListItem.status}
       </div>
-      {/* quand j'aurai corrigé les données supprimé la condition du dessous */}
       <div className={`col-2 ${s.ShoppingListItems}`}>
-        {shoppingListItem.listItems !== undefined
-          ? shoppingListItem.listItems.length
-          : 0}
+        {shoppingListItem.listItems.length}
       </div>
       <div className={`col-3 ${s.actionsShoppingList}`}>
         {" "}
         <BootstrapIcon
           cssClass={"bi bi-trash btn btn-outline-danger"}
-          onClickAction={() => alert("delete!!!!!!")}
+          onClickAction={() => deleteShoppingListAction()}
           param={shoppingListItem}
         />
         <BootstrapIcon
