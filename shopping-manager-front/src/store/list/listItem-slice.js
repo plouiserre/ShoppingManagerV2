@@ -42,7 +42,7 @@ export const listItemSlice = createSlice({
                     name:"",
                     type:"",
                     quantity:0,
-                    status : "Input"          
+                    statusList : "Input"          
             })
         },
         completeListItemNewList:(currentState, action)=>{

@@ -11,7 +11,7 @@ import { persistStore, persistReducer,
     REGISTER 
 } from "redux-persist";
 import { mealItemSlice } from "./meal/mealItem-slice";
-import { listSlice } from "./list/list-slice";
+import { listSlice } from "./list/shoppingList-slice";
 import { listItemSlice } from "./list/listItem-slice";
 
 const persistConfig = {

@@ -1,6 +1,6 @@
 import s from "./style.module.css";
 import { BootstrapIcon } from "../../Reusable/BootstrapIcon/BootstrapIcon";
-import { deleteShoppingList } from "../../../store/list/list-slice";
+import { deleteShoppingList } from "../../../store/list/shoppingList-slice";
 import { useDispatch } from "react-redux";
 
 export function ShoppingListItemList({ shoppingListItem }) {

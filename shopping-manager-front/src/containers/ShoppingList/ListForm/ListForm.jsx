@@ -5,8 +5,9 @@ import s from "./style.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addListItemEmpty } from "../../../store/list/listItem-slice";
-import { saveList } from "../../../store/list/list-slice";
+import { saveList } from "../../../store/list/shoppingList-slice";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
+import { useNavigate } from "react-router-dom";
 
 export function ListForm() {
   const defaultValueList = "Sélectionner une valeur";
@@ -16,6 +17,7 @@ export function ListForm() {
   const [valueDisplay, setvalueDisplayed] = useState(defaultValueList);
   const status = ["Brouillon", "Valide", "Obsolète"];
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const listItems = useSelector((store) => store.LISTITEM.listItems);
 
   function clickStatusList(value) {
@@ -31,6 +33,7 @@ export function ListForm() {
     if (validateList()) {
       const newList = { ...list };
       dispatch(saveList({ list: newList, listItems: listItems }));
+      navigate("/ShoppingList/");
     }
   }
 
