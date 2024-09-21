@@ -1,0 +1,33 @@
+/*TODO factoriser avec MealList MealListItem et StockListItem */
+.cellShoppingListList{
+    padding: 20px;
+    font-size: large;
+    text-align: center;
+    border-bottom: 1px solid #d7d9e1 ;
+}
+
+.idShoppingList, .statusShoppingList{
+    padding-top: 22px;
+}
+
+.nameShoppingList{
+    font-size: 24px;
+    font-weight: 500;
+    color : #879efa;
+    padding-top: 22px;
+    cursor: pointer;
+}
+
+.nameShoppingList:hover{
+    cursor: pointer;
+}
+
+.ShoppingListItems{
+    font-size: 20px;
+    padding: 27px;
+}
+
+.actionsShoppingList{
+    padding-top: 10px;
+    padding-left: 50px
+}

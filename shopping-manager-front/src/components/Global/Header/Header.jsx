@@ -8,7 +8,7 @@ export function Header(props) {
   function goToPage(itemName) {
     navigate("/" + itemName + "/");
   }
-  const headerItems = ["Stock", "Meal", "Liste"];
+  const headerItems = ["Stock", "Meal", "ShoppingList"];
   return (
     <div className={`row ${s.header}`}>
       <Logo onClick={() => navigate("/")} />

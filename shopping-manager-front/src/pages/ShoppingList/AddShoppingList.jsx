@@ -1,8 +1,8 @@
-import { ListForm } from "../../containers/List/ListForm/ListForm";
+import { ListForm } from "../../containers/ShoppingList/ListForm/ListForm";
 import { useDispatch } from "react-redux";
 import { flushListItem } from "../../store/list/listItem-slice";
 
-export function AddList() {
+export function AddShoppingList() {
   var dispatch = useDispatch();
   dispatch(flushListItem());
   return <ListForm />;

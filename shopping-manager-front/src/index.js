@@ -7,7 +7,6 @@ import { Welcome } from './pages/Welcome/Welcome';
 import { Stock } from './pages/Stock/Stock';
 import { Meal } from './pages/Meal/Meal';
 import { MealDetail } from './pages/Meal/MealDetail';
-import { List } from './pages/List/List';
 import { AddStock } from './pages/Stock/AddStock';
 import { Provider } from 'react-redux';
 import {store, persistor} from "./store"
@@ -16,7 +15,8 @@ import { StockDetail } from './pages/Stock/StockDetail';
 import { StockEdit } from './pages/Stock/StockEdit';
 import { AddMeal } from './pages/Meal/AddMeal';
 import { MealEdit } from './pages/Meal/MealEdit';
-import { AddList } from './pages/List/AddList';
+import { AddShoppingList } from './pages/ShoppingList/AddShoppingList';
+import { ShoppingList } from './pages/ShoppingList/ListShoppingList';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -35,8 +35,8 @@ root.render(
             <Route path="/Meal/add" element={<AddMeal/>}/>
             <Route path="Meal/:id" element={<MealDetail/>}/>
             <Route path="Meal/edit/:id" element={<MealEdit/>}/>
-            <Route path="List/add" element={<AddList/>}/>
-            <Route path="/Liste/" element={<List/>}/>
+            <Route path="ShoppingList/add" element={<AddShoppingList/>}/>
+            <Route path="/ShoppingList/" element={<ShoppingList/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
