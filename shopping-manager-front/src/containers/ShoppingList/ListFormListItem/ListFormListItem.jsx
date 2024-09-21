@@ -5,8 +5,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 import {
-  deleteListItems,
-  completeListItemNewList,
+  deleteShoppingListItems,
+  completeShoppingListItemNewList,
 } from "../../../store/list/shoppingListItem-slice";
 
 export function ListFormListItem({ listItemWorking, length }) {
@@ -51,12 +51,12 @@ export function ListFormListItem({ listItemWorking, length }) {
       listItem.type = typeListItem;
       listItem.quantity = quantityListItem;
       listItem.id = length;
-      dispatch(completeListItemNewList(listItem));
+      dispatch(completeShoppingListItemNewList(listItem));
     }
   }
 
   function deleteEmptyLine() {
-    dispatch(deleteListItems(listItem));
+    dispatch(deleteShoppingListItems(listItem));
   }
   return (
     <>

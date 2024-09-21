@@ -4,7 +4,7 @@ import { CustomButton } from "../../../components/Reusable/CustomButton/CustomBu
 import s from "./style.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addListItemEmpty } from "../../../store/list/shoppingListItem-slice";
+import { addShoppingListItemEmpty } from "../../../store/list/shoppingListItem-slice";
 import { saveShoppingList } from "../../../store/list/shoppingList-slice";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ export function ListForm() {
   }
 
   function AddNewElement() {
-    dispatch(addListItemEmpty());
+    dispatch(addShoppingListItemEmpty());
   }
 
   function saveAllList() {

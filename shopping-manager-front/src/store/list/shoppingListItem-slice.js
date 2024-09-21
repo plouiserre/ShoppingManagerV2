@@ -24,13 +24,13 @@ var firstListItem={
     quantity:0
 }
 
-export const listItemSlice = createSlice({
-    name : "listItemSlice",
+export const shoppingListItemSlice = createSlice({
+    name : "shoppingListItemSlice",
     initialState:{
         listItems : [firstListItem]
     },
     reducers:{
-        addListItemEmpty:(currentState, action)=>{
+        addShoppingListItemEmpty:(currentState, action)=>{
             var listItems = JSON.parse(JSON.stringify(currentState.listItems));
             var id = getId(listItems, {
                 name:"",
@@ -45,7 +45,7 @@ export const listItemSlice = createSlice({
                     statusList : "Input"          
             })
         },
-        completeListItemNewList:(currentState, action)=>{
+        completeShoppingListItemNewList:(currentState, action)=>{
             var newListItems = []
             currentState.listItems.map((item)=>{
                 if(item.id !== action.payload.id){
@@ -58,14 +58,14 @@ export const listItemSlice = createSlice({
             })
             currentState.listItems = newListItems
         },
-        deleteListItems:(currentState, action)=>{
+        deleteShoppingListItems:(currentState, action)=>{
             var newListItems = currentState.listItems.filter((item)=>item.id!==action.payload.id);
             currentState.listItems = newListItems;
         },
-        flushListItem:(currentState, action)=>{
+        flushShoppingListItem:(currentState, action)=>{
             currentState.listItems = [firstListItem];
         },
-        stopCompleteListItem:(currentState, action)=>{
+        stopCompleteShoppingListItem:(currentState, action)=>{
             var newListItems = []
             currentState.listItems.map((item)=>{
                 if(item.id === action.payload.id){
@@ -78,6 +78,6 @@ export const listItemSlice = createSlice({
     }
 })
 
-const {addListItemEmpty, completeListItemNewList, deleteListItems, flushListItem, stopCompleteListItem} = listItemSlice.actions;
+const {addShoppingListItemEmpty, completeShoppingListItemNewList, deleteShoppingListItems, flushShoppingListItem, stopCompleteShoppingListItem} = shoppingListItemSlice.actions;
 
-export {addListItemEmpty, completeListItemNewList, deleteListItems, flushListItem, stopCompleteListItem}
+export {addShoppingListItemEmpty, completeShoppingListItemNewList, deleteShoppingListItems, flushShoppingListItem, stopCompleteShoppingListItem}

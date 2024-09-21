@@ -12,7 +12,7 @@ import { persistStore, persistReducer,
 } from "redux-persist";
 import { mealItemSlice } from "./meal/mealItem-slice";
 import { shoppingListSlice } from "./list/shoppingList-slice";
-import { listItemSlice } from "./list/shoppingListItem-slice";
+import { shoppingListItemSlice } from "./list/shoppingListItem-slice";
 
 const persistConfig = {
     key : "root",
@@ -25,7 +25,7 @@ const rootReducers = combineReducers({
     MEAL : mealSlice.reducer, 
     MEALITEM : mealItemSlice.reducer,
     LIST : shoppingListSlice.reducer,
-    LISTITEM : listItemSlice.reducer
+    LISTITEM : shoppingListItemSlice.reducer
 })
 
 const persistReducers = persistReducer(persistConfig, rootReducers)

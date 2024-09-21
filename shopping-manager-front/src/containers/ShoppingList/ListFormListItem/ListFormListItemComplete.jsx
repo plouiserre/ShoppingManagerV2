@@ -2,19 +2,19 @@ import s from "./style.module.css";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import { useDispatch } from "react-redux";
 import {
-  deleteListItems,
-  stopCompleteListItem,
+  deleteShoppingListItems,
+  stopCompleteShoppingListItem,
 } from "../../../store/list/shoppingListItem-slice";
 
 export function ListFormListItemComplete({ listItemWorking }) {
   const listItem = { ...listItemWorking };
   var dispatch = useDispatch();
   function deleteEmptyLine() {
-    dispatch(deleteListItems(listItem));
+    dispatch(deleteShoppingListItems(listItem));
   }
 
   function editListItem() {
-    dispatch(stopCompleteListItem(listItem));
+    dispatch(stopCompleteShoppingListItem(listItem));
   }
   return (
     <>
