@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import {
   deleteListItems,
   stopCompleteListItem,
-} from "../../../store/list/listItem-slice";
+} from "../../../store/list/shoppingListItem-slice";
 
 export function ListFormListItemComplete({ listItemWorking }) {
   const listItem = { ...listItemWorking };

@@ -12,7 +12,7 @@ import { persistStore, persistReducer,
 } from "redux-persist";
 import { mealItemSlice } from "./meal/mealItem-slice";
 import { listSlice } from "./list/shoppingList-slice";
-import { listItemSlice } from "./list/listItem-slice";
+import { listItemSlice } from "./list/shoppingListItem-slice";
 
 const persistConfig = {
     key : "root",

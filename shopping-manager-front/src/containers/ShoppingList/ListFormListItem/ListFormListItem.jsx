@@ -7,7 +7,7 @@ import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessa
 import {
   deleteListItems,
   completeListItemNewList,
-} from "../../../store/list/listItem-slice";
+} from "../../../store/list/shoppingListItem-slice";
 
 export function ListFormListItem({ listItemWorking, length }) {
   var dispatch = useDispatch();
