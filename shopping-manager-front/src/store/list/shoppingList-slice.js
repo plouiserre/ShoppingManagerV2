@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 function getId(elements){
     var id = 0 
@@ -23,8 +23,8 @@ var firstListItem={
     quantity:0
 }
 
-export const listSlice = createSlice({
-    name:"listSlice",
+export const shoppingListSlice = createSlice({
+    name:"shoppingListSlice",
     initialState:{
         lists:[]
     },
@@ -33,7 +33,7 @@ export const listSlice = createSlice({
             var okShoppingList = currentState.lists.filter((item)=>item.id !==action.payload.id);
             currentState.lists = okShoppingList;
         },
-        saveList:(currentState, action)=>{
+        saveShoppingList:(currentState, action)=>{
             var newList = action.payload.list;
             newList.listItems = action.payload.listItems;
             var lists = JSON.parse(JSON.stringify(currentState.lists));
@@ -45,6 +45,6 @@ export const listSlice = createSlice({
     }
 })
 
-const {deleteShoppingList, saveList} = listSlice.actions;
+const {deleteShoppingList, saveShoppingList} = shoppingListSlice.actions;
 
-export {deleteShoppingList, saveList}
+export {deleteShoppingList, saveShoppingList}

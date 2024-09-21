@@ -5,7 +5,7 @@ import s from "./style.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addListItemEmpty } from "../../../store/list/shoppingListItem-slice";
-import { saveList } from "../../../store/list/shoppingList-slice";
+import { saveShoppingList } from "../../../store/list/shoppingList-slice";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 import { useNavigate } from "react-router-dom";
 
@@ -32,7 +32,7 @@ export function ListForm() {
   function saveAllList() {
     if (validateList()) {
       const newList = { ...list };
-      dispatch(saveList({ list: newList, listItems: listItems }));
+      dispatch(saveShoppingList({ list: newList, listItems: listItems }));
       navigate("/ShoppingList/");
     }
   }
