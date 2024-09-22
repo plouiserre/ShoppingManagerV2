@@ -26,20 +26,20 @@ var firstListItem={
 export const shoppingListSlice = createSlice({
     name:"shoppingListSlice",
     initialState:{
-        lists:[]
+        shoppingLists :[]
     },
     reducers:{
         deleteShoppingList:(currentState, action)=>{
-            var okShoppingList = currentState.lists.filter((item)=>item.id !==action.payload.id);
-            currentState.lists = okShoppingList;
+            var okShoppingList = currentState.shoppingLists.filter((item)=>item.id !==action.payload.id);
+            currentState.shoppingLists = okShoppingList;
         },
         saveShoppingList:(currentState, action)=>{
             var newList = action.payload.list;
             newList.listItems = action.payload.listItems;
-            var lists = JSON.parse(JSON.stringify(currentState.lists));
-            var id = getId(lists, newList);
+            var shoppingLists = JSON.parse(JSON.stringify(currentState.shoppingLists));
+            var id = getId(shoppingLists, newList);
             newList.id = id
-            currentState.lists.push({...newList});
+            currentState.shoppingLists.push({...newList});
             currentState.listItems=[firstListItem];
         }
     }

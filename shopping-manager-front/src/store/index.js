@@ -24,7 +24,7 @@ const rootReducers = combineReducers({
     STOCK : stockSlice.reducer,
     MEAL : mealSlice.reducer, 
     MEALITEM : mealItemSlice.reducer,
-    LIST : shoppingListSlice.reducer,
+    SHOPPINGLIST : shoppingListSlice.reducer,
     LISTITEM : shoppingListItemSlice.reducer
 })
 
