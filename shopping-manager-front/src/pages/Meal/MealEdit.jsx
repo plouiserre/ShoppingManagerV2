@@ -15,14 +15,12 @@ export function MealEdit() {
   const meals = useSelector((store) => store.MEAL.meals);
   const mealSelected = meals.find((item) => item.id === id);
 
-  const [meal, setMeal] = useState({ ...mealSelected });
-
   dispatch(flushMealItem());
   dispatch(storeEditMealItems(mealSelected));
 
   return (
     <>
-      <MealForm meal={meal} setMeal={setMeal} actionType={"Edit"} />
+      <MealForm actionType={"Edit"} />
     </>
   );
 }

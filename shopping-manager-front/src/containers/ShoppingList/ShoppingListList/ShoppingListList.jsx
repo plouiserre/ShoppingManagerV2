@@ -2,7 +2,7 @@ import s from "./style.module.css";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ShoppingListItemList } from "../../../components/List/ShoppingListItemList/ShoppingListItemList";
+import { ShoppingListItemList } from "../ShoppingListItemList/ShoppingListItemList";
 
 export function ShoppingListList() {
   var navigate = useNavigate();
