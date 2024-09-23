@@ -9,12 +9,19 @@ import { saveShoppingList } from "../../../store/list/shoppingList-slice";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 import { useNavigate } from "react-router-dom";
 
-export function ListForm() {
-  const defaultValueList = "Sélectionner une valeur";
-  const [list, setList] = useState({});
+export function ListForm({ shoppingList }) {
+  const initList = shoppingList === undefined ? {} : shoppingList;
+  const [list, setList] = useState(initList);
   const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
   const [errorMessageValue, setErrorMessageValue] = useState("");
-  const [valueDisplay, setvalueDisplayed] = useState(defaultValueList);
+  const defaultValueStatusShoppingList = "Sélectionner une valeur";
+  const defaultValueStatusShoppingListUpdated =
+    shoppingList === undefined
+      ? defaultValueStatusShoppingList
+      : shoppingList.status;
+  const [valueDisplay, setvalueDisplayed] = useState(
+    defaultValueStatusShoppingListUpdated
+  );
   const status = ["Brouillon", "Valide", "Obsolète"];
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,7 +56,10 @@ export function ListForm() {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Merci de spécifier le nom de cette liste");
       return false;
-    } else if (list.status === undefined || list.status === defaultValueList) {
+    } else if (
+      list.status === undefined ||
+      list.status === defaultValueStatusShoppingList
+    ) {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Merci de spécifier un status à cette liste");
       return false;
@@ -99,6 +109,7 @@ export function ListForm() {
               onChange={(event) => {
                 setList({ ...list, Name: event.target.value });
               }}
+              value={list.Name}
             />
           </div>
           <div className="col-2"></div>
@@ -132,10 +143,19 @@ export function ListForm() {
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-7">
-            <CustomButton
-              labelButton={"Enregistrer"}
-              actionButton={() => saveAllList()}
-            />
+            {shoppingList === undefined && (
+              <CustomButton
+                labelButton={"Enregistrer"}
+                actionButton={() => saveAllList()}
+              />
+            )}
+            {shoppingList !== undefined && (
+              <CustomButton
+                labelButton={"Mettre à jour"}
+                actionButton={() => alert("edit!!!")}
+                customClass={"btn btn-secondary"}
+              />
+            )}
           </div>
           <div className="col-2"></div>
         </div>

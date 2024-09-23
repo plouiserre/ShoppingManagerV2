@@ -16,5 +16,5 @@ export function EditShoppingList() {
   const shoppingListSelected = shoppingLists.find((item) => item.id === id);
   dispatch(flushShoppingListItem());
   dispatch(storeEditShoppingListItems(shoppingListSelected));
-  return <ListForm />;
+  return <ListForm shoppingList={shoppingListSelected} />;
 }
