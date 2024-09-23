@@ -9,7 +9,7 @@ import {
   completeShoppingListItemNewList,
 } from "../../../store/list/shoppingListItem-slice";
 
-export function ListFormListItem({ listItemWorking, length }) {
+export function ShoppingListFormItem({ listItemWorking, length }) {
   var dispatch = useDispatch();
   const defaultValueType =
     listItemWorking.type !== undefined && listItemWorking.type !== ""

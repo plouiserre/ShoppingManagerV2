@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { ListForm } from "../../containers/ShoppingList/ListForm/ListForm";
+import { ShoppingListForm } from "../../containers/ShoppingList/ShoppingListForm/ShoppingListForm";
 import {
   flushShoppingListItem,
   storeEditShoppingListItems,
@@ -16,5 +16,5 @@ export function EditShoppingList() {
   const shoppingListSelected = shoppingLists.find((item) => item.id === id);
   dispatch(flushShoppingListItem());
   dispatch(storeEditShoppingListItems(shoppingListSelected));
-  return <ListForm shoppingList={shoppingListSelected} />;
+  return <ShoppingListForm shoppingList={shoppingListSelected} />;
 }

@@ -6,7 +6,7 @@ import {
   stopCompleteShoppingListItem,
 } from "../../../store/list/shoppingListItem-slice";
 
-export function ListFormListItemComplete({ listItemWorking }) {
+export function ShoppingListFormListItemComplete({ listItemWorking }) {
   const listItem = { ...listItemWorking };
   var dispatch = useDispatch();
   function deleteEmptyLine() {

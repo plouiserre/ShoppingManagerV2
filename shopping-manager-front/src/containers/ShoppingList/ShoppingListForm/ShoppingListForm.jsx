@@ -1,5 +1,5 @@
 import { BootstrapDropdown } from "../../../components/Reusable/BootstrapDropdown/BootstrapDropdown";
-import { ListFormList } from "../ListFormList/ListFormList";
+import { ShoppingListFormList } from "../ShoppingListFormList/ShoppingListFormList";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import s from "./style.module.css";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import { saveShoppingList } from "../../../store/list/shoppingList-slice";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 import { useNavigate } from "react-router-dom";
 
-export function ListForm({ shoppingList }) {
+export function ShoppingListForm({ shoppingList }) {
   const initList = shoppingList === undefined ? {} : shoppingList;
   const [list, setList] = useState(initList);
   const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
@@ -127,7 +127,7 @@ export function ListForm({ shoppingList }) {
           <div className="col-2"></div>
         </div>
         <div className={`${s.listSub}`}>
-          <ListFormList />
+          <ShoppingListFormList />
         </div>
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
