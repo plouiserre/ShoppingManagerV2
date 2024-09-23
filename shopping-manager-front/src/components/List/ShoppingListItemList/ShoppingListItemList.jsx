@@ -19,7 +19,7 @@ export function ShoppingListItemList({ shoppingListItem }) {
         {shoppingListItem.status}
       </div>
       <div className={`col-2 ${s.ShoppingListItems}`}>
-        {shoppingListItem.listItems.length}
+        {shoppingListItem.shoppingListItems.length}
       </div>
       <div className={`col-3 ${s.actionsShoppingList}`}>
         {" "}

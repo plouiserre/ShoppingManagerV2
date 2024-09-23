@@ -16,7 +16,7 @@ function getId(elements){
     return id;
 }
 
-var firstListItem={
+var firstShoppingListItem={
     id:1,
     name:"",
     status:"",
@@ -34,13 +34,13 @@ export const shoppingListSlice = createSlice({
             currentState.shoppingLists = okShoppingList;
         },
         saveShoppingList:(currentState, action)=>{
-            var newList = action.payload.list;
-            newList.listItems = action.payload.listItems;
+            var newList = action.payload.shoppingList;
+            newList.shoppingListItems = action.payload.shoppingListItems;
             var shoppingLists = JSON.parse(JSON.stringify(currentState.shoppingLists));
             var id = getId(shoppingLists, newList);
             newList.id = id
             currentState.shoppingLists.push({...newList});
-            currentState.listItems=[firstListItem];
+            currentState.shoppingListItems=[firstShoppingListItem];
         }
     }
 })

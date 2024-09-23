@@ -4,7 +4,9 @@ import { ListFormListItemComplete } from "../ListFormListItem/ListFormListItemCo
 import { useSelector } from "react-redux";
 
 export function ListFormList() {
-  const listItems = useSelector((store) => store.LISTITEM.listItems);
+  const listItems = useSelector(
+    (store) => store.SHOPPINGLISTITEM.shoppingListItems
+  );
   return (
     <>
       {" "}

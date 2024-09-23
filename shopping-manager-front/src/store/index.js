@@ -25,7 +25,7 @@ const rootReducers = combineReducers({
     MEAL : mealSlice.reducer, 
     MEALITEM : mealItemSlice.reducer,
     SHOPPINGLIST : shoppingListSlice.reducer,
-    LISTITEM : shoppingListItemSlice.reducer
+    SHOPPINGLISTITEM : shoppingListItemSlice.reducer
 })
 
 const persistReducers = persistReducer(persistConfig, rootReducers)

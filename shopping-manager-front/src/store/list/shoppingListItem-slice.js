@@ -17,7 +17,7 @@ function getId(elements){
     return id;
 }
 
-var firstListItem={
+var firstShoppingListItem={
     id:1,
     name:"",
     status:"",
@@ -27,17 +27,17 @@ var firstListItem={
 export const shoppingListItemSlice = createSlice({
     name : "shoppingListItemSlice",
     initialState:{
-        listItems : [firstListItem]
+        shoppingListItems : [firstShoppingListItem]
     },
     reducers:{
         addShoppingListItemEmpty:(currentState, action)=>{
-            var listItems = JSON.parse(JSON.stringify(currentState.listItems));
-            var id = getId(listItems, {
+            var shoppingListItems = JSON.parse(JSON.stringify(currentState.shoppingListItems));
+            var id = getId(shoppingListItems, {
                 name:"",
                 type:"",
                 quantity:0
             });
-            currentState.listItems.push({     
+            currentState.shoppingListItems.push({     
                     id:id,
                     name:"",
                     type:"",
@@ -46,34 +46,34 @@ export const shoppingListItemSlice = createSlice({
             })
         },
         completeShoppingListItemNewList:(currentState, action)=>{
-            var newListItems = []
-            currentState.listItems.map((item)=>{
+            var newShoppingListItems = []
+            currentState.shoppingListItems.map((item)=>{
                 if(item.id !== action.payload.id){
-                    newListItems.push(item)
+                    newShoppingListItems.push(item)
                 }else{
                     var newItem = action.payload
                     newItem.statusList = "Validation"
-                    newListItems.push(newItem)
+                    newShoppingListItems.push(newItem)
                 }
             })
-            currentState.listItems = newListItems
+            currentState.shoppingListItems = newShoppingListItems
         },
         deleteShoppingListItems:(currentState, action)=>{
-            var newListItems = currentState.listItems.filter((item)=>item.id!==action.payload.id);
-            currentState.listItems = newListItems;
+            var newShoppingListItems = currentState.shoppingListItems.filter((item)=>item.id!==action.payload.id);
+            currentState.shoppingListItems = newShoppingListItems;
         },
         flushShoppingListItem:(currentState, action)=>{
-            currentState.listItems = [firstListItem];
+            currentState.shoppingListItems = [firstShoppingListItem];
         },
         stopCompleteShoppingListItem:(currentState, action)=>{
-            var newListItems = []
-            currentState.listItems.map((item)=>{
+            var newShoppingListItems = []
+            currentState.shoppingListItems.map((item)=>{
                 if(item.id === action.payload.id){
                     item.statusList = "Input";
                 }   
-                newListItems.push(item)
+                newShoppingListItems.push(item)
             })
-            currentState.listItems = newListItems
+            currentState.shoppingListItems = newShoppingListItems
         },
     }
 })

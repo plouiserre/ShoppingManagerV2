@@ -18,7 +18,9 @@ export function ListForm() {
   const status = ["Brouillon", "Valide", "Obsolète"];
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const listItems = useSelector((store) => store.LISTITEM.listItems);
+  const shoppingListItems = useSelector(
+    (store) => store.SHOPPINGLISTITEM.shoppingListItems
+  );
 
   function clickStatusList(value) {
     setvalueDisplayed(value);
@@ -32,7 +34,12 @@ export function ListForm() {
   function saveAllList() {
     if (validateList()) {
       const newList = { ...list };
-      dispatch(saveShoppingList({ list: newList, listItems: listItems }));
+      dispatch(
+        saveShoppingList({
+          shoppingList: newList,
+          shoppingListItems: shoppingListItems,
+        })
+      );
       navigate("/ShoppingList/");
     }
   }
@@ -46,7 +53,7 @@ export function ListForm() {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Merci de spécifier un status à cette liste");
       return false;
-    } else if (listItems.length == 0) {
+    } else if (shoppingListItems.length == 0) {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Merci d'ajouter des éléments à cette liste");
       return false;
@@ -61,8 +68,8 @@ export function ListForm() {
 
   function checkAllListItemsAreComplete() {
     var allAreComplete = true;
-    for (var i = 0; i < listItems.length; i++) {
-      const item = listItems[i];
+    for (var i = 0; i < shoppingListItems.length; i++) {
+      const item = shoppingListItems[i];
       if (item.status === "Input") {
         allAreComplete = false;
         break;
