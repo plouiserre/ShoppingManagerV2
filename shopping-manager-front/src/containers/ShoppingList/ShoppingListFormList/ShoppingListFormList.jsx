@@ -1,5 +1,5 @@
 import s from "./style.module.css";
-import { ShoppingListFormItem } from "../ShoppingListFormItem/ShoppingListFormItem ";
+import { ShoppingListFormItem } from "../ShoppingListFormItem/ShoppingListFormItem";
 import { ShoppingListFormListItemComplete } from "../ShoppingListFormItem/ShoppingListFormListItemComplete";
 import { useSelector } from "react-redux";
 

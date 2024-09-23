@@ -5,7 +5,10 @@ import s from "./style.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addShoppingListItemEmpty } from "../../../store/list/shoppingListItem-slice";
-import { saveShoppingList } from "../../../store/list/shoppingList-slice";
+import {
+  editShoppingList,
+  saveShoppingList,
+} from "../../../store/list/shoppingList-slice";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 import { useNavigate } from "react-router-dom";
 
@@ -39,11 +42,11 @@ export function ShoppingListForm({ shoppingList }) {
   }
 
   function saveAllList() {
-    if (validateList()) {
-      const newList = { ...list };
+    if (validateShoppingList()) {
+      const newShoppingList = { ...list };
       dispatch(
         saveShoppingList({
-          shoppingList: newList,
+          shoppingList: newShoppingList,
           shoppingListItems: shoppingListItems,
         })
       );
@@ -51,7 +54,20 @@ export function ShoppingListForm({ shoppingList }) {
     }
   }
 
-  function validateList() {
+  function editAllList() {
+    if (validateShoppingList()) {
+      const shoppingListToUpdate = { ...list };
+      dispatch(
+        editShoppingList({
+          shoppingList: shoppingListToUpdate,
+          shoppingListItems: shoppingListItems,
+        })
+      );
+      navigate("/ShoppingList/");
+    }
+  }
+
+  function validateShoppingList() {
     if (list.Name === undefined || list.Name === "") {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Merci de spécifier le nom de cette liste");
@@ -152,7 +168,7 @@ export function ShoppingListForm({ shoppingList }) {
             {shoppingList !== undefined && (
               <CustomButton
                 labelButton={"Mettre à jour"}
-                actionButton={() => alert("edit!!!")}
+                actionButton={() => editAllList()}
                 customClass={"btn btn-secondary"}
               />
             )}
