@@ -6,7 +6,7 @@ import { ShoppingListItemList } from "../../../components/List/ShoppingListItemL
 
 export function ShoppingListList() {
   var navigate = useNavigate();
-  var shoppingLists = useSelector((store) => store.LIST.lists);
+  var shoppingLists = useSelector((store) => store.SHOPPINGLIST.shoppingLists);
   return (
     <>
       <div className={`${s.allShoppingLists}`}>

@@ -1,6 +1,6 @@
 import s from "./style.module.css";
 import { BootstrapIcon } from "../../Reusable/BootstrapIcon/BootstrapIcon";
-import { deleteShoppingList } from "../../../store/list/list-slice";
+import { deleteShoppingList } from "../../../store/list/shoppingList-slice";
 import { useDispatch } from "react-redux";
 
 export function ShoppingListItemList({ shoppingListItem }) {
@@ -19,7 +19,7 @@ export function ShoppingListItemList({ shoppingListItem }) {
         {shoppingListItem.status}
       </div>
       <div className={`col-2 ${s.ShoppingListItems}`}>
-        {shoppingListItem.listItems.length}
+        {shoppingListItem.shoppingListItems.length}
       </div>
       <div className={`col-3 ${s.actionsShoppingList}`}>
         {" "}
