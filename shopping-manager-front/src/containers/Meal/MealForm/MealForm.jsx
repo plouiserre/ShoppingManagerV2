@@ -9,7 +9,6 @@ import { addMealItemsEmpty } from "../../../store/meal/mealItem-slice";
 import { editMeal, saveMeal } from "../../../store/meal/meal-slice";
 import { useNavigate, useParams } from "react-router-dom";
 
-//TODO move in container
 export function MealForm({ actionType }) {
   const dispatch = useDispatch();
   const params = useParams();
@@ -17,6 +16,7 @@ export function MealForm({ actionType }) {
   const mealsCreated = useSelector((store) => store.MEAL.meals);
   const mealItems = useSelector((store) => store.MEALITEM.mealItems);
   var mealEdit = {};
+  //TODO retirer cette partie en voyant si on peut la passer en paramètre car on fait deux fois la même chose
   if (actionType === "Edit") {
     var id = parseInt(params.id);
     mealEdit = mealsCreated.find((item) => item.id === id);

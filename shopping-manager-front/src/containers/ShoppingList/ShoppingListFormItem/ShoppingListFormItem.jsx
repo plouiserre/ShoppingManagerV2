@@ -9,15 +9,16 @@ import {
   completeShoppingListItemNewList,
 } from "../../../store/list/shoppingListItem-slice";
 
-export function ListFormListItem({ listItemWorking, length }) {
+export function ShoppingListFormItem({ listItemWorking, length }) {
   var dispatch = useDispatch();
-  const defaultValueType =
+  const defaultValueType = "Veuillez choisir un type";
+  const labelType =
     listItemWorking.type !== undefined && listItemWorking.type !== ""
       ? listItemWorking.type
       : "Veuillez choisir un type";
   var listItem = { ...listItemWorking };
   const [nameListItem, setNameListItem] = useState(listItem.name);
-  const [typeListItem, setTypeListItem] = useState(defaultValueType);
+  const [typeListItem, setTypeListItem] = useState(labelType);
   var initQuantity =
     listItemWorking.quantity > 0 ? listItemWorking.quantity : 0;
   const [quantityListItem, setQuantityListItem] = useState(initQuantity);
@@ -36,7 +37,11 @@ export function ListFormListItem({ listItemWorking, length }) {
       setErrorMessageValue(
         "Merci de spécifier le nom de cet élément de la liste"
       );
-    } else if (typeListItem === undefined || typeListItem === "") {
+    } else if (
+      typeListItem === undefined ||
+      typeListItem === "" ||
+      typeListItem === defaultValueType
+    ) {
       setErrorMessageVisibility(true);
       setErrorMessageValue(
         "Merci de choisir le type de cet élément de la liste"
@@ -50,7 +55,6 @@ export function ListFormListItem({ listItemWorking, length }) {
       listItem.name = nameListItem;
       listItem.type = typeListItem;
       listItem.quantity = quantityListItem;
-      listItem.id = length;
       dispatch(completeShoppingListItemNewList(listItem));
     }
   }

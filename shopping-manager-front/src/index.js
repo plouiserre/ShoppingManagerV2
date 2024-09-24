@@ -17,6 +17,7 @@ import { AddMeal } from './pages/Meal/AddMeal';
 import { MealEdit } from './pages/Meal/MealEdit';
 import { AddShoppingList } from './pages/ShoppingList/AddShoppingList';
 import { ShoppingList } from './pages/ShoppingList/ListShoppingList';
+import {EditShoppingList} from './pages/ShoppingList/EditShoppingList';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -37,6 +38,7 @@ root.render(
             <Route path="Meal/edit/:id" element={<MealEdit/>}/>
             <Route path="ShoppingList/add" element={<AddShoppingList/>}/>
             <Route path="/ShoppingList/" element={<ShoppingList/>}/>
+            <Route path="/ShoppingList/edit/:id" element={<EditShoppingList/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

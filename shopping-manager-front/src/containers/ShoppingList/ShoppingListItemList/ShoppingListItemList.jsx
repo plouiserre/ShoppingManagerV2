@@ -1,10 +1,12 @@
 import s from "./style.module.css";
-import { BootstrapIcon } from "../../Reusable/BootstrapIcon/BootstrapIcon";
+import { BootstrapIcon } from "../../../components/Reusable/BootstrapIcon/BootstrapIcon";
 import { deleteShoppingList } from "../../../store/list/shoppingList-slice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export function ShoppingListItemList({ shoppingListItem }) {
-  var dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function deleteShoppingListAction() {
     dispatch(deleteShoppingList(shoppingListItem));
@@ -30,7 +32,9 @@ export function ShoppingListItemList({ shoppingListItem }) {
         />
         <BootstrapIcon
           cssClass={"bi bi-pencil-square btn btn-success"}
-          onClickAction={() => alert("edit")}
+          onClickAction={() =>
+            navigate("/ShoppingList/edit/" + shoppingListItem.id)
+          }
           param={shoppingListItem.id}
         />
       </div>

@@ -56,7 +56,7 @@ export const shoppingListItemSlice = createSlice({
                     newShoppingListItems.push(newItem)
                 }
             })
-            currentState.shoppingListItems = newShoppingListItems
+           currentState.shoppingListItems = newShoppingListItems
         },
         deleteShoppingListItems:(currentState, action)=>{
             var newShoppingListItems = currentState.shoppingListItems.filter((item)=>item.id!==action.payload.id);
@@ -75,9 +75,12 @@ export const shoppingListItemSlice = createSlice({
             })
             currentState.shoppingListItems = newShoppingListItems
         },
+        storeEditShoppingListItems :(currentState, action)=>{
+            currentState.shoppingListItems = action.payload.shoppingListItems;
+        }
     }
 })
 
-const {addShoppingListItemEmpty, completeShoppingListItemNewList, deleteShoppingListItems, flushShoppingListItem, stopCompleteShoppingListItem} = shoppingListItemSlice.actions;
+const {addShoppingListItemEmpty, completeShoppingListItemNewList, deleteShoppingListItems, flushShoppingListItem, stopCompleteShoppingListItem, storeEditShoppingListItems} = shoppingListItemSlice.actions;
 
-export {addShoppingListItemEmpty, completeShoppingListItemNewList, deleteShoppingListItems, flushShoppingListItem, stopCompleteShoppingListItem}
+export {addShoppingListItemEmpty, completeShoppingListItemNewList, deleteShoppingListItems, flushShoppingListItem, stopCompleteShoppingListItem, storeEditShoppingListItems}

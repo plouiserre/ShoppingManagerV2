@@ -1,20 +1,30 @@
 import { BootstrapDropdown } from "../../../components/Reusable/BootstrapDropdown/BootstrapDropdown";
-import { ListFormList } from "../ListFormList/ListFormList";
+import { ShoppingListFormList } from "../ShoppingListFormList/ShoppingListFormList";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import s from "./style.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addShoppingListItemEmpty } from "../../../store/list/shoppingListItem-slice";
-import { saveShoppingList } from "../../../store/list/shoppingList-slice";
+import {
+  editShoppingList,
+  saveShoppingList,
+} from "../../../store/list/shoppingList-slice";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 import { useNavigate } from "react-router-dom";
 
-export function ListForm() {
-  const defaultValueList = "Sélectionner une valeur";
-  const [list, setList] = useState({});
+export function ShoppingListForm({ shoppingList }) {
+  const initList = shoppingList === undefined ? {} : shoppingList;
+  const [list, setList] = useState(initList);
   const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
   const [errorMessageValue, setErrorMessageValue] = useState("");
-  const [valueDisplay, setvalueDisplayed] = useState(defaultValueList);
+  const defaultValueStatusShoppingList = "Sélectionner une valeur";
+  const defaultValueStatusShoppingListUpdated =
+    shoppingList === undefined
+      ? defaultValueStatusShoppingList
+      : shoppingList.status;
+  const [valueDisplay, setvalueDisplayed] = useState(
+    defaultValueStatusShoppingListUpdated
+  );
   const status = ["Brouillon", "Valide", "Obsolète"];
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,11 +42,11 @@ export function ListForm() {
   }
 
   function saveAllList() {
-    if (validateList()) {
-      const newList = { ...list };
+    if (validateShoppingList()) {
+      const newShoppingList = { ...list };
       dispatch(
         saveShoppingList({
-          shoppingList: newList,
+          shoppingList: newShoppingList,
           shoppingListItems: shoppingListItems,
         })
       );
@@ -44,12 +54,28 @@ export function ListForm() {
     }
   }
 
-  function validateList() {
+  function editAllList() {
+    if (validateShoppingList()) {
+      const shoppingListToUpdate = { ...list };
+      dispatch(
+        editShoppingList({
+          shoppingList: shoppingListToUpdate,
+          shoppingListItems: shoppingListItems,
+        })
+      );
+      navigate("/ShoppingList/");
+    }
+  }
+
+  function validateShoppingList() {
     if (list.Name === undefined || list.Name === "") {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Merci de spécifier le nom de cette liste");
       return false;
-    } else if (list.status === undefined || list.status === defaultValueList) {
+    } else if (
+      list.status === undefined ||
+      list.status === defaultValueStatusShoppingList
+    ) {
       setErrorMessageVisibility(true);
       setErrorMessageValue("Merci de spécifier un status à cette liste");
       return false;
@@ -99,6 +125,7 @@ export function ListForm() {
               onChange={(event) => {
                 setList({ ...list, Name: event.target.value });
               }}
+              value={list.Name}
             />
           </div>
           <div className="col-2"></div>
@@ -116,7 +143,7 @@ export function ListForm() {
           <div className="col-2"></div>
         </div>
         <div className={`${s.listSub}`}>
-          <ListFormList />
+          <ShoppingListFormList />
         </div>
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
@@ -132,10 +159,19 @@ export function ListForm() {
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-7">
-            <CustomButton
-              labelButton={"Enregistrer"}
-              actionButton={() => saveAllList()}
-            />
+            {shoppingList === undefined && (
+              <CustomButton
+                labelButton={"Enregistrer"}
+                actionButton={() => saveAllList()}
+              />
+            )}
+            {shoppingList !== undefined && (
+              <CustomButton
+                labelButton={"Mettre à jour"}
+                actionButton={() => editAllList()}
+                customClass={"btn btn-secondary"}
+              />
+            )}
           </div>
           <div className="col-2"></div>
         </div>
