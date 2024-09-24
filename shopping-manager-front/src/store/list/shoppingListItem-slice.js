@@ -56,7 +56,7 @@ export const shoppingListItemSlice = createSlice({
                     newShoppingListItems.push(newItem)
                 }
             })
-            currentState.shoppingListItems = newShoppingListItems
+           currentState.shoppingListItems = newShoppingListItems
         },
         deleteShoppingListItems:(currentState, action)=>{
             var newShoppingListItems = currentState.shoppingListItems.filter((item)=>item.id!==action.payload.id);
