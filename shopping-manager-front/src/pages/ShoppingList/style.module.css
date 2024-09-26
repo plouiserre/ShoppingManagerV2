@@ -1,0 +1,28 @@
+.detailShoppingList{
+    padding-top: 20px;
+}
+
+.titleDetailShoppingList{
+    font-size: 42px;
+    color: #dcb31a;
+}
+
+.statusShoppingListLabel{
+    color:#8D6A9F;
+    font-size: 42px;
+}
+
+.headerShoppingListItems{
+    text-align: center;
+    color: #676565;
+    font-size: 24px;
+    font-weight: 500;
+    border-bottom: 1px solid #d7d9e1 ;
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+
+.globalButton{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

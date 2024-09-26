@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editStock } from "../../store/stock/stock-slice";
 import { useNavigate, useParams } from "react-router-dom";
 import { StockForm } from "../../components/Stock/StockForm/StockForm";
+import { getTypeFoodId, getTypeFoodLabel } from "../../domain/manageFoodType";
 
 //TODO factorize with AddStock
 export function StockEdit() {
@@ -23,24 +24,10 @@ export function StockEdit() {
   }
   const [stock, setStock] = useState({
     Name: stockBdd.Name,
-    Type: getType(stockBdd.Type),
+    Type: getTypeFoodLabel(stockBdd.Type),
     Quantity: stockBdd.Quantity,
     DatePeremption: stockBdd.DatePeremption,
   });
-
-  //TODO centralize with the same code in MealItemByType
-  function getType(typeName) {
-    if (typeName === "meat") return "Viande";
-    else if (typeName === "vegetables") return "Légumes";
-    else return "Petit déjeuner";
-  }
-
-  //TODO rewrite this code
-  function setType(stock) {
-    if (stock.Type === "Viande") stock.Type = "meat";
-    else if (stock.Type === "Légumes") stock.Type = "vegetables";
-    else stock.Type = "breakfast";
-  }
 
   //TODO rewrite this code
   function saveStock() {
@@ -49,7 +36,7 @@ export function StockEdit() {
     var result = ValidateStock(stock);
     setVisibility(!result);
     if (result) {
-      setType(stock);
+      stock.Type = getTypeFoodId(stock.Type);
       dispatch(editStock(stock));
       navigate("/stock/");
     }

@@ -25,7 +25,7 @@ export function ShoppingListFormList() {
         <div
           className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
         >
-          Status
+          Type
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
