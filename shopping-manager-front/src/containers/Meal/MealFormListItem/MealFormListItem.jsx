@@ -11,7 +11,7 @@ import {
   completeMealItemNewMeal,
   deleteMealItems,
 } from "../../../store/meal/mealItem-slice";
-import { LabelTypeStock } from "../../../components/LabelTypeStock/LabelTypeStock";
+import { getTypeFoodLabel } from "../../../domain/manageFoodType";
 
 export function MealFormListItem({ mealItemWorking, actionType }) {
   const mealItem = { ...mealItemWorking };
@@ -110,13 +110,10 @@ export function MealFormListItem({ mealItemWorking, actionType }) {
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          {stockType !== "" ? (
-            <LabelTypeStock foodType={stockType} />
-          ) : (
-            mealItem.stock.Type !== undefined && (
-              <LabelTypeStock foodType={mealItem.stock.Type} />
-            )
-          )}
+          {stockType !== ""
+            ? getTypeFoodLabel(stockType)
+            : mealItem.stock.Type !== undefined &&
+              getTypeFoodLabel(mealItem.stock.Type)}
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}

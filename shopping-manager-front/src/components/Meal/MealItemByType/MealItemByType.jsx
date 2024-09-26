@@ -2,15 +2,7 @@ import { Status } from "../../Reusable/Status/Status";
 import { Pictogramme } from "../../Reusable/Pictogramme/Pictogramme";
 import s from "./style.module.css";
 
-export function MealItemByType({ typeStock, mealItems }) {
-  const typeStockLabel = getType(typeStock);
-
-  function getType(typeName) {
-    if (typeName === "meat") return "Viande";
-    else if (typeName === "vegetables") return "Légumes";
-    else return "Petit déjeuner";
-  }
-
+export function MealItemByType({ mealItems }) {
   return (
     <div className={`${s.mealItemsByType}`}>
       {mealItems.map((item, i) => {

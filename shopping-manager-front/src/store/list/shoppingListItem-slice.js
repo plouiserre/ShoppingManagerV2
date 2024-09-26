@@ -20,7 +20,7 @@ function getId(elements){
 var firstShoppingListItem={
     id:1,
     name:"",
-    status:"",
+    statusList:"",
     quantity:0
 }
 

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addStock } from "../../store/stock/stock-slice";
 import { useNavigate } from "react-router-dom";
 import { StockForm } from "../../components/Stock/StockForm/StockForm";
+import { getTypeFoodId } from "../../domain/manageFoodType";
 
 export function AddStock() {
   const dispatch = useDispatch();
@@ -17,19 +18,11 @@ export function AddStock() {
 
   const [visibility, setVisibility] = useState(false);
 
-  //TODO rewrite this code
-  function setType(stock) {
-    if (stock.Type === "Viande") stock.Type = "meat";
-    else if (stock.Type === "Légumes") stock.Type = "vegetables";
-    else stock.Type = "breakfast";
-  }
-
-  //TODO rewrite this code
   function saveStock() {
     var result = ValidateStock(stock);
     setVisibility(!result);
     if (result) {
-      setType(stock);
+      stock.Type = getTypeFoodId(stock.Type);
       dispatch(addStock(stock));
       navigate("/stock/");
     }

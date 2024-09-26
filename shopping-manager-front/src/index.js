@@ -17,7 +17,8 @@ import { AddMeal } from './pages/Meal/AddMeal';
 import { MealEdit } from './pages/Meal/MealEdit';
 import { AddShoppingList } from './pages/ShoppingList/AddShoppingList';
 import { ShoppingList } from './pages/ShoppingList/ListShoppingList';
-import {EditShoppingList} from './pages/ShoppingList/EditShoppingList';
+import { EditShoppingList } from './pages/ShoppingList/EditShoppingList';
+import { DetailShoppingList } from './pages/ShoppingList/DetailShoppingList';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -36,6 +37,7 @@ root.render(
             <Route path="/Meal/add" element={<AddMeal/>}/>
             <Route path="Meal/:id" element={<MealDetail/>}/>
             <Route path="Meal/edit/:id" element={<MealEdit/>}/>
+            <Route path="ShoppingList/:id" element={<DetailShoppingList/>}/>
             <Route path="ShoppingList/add" element={<AddShoppingList/>}/>
             <Route path="/ShoppingList/" element={<ShoppingList/>}/>
             <Route path="/ShoppingList/edit/:id" element={<EditShoppingList/>}/>

@@ -1,5 +1,4 @@
 import s from "./style.module.css";
-import { LabelTypeStock } from "../../../components/LabelTypeStock/LabelTypeStock";
 import { Status } from "../../../components/Reusable/Status/Status";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import {
@@ -7,6 +6,7 @@ import {
   stopCompleteMealItem,
 } from "../../../store/meal/mealItem-slice";
 import { useDispatch } from "react-redux";
+import { getTypeFoodLabel } from "../../../domain/manageFoodType";
 
 export function MealFormListItemComplete({ mealItemWorking }) {
   const dispatch = useDispatch();
@@ -17,6 +17,10 @@ export function MealFormListItemComplete({ mealItemWorking }) {
     dispatch(stopCompleteMealItem(mealItem));
   }
   const mealItem = { ...mealItemWorking };
+  const mealItemType =
+    mealItem.stock.Name !== undefined
+      ? getTypeFoodLabel(mealItem.stock.Type)
+      : "";
   return (
     <>
       <div className="row">
@@ -36,9 +40,7 @@ export function MealFormListItemComplete({ mealItemWorking }) {
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}
         >
-          {mealItem.stock.Name !== undefined && (
-            <LabelTypeStock foodType={mealItem.stock.Type} />
-          )}
+          {mealItemType !== "" && mealItemType}
         </div>
         <div
           className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListbottom}`}

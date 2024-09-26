@@ -14,7 +14,10 @@ export function ShoppingListItemList({ shoppingListItem }) {
   return (
     <div className={`row ${s.cellShoppingListList}`}>
       <div className={`col-2 ${s.idShoppingList}`}>{shoppingListItem.id}</div>
-      <div className={`col-3 ${s.nameShoppingList}`}>
+      <div
+        className={`col-3 ${s.nameShoppingList}`}
+        onClick={() => navigate("/ShoppingList/" + shoppingListItem.id)}
+      >
         {shoppingListItem.Name}
       </div>
       <div className={`col-2 ${s.statusShoppingList}`}>
