@@ -1,8 +1,8 @@
-import { BootstrapIcon } from "../../components/Reusable/BootstrapIcon/BootstrapIcon";
-import { Pictogramme } from "../../components/Reusable/Pictogramme/Pictogramme";
+import { BootstrapIcon } from "../../../components/Reusable/BootstrapIcon/BootstrapIcon";
+import { Pictogramme } from "../../../components/Reusable/Pictogramme/Pictogramme";
 import s from "./style.module.css";
-import { DayMomentMeal } from "../../components/Meal/DayMomentMeal/DayMomentMeal";
-import { deleteMeal } from "../../store/meal/meal-slice";
+import { DayMomentMeal } from "../../../components/Meal/DayMomentMeal/DayMomentMeal";
+import { deleteMeal } from "../../../store/meal/meal-slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
