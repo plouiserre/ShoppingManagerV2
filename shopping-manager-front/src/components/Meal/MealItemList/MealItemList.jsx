@@ -1,20 +1,20 @@
-import { MealItemByType } from "../MealItemByType/MealItemByType";
+import { MealItem } from "../MealItem/MealItem";
 
 export function MealItemList({ mealItems }) {
-  {
-    var mealItemsByType = {};
+  var mealItemsByType = {};
+  var mealItemsToDisplay = [];
+  mealItems.map((item) => {
+    if (mealItemsByType[item.stock.Type] === undefined) {
+      mealItemsByType[item.stock.Type] = [];
+    }
+    mealItemsByType[item.stock.Type].push(item);
+  });
+  Object.entries(mealItemsByType).map(([key, mealItems]) => {
     mealItems.map((item) => {
-      if (mealItemsByType[item.stock.Type] === undefined) {
-        mealItemsByType[item.stock.Type] = [];
-      }
-      mealItemsByType[item.stock.Type].push(item);
+      mealItemsToDisplay.push(item);
     });
-    return Object.entries(mealItemsByType).map(([stockType, mealItems]) => {
-      return (
-        <>
-          <MealItemByType mealItems={mealItems} />
-        </>
-      );
-    });
-  }
+  });
+  return mealItemsToDisplay.map((item) => {
+    return <MealItem mealItem={item} />;
+  });
 }
