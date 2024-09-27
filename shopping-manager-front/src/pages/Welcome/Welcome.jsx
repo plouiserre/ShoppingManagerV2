@@ -1,4 +1,4 @@
-import { ListResume } from "../../components/ShoppingList/ListResume/ListResume";
+import { ShoppingListResume } from "../../components/ShoppingList/ShoppingListResume/ShoppingListResume";
 import { MealResume } from "../../containers/MealResume/MealResume";
 import { StockResume } from "../../containers/Stock/StockResume/StockResume";
 import s from "./style.module.css";
@@ -11,7 +11,7 @@ export function Welcome() {
       </div>
       <div className="col-6">
         <div className={`${s.list}`}>
-          <ListResume />
+          <ShoppingListResume />
         </div>
         <MealResume />
       </div>
