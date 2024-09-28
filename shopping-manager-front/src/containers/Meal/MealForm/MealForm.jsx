@@ -193,43 +193,7 @@ export function MealForm({ actionType }) {
           </div>
           <div className="col-2"></div>
         </div>
-        <div className={`${s.mealsSub}`}>
-          <div className={`row ${s.headerMealsSubList}`}>
-            <div className={`col-3`}></div>
-            <div
-              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              ID
-            </div>
-            <div
-              className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Nom
-            </div>
-            <div
-              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Type
-            </div>
-            <div
-              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Quantité
-            </div>
-            <div
-              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Status
-            </div>
-            <div
-              className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListRight} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Actions
-            </div>
-            <div className={`col-2`}></div>
-          </div>
-          <MealFormList actionType={actionType} />
-        </div>
+        <MealFormList actionType={actionType} />
         {errorMessageVisibility && (
           <ErrorMessage messageError={errorMessageValue} />
         )}

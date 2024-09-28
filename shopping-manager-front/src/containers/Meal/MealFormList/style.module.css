@@ -1,0 +1,17 @@
+.mealsSub{
+    margin-top: 40px;
+}
+
+.cellMealsSubList{
+    padding: 10px;
+    border-top : 1px solid #d2d7db;
+    border-left: 1px solid #d2d7db;
+}
+
+.cellMealsSubListRight{
+    border-right : 1px solid #d2d7db;
+}
+
+.cellMealsSubListDarkBackgroundColor{
+    background-color: #e8eef0;
+}
