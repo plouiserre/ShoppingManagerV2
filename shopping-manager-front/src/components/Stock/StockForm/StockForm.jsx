@@ -34,13 +34,14 @@ export function StockForm({
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-3">Nom</div>
-          <div className="col-4">
+          <div className="col-3">
             <input
               type="text"
               value={stock.Name}
               onChange={(event) =>
                 setStock({ ...stock, Name: event.target.value })
               }
+              className="form-control"
             />
           </div>
           <div className="col-2"></div>
