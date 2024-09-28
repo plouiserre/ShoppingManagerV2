@@ -15,12 +15,7 @@ export function MealForm({ actionType }) {
   const stocks = useSelector((store) => store.STOCK.stocks);
   const mealsCreated = useSelector((store) => store.MEAL.meals);
   const mealItems = useSelector((store) => store.MEALITEM.mealItems);
-  var mealEdit = {};
-  //TODO retirer cette partie en voyant si on peut la passer en paramètre car on fait deux fois la même chose
-  if (actionType === "Edit") {
-    var id = parseInt(params.id);
-    mealEdit = mealsCreated.find((item) => item.id === id);
-  }
+  var mealEdit = getMealEdit();
   const mealInit = actionType === "Add" ? {} : mealEdit;
   const [mealWorking, setMealWorking] = useState(mealInit);
   if (mealItems.length === 0) dispatch(addMealItemsEmpty());
@@ -33,6 +28,15 @@ export function MealForm({ actionType }) {
     stocks.map((stock) => {
       if (checkStatusNotError(stock)) stocksName.push(stock.Name);
     });
+  }
+
+  function getMealEdit() {
+    var mealEdit = {};
+    if (actionType === "Edit") {
+      var id = parseInt(params.id);
+      mealEdit = mealsCreated.find((item) => item.id === id);
+    }
+    return mealEdit;
   }
 
   function checkStatusNotError(stock) {
@@ -58,7 +62,6 @@ export function MealForm({ actionType }) {
     "Dimanche",
   ];
   const moments = ["Petit-déjeuner", "Déjeuner", "Goûter", "Dîner"];
-  var iteration = 2;
   const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
   const [errorMessageValue, setErrorMessageValue] = useState("");
 
@@ -225,7 +228,7 @@ export function MealForm({ actionType }) {
             </div>
             <div className={`col-2`}></div>
           </div>
-          <MealFormList iteration={iteration} actionType={actionType} />
+          <MealFormList actionType={actionType} />
         </div>
         {errorMessageVisibility && (
           <ErrorMessage messageError={errorMessageValue} />
