@@ -75,9 +75,7 @@ export const mealSlice = createSlice({
     name:"mealSlice",
     initialState:{
         meals:[],
-        mealItems:[firstNewMealItem],
-        mealUpdating : { 
-                    },
+        mealItems:[firstNewMealItem]
                         },
     reducers:{
         deleteMeal:(currentState, action)=>{
