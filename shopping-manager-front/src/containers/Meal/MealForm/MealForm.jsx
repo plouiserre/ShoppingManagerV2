@@ -18,7 +18,6 @@ export function MealForm({ actionType }) {
   var mealEdit = getMealEdit();
   const mealInit = actionType === "Add" ? {} : mealEdit;
   const [mealWorking, setMealWorking] = useState(mealInit);
-  if (mealItems.length === 0) dispatch(addMealItemsEmpty());
 
   //TODO factoriser ce code!!!
   const stocksName = [];

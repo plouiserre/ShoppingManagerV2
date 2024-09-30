@@ -78,7 +78,7 @@ export const mealItemSlice = createSlice({
             currentState.mealItems = newMealItems;
         }, 
         flushMealItem:(currentState, action)=>{
-            currentState.mealItems=[];
+            currentState.mealItems=[firstNewMealItem];
         },
         stopCompleteMealItem:(currentState, action)=>{
             var newMealItems = []
