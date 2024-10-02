@@ -1,5 +1,5 @@
 import { MealList } from "../../containers/Meal/MealList/MealList";
 
-export function Meal() {
+export function ListMeal() {
   return <MealList />;
 }

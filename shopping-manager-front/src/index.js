@@ -5,7 +5,7 @@ import { App } from "./App";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Welcome } from './pages/Welcome/Welcome';
 import { Stock } from './pages/Stock/Stock';
-import { Meal } from './pages/Meal/Meal';
+import { ListMeal } from './pages/Meal/ListMeal';
 import { MealDetail } from './pages/Meal/MealDetail';
 import { AddStock } from './pages/Stock/AddStock';
 import { Provider } from 'react-redux';
@@ -33,7 +33,7 @@ root.render(
             <Route path="/Stock/add" element={<AddStock/>}/>
             <Route path="/Stock/:id" element={<StockDetail/>}/>
             <Route path="/Stock/edit/:id" element={<StockEdit/>}/>
-            <Route path="/Meal/" element={<Meal/>}/>
+            <Route path="/Meal/" element={<ListMeal/>}/>
             <Route path="/Meal/add" element={<AddMeal/>}/>
             <Route path="Meal/:id" element={<MealDetail/>}/>
             <Route path="Meal/edit/:id" element={<MealEdit/>}/>
