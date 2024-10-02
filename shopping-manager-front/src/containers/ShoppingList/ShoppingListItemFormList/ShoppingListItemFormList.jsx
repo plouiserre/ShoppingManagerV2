@@ -1,6 +1,6 @@
 import s from "./style.module.css";
-import { ShoppingListItemForm } from "../ShoppingListItemForm/ShoppingListItemForm";
-import { ShoppingListItemFormComplete } from "../ShoppingListItemForm/ShoppingListItemFormComplete";
+import { ShoppingItemForm } from "../ShoppingItemForm/ShoppingItemForm";
+import { ShoppingItemFormComplete } from "../ShoppingItemForm/ShoppingItemFormComplete";
 import { useSelector } from "react-redux";
 
 export function ShoppingListItemFormList() {
@@ -40,10 +40,10 @@ export function ShoppingListItemFormList() {
       </div>
       {listItems.map((item) => {
         if (item.statusList === "Validation") {
-          return <ShoppingListItemFormComplete listItemWorking={item} />;
+          return <ShoppingItemFormComplete listItemWorking={item} />;
         } else {
           return (
-            <ShoppingListItemForm
+            <ShoppingItemForm
               listItemWorking={item}
               length={listItems.length}
             />

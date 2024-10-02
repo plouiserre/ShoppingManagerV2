@@ -1,5 +1,5 @@
 import s from "./style.module.css";
-export function StockItemForm({ stock, setStock }) {
+export function StockFormListItem({ stock, setStock }) {
   return (
     <>
       <div className={`row ${s.lineForm}`}>
