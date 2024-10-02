@@ -4,7 +4,7 @@ import { deleteShoppingList } from "../../../store/list/shoppingList-slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export function ShoppingListItemList({ shoppingListItem }) {
+export function ShoppingList({ shoppingListItem }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

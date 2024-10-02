@@ -78,13 +78,7 @@ export const mealItemSlice = createSlice({
             currentState.mealItems = newMealItems;
         }, 
         flushMealItem:(currentState, action)=>{
-            currentState.mealItems=[];
-        },
-        initialMealUpdating:(currentState, action)=>{
-            currentState.mealUpdating = {
-                                        Day: "",
-                                        Moment: ""
-                                    }
+            currentState.mealItems=[firstNewMealItem];
         },
         stopCompleteMealItem:(currentState, action)=>{
             var newMealItems = []
@@ -102,6 +96,6 @@ export const mealItemSlice = createSlice({
     }
 })
 
-const {addMealItems, addMealItemsEmpty, completeMealItemExistingMeal, completeMealItemNewMeal, deleteMealItems, flushMealItem, initialMealUpdating, stopCompleteMealItem, storeEditMealItems} = mealItemSlice.actions;
+const {addMealItems, addMealItemsEmpty, completeMealItemExistingMeal, completeMealItemNewMeal, deleteMealItems, flushMealItem, stopCompleteMealItem, storeEditMealItems} = mealItemSlice.actions;
 
-export {addMealItems, addMealItemsEmpty,completeMealItemExistingMeal, completeMealItemNewMeal, deleteMealItems, flushMealItem, initialMealUpdating, stopCompleteMealItem, storeEditMealItems}
+export {addMealItems, addMealItemsEmpty,completeMealItemExistingMeal, completeMealItemNewMeal, deleteMealItems, flushMealItem, stopCompleteMealItem, storeEditMealItems}

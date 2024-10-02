@@ -1,5 +1,5 @@
 import { ErrorMessage } from "../../Global/ErrorMessage/ErrorMessage";
-import { StockSubElement } from "../StockSubElement/StockSubElement";
+import { StockItemForm } from "../StockItemForm/StockItemForm";
 import { CustomButton } from "../../Reusable/CustomButton/CustomButton";
 import s from "./style.module.css";
 import { BootstrapDropdown } from "../../Reusable/BootstrapDropdown/BootstrapDropdown";
@@ -34,13 +34,14 @@ export function StockForm({
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-3">Nom</div>
-          <div className="col-4">
+          <div className="col-3">
             <input
               type="text"
               value={stock.Name}
               onChange={(event) =>
                 setStock({ ...stock, Name: event.target.value })
               }
+              className="form-control"
             />
           </div>
           <div className="col-2"></div>
@@ -57,7 +58,7 @@ export function StockForm({
           </div>
           <div className="col-2"></div>
         </div>
-        <StockSubElement stock={stock} setStock={setStock} key={0} />
+        <StockItemForm stock={stock} setStock={setStock} key={0} />
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-7">

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Resume } from "../../components/Global/Resume/Resume";
+import { Resume } from "../../../components/Global/Resume/Resume";
 
 export function MealResume() {
   const meals = useSelector((store) => store.MEAL.meals);

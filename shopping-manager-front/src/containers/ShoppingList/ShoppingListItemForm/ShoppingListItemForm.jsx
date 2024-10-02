@@ -9,7 +9,7 @@ import {
   completeShoppingListItemNewList,
 } from "../../../store/list/shoppingListItem-slice";
 
-export function ShoppingListFormItem({ listItemWorking, length }) {
+export function ShoppingListItemForm({ listItemWorking, length }) {
   var dispatch = useDispatch();
   const defaultValueType = "Veuillez choisir un type";
   const labelType =

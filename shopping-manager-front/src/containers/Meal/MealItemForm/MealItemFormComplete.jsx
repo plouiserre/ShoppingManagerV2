@@ -8,7 +8,7 @@ import {
 import { useDispatch } from "react-redux";
 import { getTypeFoodLabel } from "../../../domain/manageFoodType";
 
-export function MealFormListItemComplete({ mealItemWorking }) {
+export function MealItemFormComplete({ mealItemWorking }) {
   const dispatch = useDispatch();
   function deleteMealItem() {
     dispatch(deleteMealItems(mealItem));

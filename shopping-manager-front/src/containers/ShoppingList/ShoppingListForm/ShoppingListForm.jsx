@@ -1,5 +1,5 @@
 import { BootstrapDropdown } from "../../../components/Reusable/BootstrapDropdown/BootstrapDropdown";
-import { ShoppingListFormList } from "../ShoppingListFormList/ShoppingListFormList";
+import { ShoppingListItemFormList } from "../ShoppingListItemFormList/ShoppingListItemFormList";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import s from "./style.module.css";
 import { useState } from "react";
@@ -143,7 +143,7 @@ export function ShoppingListForm({ shoppingList }) {
           <div className="col-2"></div>
         </div>
         <div className={`${s.listSub}`}>
-          <ShoppingListFormList />
+          <ShoppingListItemFormList />
         </div>
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>

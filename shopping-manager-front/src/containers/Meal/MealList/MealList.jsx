@@ -1,4 +1,4 @@
-import { MealListItem } from "../../MealListItem/MealListItem";
+import { Meal } from "../Meal/Meal";
 import s from "./style.module.css";
 import { useSelector } from "react-redux";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
@@ -25,9 +25,7 @@ export function MealList() {
           <div className={`col-3 ${s.cellMealList}`}>Actions</div>
         </div>
         {mealsOrdered.map((meal) => {
-          return (
-            <MealListItem meal={meal} key={meal.id} clickPage={goMealDetail} />
-          );
+          return <Meal meal={meal} key={meal.id} clickPage={goMealDetail} />;
         })}
       </div>
       <div class="row">

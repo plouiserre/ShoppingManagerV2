@@ -2,7 +2,7 @@ import s from "./style.module.css";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import { BootstrapDropdown } from "../../../components/Reusable/BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
-import { MealFormList } from "../MealFormList/MealFormList";
+import { MealItemListForm } from "../MealItemListForm/MealItemListForm";
 import { useDispatch, useSelector } from "react-redux";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 import { addMealItemsEmpty } from "../../../store/meal/mealItem-slice";
@@ -15,15 +15,9 @@ export function MealForm({ actionType }) {
   const stocks = useSelector((store) => store.STOCK.stocks);
   const mealsCreated = useSelector((store) => store.MEAL.meals);
   const mealItems = useSelector((store) => store.MEALITEM.mealItems);
-  var mealEdit = {};
-  //TODO retirer cette partie en voyant si on peut la passer en paramètre car on fait deux fois la même chose
-  if (actionType === "Edit") {
-    var id = parseInt(params.id);
-    mealEdit = mealsCreated.find((item) => item.id === id);
-  }
+  var mealEdit = getMealEdit();
   const mealInit = actionType === "Add" ? {} : mealEdit;
   const [mealWorking, setMealWorking] = useState(mealInit);
-  if (mealItems.length === 0) dispatch(addMealItemsEmpty());
 
   //TODO factoriser ce code!!!
   const stocksName = [];
@@ -33,6 +27,15 @@ export function MealForm({ actionType }) {
     stocks.map((stock) => {
       if (checkStatusNotError(stock)) stocksName.push(stock.Name);
     });
+  }
+
+  function getMealEdit() {
+    var mealEdit = {};
+    if (actionType === "Edit") {
+      var id = parseInt(params.id);
+      mealEdit = mealsCreated.find((item) => item.id === id);
+    }
+    return mealEdit;
   }
 
   function checkStatusNotError(stock) {
@@ -58,7 +61,6 @@ export function MealForm({ actionType }) {
     "Dimanche",
   ];
   const moments = ["Petit-déjeuner", "Déjeuner", "Goûter", "Dîner"];
-  var iteration = 2;
   const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
   const [errorMessageValue, setErrorMessageValue] = useState("");
 
@@ -190,43 +192,7 @@ export function MealForm({ actionType }) {
           </div>
           <div className="col-2"></div>
         </div>
-        <div className={`${s.mealsSub}`}>
-          <div className={`row ${s.headerMealsSubList}`}>
-            <div className={`col-3`}></div>
-            <div
-              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              ID
-            </div>
-            <div
-              className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Nom
-            </div>
-            <div
-              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Type
-            </div>
-            <div
-              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Quantité
-            </div>
-            <div
-              className={`col-1 ${s.cellMealsSubList} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Status
-            </div>
-            <div
-              className={`col-2 ${s.cellMealsSubList} ${s.cellMealsSubListRight} ${s.cellMealsSubListDarkBackgroundColor}`}
-            >
-              Actions
-            </div>
-            <div className={`col-2`}></div>
-          </div>
-          <MealFormList iteration={iteration} actionType={actionType} />
-        </div>
+        <MealItemListForm actionType={actionType} />
         {errorMessageVisibility && (
           <ErrorMessage messageError={errorMessageValue} />
         )}

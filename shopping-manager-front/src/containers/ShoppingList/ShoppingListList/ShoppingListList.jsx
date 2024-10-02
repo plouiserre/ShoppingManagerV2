@@ -2,7 +2,7 @@ import s from "./style.module.css";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ShoppingListItemList } from "../ShoppingListItemList/ShoppingListItemList";
+import { ShoppingList } from "../ShoppingList/ShoppingList";
 
 export function ShoppingListList() {
   var navigate = useNavigate();
@@ -18,7 +18,7 @@ export function ShoppingListList() {
           <div className={`col-3 ${s.cellShoppingListList}`}>Actions</div>
         </div>
         {shoppingLists.map((shoppingList) => {
-          return <ShoppingListItemList shoppingListItem={shoppingList} />;
+          return <ShoppingList shoppingListItem={shoppingList} />;
         })}
       </div>
       <div className="row">

@@ -1,5 +1,5 @@
 import s from "./style.module.css";
-export function StockSubElement({ stock, setStock }) {
+export function StockItemForm({ stock, setStock }) {
   return (
     <>
       <div className={`row ${s.lineForm}`}>
@@ -10,9 +10,10 @@ export function StockSubElement({ stock, setStock }) {
       <div className={`row ${s.lineForm}`}>
         <div className="col-4"></div>
         <div className="col-2">Quantité</div>
-        <div className="col-4">
+        <div className="col-3">
           <input
             type="number"
+            className="form-control"
             value={stock.Quantity}
             onChange={(event) => {
               setStock({ ...stock, Quantity: event.target.value });
@@ -24,7 +25,7 @@ export function StockSubElement({ stock, setStock }) {
       <div className={`row ${s.lineForm}`}>
         <div className="col-4"></div>
         <div className="col-2">Date de péremption</div>
-        <div className="col-4">
+        <div className="col-3">
           <input
             type="date"
             value={stock.DatePeremption}
@@ -35,6 +36,7 @@ export function StockSubElement({ stock, setStock }) {
                 IsDateSelected: true,
               });
             }}
+            className="form-control"
           />
         </div>
         <div className="col-2"></div>

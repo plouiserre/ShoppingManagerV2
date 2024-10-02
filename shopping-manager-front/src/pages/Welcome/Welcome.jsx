@@ -1,5 +1,5 @@
 import { ShoppingListResume } from "../../components/ShoppingList/ShoppingListResume/ShoppingListResume";
-import { MealResume } from "../../containers/MealResume/MealResume";
+import { MealResume } from "../../containers/Meal/MealResume/MealResume";
 import { StockResume } from "../../containers/Stock/StockResume/StockResume";
 import s from "./style.module.css";
 

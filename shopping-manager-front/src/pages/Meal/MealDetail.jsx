@@ -1,8 +1,8 @@
 import s from "./style.module.css";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { DayMomentMeal } from "../../components/Meal/DayMomentMeal/DayMomentMeal";
-import { MealItemList } from "../../components/Meal/MealItemList/MealItemList";
+import { MealDayMoment } from "../../components/Meal/MealDayMoment/MealDayMoment";
+import { DetailMealItemList } from "../../components/Meal/DetailMealItemList/DetailMealItemList";
 import { CustomButton } from "../../components/Reusable/CustomButton/CustomButton";
 
 export function MealDetail() {
@@ -29,7 +29,7 @@ export function MealDetail() {
     <div className={`container-fluid`}>
       <div className={`row ${s.detailMeal} ${s.titleDetailMeal}`}>
         <div className={`col-12`}>
-          <DayMomentMeal meal={mealDetail} />
+          <MealDayMoment meal={mealDetail} />
         </div>
       </div>
       <div className={`row ${s.headerMealItems}`}>
@@ -38,7 +38,7 @@ export function MealDetail() {
         <div className={`col-3`}>Quantité</div>
         <div className={`col-3`}>Status</div>
       </div>
-      <MealItemList mealItems={mealDetail.mealItems} />
+      <DetailMealItemList mealItems={mealDetail.mealItems} />
       <div className="row">
         <div className={`col-3 ${s.globalButton}`}>
           <CustomButton
