@@ -1,9 +1,9 @@
-import { MealFormListItem } from "../../../containers/Meal/MealFormListItem/MealFormListItem";
+import { MealItemForm } from "../MealItemForm/MealItemForm";
 import { useSelector } from "react-redux";
-import { MealFormListItemComplete } from "../../../containers/Meal/MealFormListItem/MealFormListItemComplete";
+import { MealItemFormComplete } from "../MealItemForm/MealItemFormComplete";
 import s from "./style.module.css";
 
-export function MealFormList({ actionType }) {
+export function MealItemListForm({ actionType }) {
   const mealItems = useSelector((store) => store.MEALITEM.mealItems);
 
   return (
@@ -45,14 +45,14 @@ export function MealFormList({ actionType }) {
       {mealItems.map((mealItem) => {
         if (mealItem.statusMeal === "Validation") {
           return (
-            <MealFormListItemComplete
+            <MealItemFormComplete
               mealItemWorking={mealItem}
               key={mealItem.iteration}
             />
           );
         } else {
           return (
-            <MealFormListItem
+            <MealItemForm
               mealItemWorking={mealItem}
               key={mealItem.iteration}
               actionType={actionType}

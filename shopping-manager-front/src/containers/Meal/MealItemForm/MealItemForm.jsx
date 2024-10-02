@@ -13,7 +13,7 @@ import {
 } from "../../../store/meal/mealItem-slice";
 import { getTypeFoodLabel } from "../../../domain/manageFoodType";
 
-export function MealFormListItem({ mealItemWorking, actionType }) {
+export function MealItemForm({ mealItemWorking, actionType }) {
   const mealItem = { ...mealItemWorking };
   const isEditing = mealItem.stock.Name !== undefined ? true : false;
   const dispatch = useDispatch();

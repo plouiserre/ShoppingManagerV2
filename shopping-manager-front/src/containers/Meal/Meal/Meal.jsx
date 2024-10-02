@@ -6,7 +6,7 @@ import { deleteMeal } from "../../../store/meal/meal-slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export function MealListItem({ meal, clickPage }) {
+export function Meal({ meal, clickPage }) {
   var dispatch = useDispatch();
   var navigate = useNavigate();
   function deleteMealFromList() {
