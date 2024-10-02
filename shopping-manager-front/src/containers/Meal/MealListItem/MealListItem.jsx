@@ -1,7 +1,7 @@
 import { BootstrapIcon } from "../../../components/Reusable/BootstrapIcon/BootstrapIcon";
 import { Pictogramme } from "../../../components/Reusable/Pictogramme/Pictogramme";
 import s from "./style.module.css";
-import { DayMomentMeal } from "../../../components/Meal/DayMomentMeal/DayMomentMeal";
+import { MealDayMoment } from "../../../components/Meal/MealDayMoment/MealDayMoment";
 import { deleteMeal } from "../../../store/meal/meal-slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,7 @@ export function MealListItem({ meal, clickPage }) {
   return (
     <div className={`row ${s.cellMealList}`}>
       <div className={`col-3 ${s.idMeal}`} onClick={() => clickPage(meal.id)}>
-        <DayMomentMeal meal={meal} />
+        <MealDayMoment meal={meal} />
       </div>
       <div className={`col-3 ${s.quantityItems}`}>{meal.mealItems.length}</div>
       <div className={`col-2 ${s.statusMeal}`}>

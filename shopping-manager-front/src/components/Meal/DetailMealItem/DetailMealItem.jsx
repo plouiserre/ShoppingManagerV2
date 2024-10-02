@@ -2,7 +2,7 @@ import { Status } from "../../Reusable/Status/Status";
 import { Pictogramme } from "../../Reusable/Pictogramme/Pictogramme";
 import s from "./style.module.css";
 
-export function MealItem({ mealItem }) {
+export function DetailMealItem({ mealItem }) {
   return (
     <div className={`${s.mealItemsByType}`}>
       <>

@@ -1,6 +1,6 @@
-import { MealItem } from "../MealItem/MealItem";
+import { DetailMealItem } from "../DetailMealItem/DetailMealItem";
 
-export function MealItemList({ mealItems }) {
+export function DetailMealItemList({ mealItems }) {
   var mealItemsByType = {};
   var mealItemsToDisplay = [];
   mealItems.map((item) => {
@@ -15,6 +15,6 @@ export function MealItemList({ mealItems }) {
     });
   });
   return mealItemsToDisplay.map((item) => {
-    return <MealItem mealItem={item} />;
+    return <DetailMealItem mealItem={item} />;
   });
 }
