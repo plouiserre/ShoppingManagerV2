@@ -1,16 +1,19 @@
 import s from "./style.module.css";
+import { CustomButton } from "../../Reusable/CustomButton/CustomButton";
 export function StockItemForm({ stock, setStock, stockItem }) {
   return (
     <>
-      <div className={`row ${s.lineForm}`}>
-        <div className="col-3"></div>
-        <div className={`col-7 ${s.elementLabel}`}>Sous-Elements</div>
-        <div className="col-2"></div>
-      </div>
-      <div className={`row ${s.lineForm}`}>
-        <div className="col-4"></div>
-        <div className="col-2">Quantité</div>
-        <div className="col-3">
+      <div className={`row`}>
+        <div className={`col-3`}></div>
+        <div
+          className={`col-1 ${s.cellStockItemsSubList} ${s.cellStockItemsSubListbottom}`}
+        >
+          1
+        </div>
+        <div
+          className={`col-2 ${s.cellStockItemsSubList} ${s.cellStockItemsSubListbottom}`}
+        >
+          {" "}
           <input
             type="number"
             className="form-control"
@@ -20,12 +23,9 @@ export function StockItemForm({ stock, setStock, stockItem }) {
             }}
           />
         </div>
-        <div className="col-2"></div>
-      </div>
-      <div className={`row ${s.lineForm}`}>
-        <div className="col-4"></div>
-        <div className="col-2">Date de péremption</div>
-        <div className="col-3">
+        <div
+          className={`col-2 ${s.cellStockItemsSubList} ${s.cellStockItemsSubListbottom}`}
+        >
           <input
             type="date"
             value={stock.DatePeremption}
@@ -39,7 +39,20 @@ export function StockItemForm({ stock, setStock, stockItem }) {
             className="form-control"
           />
         </div>
-        <div className="col-2"></div>
+        <div
+          className={`col-2 ${s.actionsStockItemLittle} ${s.cellStockItemsSubList} ${s.cellStockItemsSubListbottom} ${s.cellStockItemsSubListRight}`}
+        >
+          <CustomButton
+            labelButton={"Valider"}
+            actionButton={() => alert("validation baby")}
+            customClass={"btn btn-success"}
+          />
+          <CustomButton
+            labelButton={"Supprimer"}
+            actionButton={() => alert("delete baby")}
+            customClass={"btn btn-danger"}
+          />
+        </div>
       </div>
     </>
   );

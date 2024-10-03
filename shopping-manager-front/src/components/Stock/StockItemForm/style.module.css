@@ -1,9 +1,19 @@
-.lineForm{
-    padding-bottom: 10px;
-    font-size: 20px;
+.actionsStockItemLittle{
+    display: inline-flex;
+    column-gap: 10px;
+    justify-content: space-between;
 }
 
-.elementLabel{
-    font-style: italic;
-    font-size: 25px;
+.cellStockItemsSubList{
+    padding: 10px;
+    border-top : 1px solid #d2d7db;
+    border-left: 1px solid #d2d7db;
+}
+
+.cellStockItemsSubListbottom{
+    border-bottom : 1px solid #d2d7db;
+}
+
+.cellStockItemsSubListRight{
+    border-right : 1px solid #d2d7db;
 }

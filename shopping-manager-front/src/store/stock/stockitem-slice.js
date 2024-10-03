@@ -21,9 +21,7 @@ var firstNewStockItem =
         Id: 1,
         DatePeremption: new Date(),
         IsDateSelected: true,
-        Name: "",
-        Quantity: 0,
-        Type: ""
+        Quantity: 0
     };
 
 export const stockItemSlice = createSlice({
@@ -37,17 +35,13 @@ export const stockItemSlice = createSlice({
             var id = getId(stockItems,{
                 DatePeremption: new Date(),
                 IsDateSelected: true,
-                Name: "",
-                Quantity: 0,
-                Type: ""
+                Quantity: 0
             })
             currentState.stockItems.push({
                 Id:id, 
                 DatePeremption: new Date(),
                 IsDateSelected: true,
-                Name: "",
                 Quantity: 0,
-                Type: "",
                 StatusStock : "Creation"
             })
         }
