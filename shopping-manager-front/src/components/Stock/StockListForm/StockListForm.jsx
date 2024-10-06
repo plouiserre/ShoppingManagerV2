@@ -1,4 +1,5 @@
 import { StockItemForm } from "../StockItemForm/StockItemForm";
+import { StockItemFormComplete } from "../StockItemForm/StockItemFormComplete";
 import { useSelector } from "react-redux";
 import s from "./style.module.css";
 
@@ -35,13 +36,17 @@ export function StockListForm({ stock, setStock }) {
         <div className={`col-2`}></div>
       </div>
       {stockItems.map((stockItem) => {
-        return (
-          <StockItemForm
-            stockItem={stockItem}
-            stock={stock}
-            setStock={setStock}
-          />
-        );
+        if (stockItem.statusStockItem !== "Validation") {
+          return (
+            <StockItemForm
+              stockItemWorking={stockItem}
+              stock={stock}
+              setStock={setStock}
+            />
+          );
+        } else {
+          return <StockItemFormComplete stockItemWorking={stockItem} />;
+        }
       })}
       ;
     </div>

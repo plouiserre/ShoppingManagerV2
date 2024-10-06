@@ -17,3 +17,7 @@
 .cellStockItemsSubListRight{
     border-right : 1px solid #d2d7db;
 }
+
+.cellStockItemsCenter{
+    padding-top: 20px;
+}

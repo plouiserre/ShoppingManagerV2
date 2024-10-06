@@ -5,9 +5,11 @@ import { addStock } from "../../store/stock/stock-slice";
 import { useNavigate } from "react-router-dom";
 import { StockForm } from "../../components/Stock/StockForm/StockForm";
 import { getTypeFoodId } from "../../domain/manageFoodType";
+import { flushStockItem } from "../../store/stock/stockitem-slice";
 
 export function AddStock() {
   const dispatch = useDispatch();
+  dispatch(flushStockItem());
   const navigate = useNavigate();
   const [stock, setStock] = useState({
     Name: "",
