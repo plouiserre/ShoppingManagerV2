@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ValidateStock } from "../../domain/validateStock";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addStock } from "../../store/stock/stock-slice";
 import { useNavigate } from "react-router-dom";
 import { StockForm } from "../../components/Stock/StockForm/StockForm";
@@ -10,7 +10,6 @@ import { flushStockItem } from "../../store/stock/stockitem-slice";
 export function AddStock() {
   const dispatch = useDispatch();
   dispatch(flushStockItem());
-  const navigate = useNavigate();
   const [stock, setStock] = useState({
     Name: "",
     Type: "",
@@ -20,22 +19,12 @@ export function AddStock() {
 
   const [visibility, setVisibility] = useState(false);
 
-  function saveStock() {
-    var result = ValidateStock(stock);
-    setVisibility(!result);
-    if (result) {
-      stock.Type = getTypeFoodId(stock.Type);
-      dispatch(addStock(stock));
-      navigate("/stock/");
-    }
-  }
-
   return (
     <StockForm
       stock={stock}
       visibility={visibility}
       setStock={setStock}
-      saveStock={saveStock}
+      saveStock={""}
       defaultValueTypeStock={"Sélectionner une valeur"}
     />
   );

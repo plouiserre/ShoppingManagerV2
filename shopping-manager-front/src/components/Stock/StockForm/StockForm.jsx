@@ -4,26 +4,43 @@ import { CustomButton } from "../../Reusable/CustomButton/CustomButton";
 import s from "./style.module.css";
 import { BootstrapDropdown } from "../../Reusable/BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addStockItemEmpty } from "../../../store/stock/stockitem-slice";
+import { ValidateStock } from "../../../domain/validateStock";
+import { addStock } from "../../../store/stock/stock-slice";
+import { getTypeFoodId } from "../../../domain/manageFoodType";
 
 //TODO déplacer dans containers
 export function StockForm({
   stock,
-  visibility,
   setStock,
   saveStock,
   defaultValueTypeStock,
 }) {
   var dispatch = useDispatch();
+  const navigate = useNavigate();
   const allTypesStock = ["Légumes", "Viande", "Petit déjeuner"];
+  const stockItems = useSelector((store) => store.STOCKITEM.stockItems);
+  const [visibility, setVisibility] = useState(false);
   const [typeStock, setTypeStock] = useState(defaultValueTypeStock);
+
   function clickDropdownlist(value) {
     setStock({ ...stock, Type: value });
     setTypeStock(value);
   }
   function addNewStockItem() {
     dispatch(addStockItemEmpty());
+  }
+
+  function saveThisStock() {
+    var result = ValidateStock(stock);
+    setVisibility(!result);
+    if (result) {
+      stock.Type = getTypeFoodId(stock.Type);
+      dispatch(addStock(stock, stockItems));
+      navigate("/stock/");
+    }
   }
   return (
     <div>
@@ -82,7 +99,7 @@ export function StockForm({
           <div className="col-7">
             <CustomButton
               labelButton={"Enregistrer"}
-              actionButton={() => saveStock()}
+              actionButton={() => saveThisStock()}
             />
           </div>
           <div className="col-2"></div>

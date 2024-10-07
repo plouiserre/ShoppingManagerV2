@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react";
+import moment from "moment";
 
 function getId(elements){
     var id = 0 
@@ -17,10 +17,15 @@ function getId(elements){
     return id;
 }
 
+//TODO centralize like getId
+function getDateFormatted(){
+    return moment().format("YYYY-MM-DD"); 
+}
+
 var firstNewStockItem = 
     {
         Id: 1,
-        DatePeremption: new Date().toJSON(),
+        DatePeremption: getDateFormatted(),
         IsDateSelected: true,
         Quantity: 0,
         statusStockItem : "Creation"
@@ -41,7 +46,7 @@ export const stockItemSlice = createSlice({
             })
             currentState.stockItems.push({
                 Id:id, 
-                DatePeremption: new Date(),
+                DatePeremption: getDateFormatted(),
                 IsDateSelected: true,
                 Quantity: 0,
                 statusStockItem : "Creation"

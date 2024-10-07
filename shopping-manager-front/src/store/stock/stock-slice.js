@@ -20,17 +20,30 @@ function setStatus(element){
     element.Status = 'ok'
 }
 
+var firstNewStockItem = 
+    {
+        Id: 1,
+        DatePeremption: new Date().toJSON(),
+        IsDateSelected: true,
+        Quantity: 0,
+        statusStockItem : "Creation"
+    };
+
 export const stockSlice = createSlice({
     name:"stockSlice",
     initialState:{
+        stockItems :[],
         stocks:[],
         stock : {}
     },
     reducers:{
         addStock:(currentState, action)=>{
-            getId(currentState.stocks, action.payload);
-            setStatus(action.payload)
+            var newStock = action.payload.stock;
+            newStock.stockItems = action.payload.stockItems;
+            getId(currentState.stocks, newStock);
+            setStatus(newStock)
             currentState.stocks.push({...action.payload});
+            currentState.stockItems = [firstNewStockItem];
         },
         deleteExpiredStock:(currentState, action)=>{
             var today = new Date();

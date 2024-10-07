@@ -13,7 +13,12 @@ export function StockItemForm({ stockItemWorking }) {
   const [errorMessageVisibility, setErrorMessageVisibility] = useState(false);
   const [errorMessageValue, setErrorMessageValue] = useState("");
   var stockItem = { ...stockItemWorking };
-  const defaultDisplayDate = stockItem.DatePeremption.split("T")[0];
+  const [datePeremption, setDatePeremption] = useState(
+    stockItem.DatePeremption
+  );
+  const [quantityStockItem, setQuantityStockItem] = useState(
+    stockItem.Quantity
+  );
   var dispatch = useDispatch();
 
   function deleteStockItemAction() {
@@ -21,19 +26,22 @@ export function StockItemForm({ stockItemWorking }) {
   }
 
   function validateStockItem() {
-    const datePeremption = new Date(stockItem.DatePeremption);
-    if (stockItem.Quantity === 0) {
+    const datePeremptionValidation = new Date(datePeremption);
+    if (quantityStockItem === 0) {
       setErrorMessageVisibility(true);
       setErrorMessageValue(
         "Merci de mettre une quantité à cet élément de stock"
       );
-    } else if (datePeremption < getEndDay()) {
+    } else if (datePeremptionValidation < getEndDay()) {
       setErrorMessageVisibility(true);
       setErrorMessageValue(
         "Merci de mettre une date de péremption supérieur à aujourd'hui"
       );
     } else {
-      dispatch(completeStockItem(stockItem));
+      const newStockItem = { ...stockItem };
+      newStockItem.DatePeremption = datePeremption;
+      newStockItem.Quantity = quantityStockItem;
+      dispatch(completeStockItem(newStockItem));
     }
   }
 
@@ -58,10 +66,10 @@ export function StockItemForm({ stockItemWorking }) {
           {" "}
           <input
             type="number"
-            defaultValue={stockItem.Quantity}
+            defaultValue={quantityStockItem}
             className="form-control"
             onChange={(event) => {
-              stockItem.Quantity = event.target.value;
+              setQuantityStockItem(event.target.value);
             }}
           />
         </div>
@@ -70,9 +78,9 @@ export function StockItemForm({ stockItemWorking }) {
         >
           <input
             type="date"
-            defaultValue={defaultDisplayDate}
+            defaultValue={datePeremption}
             onChange={(event) => {
-              stockItem.DatePeremption = event.target.value;
+              setDatePeremption(event.target.value);
             }}
             className="form-control"
           />
