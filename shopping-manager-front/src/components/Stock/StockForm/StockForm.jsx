@@ -29,6 +29,7 @@ export function StockForm({
   const [typeStock, setTypeStock] = useState(defaultValueTypeStock);
 
   function clickDropdownlist(value) {
+    var value = getTypeFoodId(stockWorking.Type);
     setStockWorking({ ...stockWorking, Type: value });
     setTypeStock(value);
   }
@@ -42,11 +43,7 @@ export function StockForm({
     setVisibility(!result.isValid);
     setErrorMessageContent(result.errorMessage);
     if (result.isValid) {
-      setStockWorking({
-        ...stockWorking,
-        Type: getTypeFoodId(stockWorking.Type),
-      });
-      dispatch(addStock(stockWorking, stockItems));
+      dispatch(addStock({ stock: stockWorking, stockItems: stockItems }));
       navigate("/stock/");
     }
   }

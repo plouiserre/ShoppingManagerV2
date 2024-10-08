@@ -42,7 +42,7 @@ export const stockSlice = createSlice({
             newStock.stockItems = action.payload.stockItems;
             getId(currentState.stocks, newStock);
             setStatus(newStock)
-            currentState.stocks.push({...action.payload});
+            currentState.stocks.push(newStock);
             currentState.stockItems = [firstNewStockItem];
         },
         deleteExpiredStock:(currentState, action)=>{
