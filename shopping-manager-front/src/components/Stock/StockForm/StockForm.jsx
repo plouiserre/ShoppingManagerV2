@@ -18,27 +18,35 @@ export function StockForm({
   saveStock,
   defaultValueTypeStock,
 }) {
+  var initStock = stock !== undefined ? stock : {};
+  var [stockWorking, setStockWorking] = useState(initStock);
   var dispatch = useDispatch();
   const navigate = useNavigate();
   const allTypesStock = ["Légumes", "Viande", "Petit déjeuner"];
   const stockItems = useSelector((store) => store.STOCKITEM.stockItems);
   const [visibility, setVisibility] = useState(false);
+  const [errorMessageContent, setErrorMessageContent] = useState("");
   const [typeStock, setTypeStock] = useState(defaultValueTypeStock);
 
   function clickDropdownlist(value) {
-    setStock({ ...stock, Type: value });
+    setStockWorking({ ...stockWorking, Type: value });
     setTypeStock(value);
   }
+
   function addNewStockItem() {
     dispatch(addStockItemEmpty());
   }
 
   function saveThisStock() {
-    var result = ValidateStock(stock);
-    setVisibility(!result);
-    if (result) {
-      stock.Type = getTypeFoodId(stock.Type);
-      dispatch(addStock(stock, stockItems));
+    var result = ValidateStock(stockWorking, stockItems);
+    setVisibility(!result.isValid);
+    setErrorMessageContent(result.errorMessage);
+    if (result.isValid) {
+      setStockWorking({
+        ...stockWorking,
+        Type: getTypeFoodId(stockWorking.Type),
+      });
+      dispatch(addStock(stockWorking, stockItems));
       navigate("/stock/");
     }
   }
@@ -52,18 +60,15 @@ export function StockForm({
           </div>
           <div className="col-2"></div>
         </div>
-        {visibility && (
-          <ErrorMessage messageError={"Le stock n'est pas valide"} />
-        )}
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-3">Nom</div>
           <div className="col-3">
             <input
               type="text"
-              value={stock.Name}
+              value={stockWorking.Name}
               onChange={(event) =>
-                setStock({ ...stock, Name: event.target.value })
+                setStockWorking({ ...stockWorking, Name: event.target.value })
               }
               className="form-control"
             />
@@ -82,7 +87,8 @@ export function StockForm({
           </div>
           <div className="col-2"></div>
         </div>
-        <StockListForm stock={stock} setStock={setStock} key={0} />
+        <StockListForm stock={stockWorking} setStock={setStock} key={0} />
+        {visibility && <ErrorMessage messageError={errorMessageContent} />}
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-7">
