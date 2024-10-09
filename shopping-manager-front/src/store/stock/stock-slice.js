@@ -59,6 +59,19 @@ export const stockSlice = createSlice({
         deleteStock:(currentState, action)=>{
             var newStocks = currentState.stocks.filter((item)=>item.Id !==action.payload.Id);
             currentState.stocks = newStocks;
+        },
+        editStock:(currentState, action)=>{
+            var stockToEdit = action.payload.stock;
+            stockToEdit.stockItems = action.payload.stockItems;
+            var stocks = JSON.parse(JSON.stringify(currentState.stocks));
+            var allStocks = [];
+            stocks.map((stock)=>{
+                if(stock.Id===stockToEdit.Id)
+                    allStocks.push(stockToEdit)
+                else
+                    allStocks.push(stock);
+            })
+            currentState.stocks = allStocks;
         }, 
         getStock:(currentState, action)=>{
             currentState.stocks.map((element) =>{
@@ -66,21 +79,10 @@ export const stockSlice = createSlice({
                         currentState.stock = element
                     }
             })
-        },
-        editStock:(currentState, action)=>{
-            var index = 0;
-            for(var i = 0; i<currentState.stocks.length;i++){
-                var element = currentState.stocks[i]
-                if(element.Id === action.payload.Id){
-                    break
-                }
-                index+=1
-            }
-            currentState.stocks.splice(index, 1, action.payload)
         }
     }
 })
 
-const {addStock, deleteExpiredStock, deleteStock, getStock, editStock} = stockSlice.actions;
+const {addStock, deleteExpiredStock, deleteStock, editStock, getStock} = stockSlice.actions;
 
-export {addStock, deleteExpiredStock, deleteStock, getStock, editStock}
+export {addStock, deleteExpiredStock, deleteStock, editStock, getStock}

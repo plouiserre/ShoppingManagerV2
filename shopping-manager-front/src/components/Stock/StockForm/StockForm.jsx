@@ -8,16 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addStockItemEmpty } from "../../../store/stock/stockitem-slice";
 import { ValidateStock } from "../../../domain/validateStock";
-import { addStock } from "../../../store/stock/stock-slice";
+import { addStock, editStock } from "../../../store/stock/stock-slice";
 import { getTypeFoodId } from "../../../domain/manageFoodType";
 
 //TODO déplacer dans containers
-export function StockForm({
-  stock,
-  setStock,
-  saveStock,
-  defaultValueTypeStock,
-}) {
+export function StockForm({ stock, setStock, defaultValueTypeStock }) {
   var initStock = stock !== undefined ? stock : {};
   var [stockWorking, setStockWorking] = useState(initStock);
   var dispatch = useDispatch();
@@ -29,7 +24,6 @@ export function StockForm({
   const [typeStock, setTypeStock] = useState(defaultValueTypeStock);
 
   function clickDropdownlist(value) {
-    var value = getTypeFoodId(stockWorking.Type);
     setStockWorking({ ...stockWorking, Type: value });
     setTypeStock(value);
   }
@@ -43,10 +37,23 @@ export function StockForm({
     setVisibility(!result.isValid);
     setErrorMessageContent(result.errorMessage);
     if (result.isValid) {
+      stockWorking.Type = getTypeFoodId(stockWorking.Type);
       dispatch(addStock({ stock: stockWorking, stockItems: stockItems }));
       navigate("/stock/");
     }
   }
+
+  function editThisStock() {
+    var result = ValidateStock(stock, stockItems);
+    setVisibility(!result.isValid);
+    if (result.isValid) {
+      var newStock = { ...stockWorking };
+      newStock.Type = getTypeFoodId(newStock.Type);
+      dispatch(editStock({ stock: newStock, stockItems: stockItems }));
+      navigate("/stock/");
+    }
+  }
+
   return (
     <div>
       <form className={`container-fluid ${s.formStock}`}>
@@ -100,10 +107,19 @@ export function StockForm({
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
           <div className="col-7">
-            <CustomButton
-              labelButton={"Enregistrer"}
-              actionButton={() => saveThisStock()}
-            />
+            {stock === undefined && (
+              <CustomButton
+                labelButton={"Enregistrer"}
+                actionButton={() => saveThisStock()}
+              />
+            )}
+            {stock !== undefined && (
+              <CustomButton
+                labelButton={"Mettre à jour"}
+                actionButton={() => editThisStock()}
+                customClass={"btn btn-secondary"}
+              />
+            )}
           </div>
           <div className="col-2"></div>
         </div>
