@@ -1,4 +1,4 @@
-import { ShoppingListResume } from "../../components/ShoppingList/ShoppingListResume/ShoppingListResume";
+import { ShoppingListResume } from "../../containers/ShoppingList/ShoppingListResume/ShoppingListResume";
 import { MealResume } from "../../containers/Meal/MealResume/MealResume";
 import { StockResume } from "../../containers/Stock/StockResume/StockResume";
 import s from "./style.module.css";

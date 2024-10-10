@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { StockForm } from "../../components/Stock/StockForm/StockForm";
+import { StockForm } from "../../containers/Stock/StockForm/StockForm";
 import { getTypeFoodLabel } from "../../domain/manageFoodType";
 import {
   flushStockItem,

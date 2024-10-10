@@ -1,12 +1,12 @@
 import s from "./style.module.css";
-import { CustomButton } from "../../Reusable/CustomButton/CustomButton";
+import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import {
   completeStockItem,
   deleteStockItem,
 } from "../../../store/stock/stockitem-slice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { ErrorMessage } from "../../Global/ErrorMessage/ErrorMessage";
+import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 
 //TODO externalize in containers folder
 export function StockItemForm({ stockItemWorking }) {

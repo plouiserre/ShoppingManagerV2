@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { StockForm } from "../../components/Stock/StockForm/StockForm";
+import { StockForm } from "../../containers/Stock/StockForm/StockForm";
 import { flushStockItem } from "../../store/stock/stockitem-slice";
 
 export function AddStock() {

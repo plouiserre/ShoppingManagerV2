@@ -1,5 +1,5 @@
 import s from "./style.module.css";
-import { CustomButton } from "../../Reusable/CustomButton/CustomButton";
+import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import { useDispatch } from "react-redux";
 import {
   deleteStockItem,

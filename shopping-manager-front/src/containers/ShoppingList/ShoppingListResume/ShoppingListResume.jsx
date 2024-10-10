@@ -1,4 +1,4 @@
-import { Resume } from "../../Global/Resume/Resume";
+import { Resume } from "../../../components/Global/Resume/Resume";
 import { useSelector } from "react-redux";
 
 export function ShoppingListResume() {

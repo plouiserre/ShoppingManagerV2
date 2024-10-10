@@ -1,8 +1,8 @@
-import { ErrorMessage } from "../../Global/ErrorMessage/ErrorMessage";
+import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 import { StockListForm } from "../StockListForm/StockListForm";
-import { CustomButton } from "../../Reusable/CustomButton/CustomButton";
+import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import s from "./style.module.css";
-import { BootstrapDropdown } from "../../Reusable/BootstrapDropdown/BootstrapDropdown";
+import { BootstrapDropdown } from "../../../components/Reusable/BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
