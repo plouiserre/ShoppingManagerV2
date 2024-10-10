@@ -22,6 +22,7 @@ export function StockForm({ stock, setStock, defaultValueTypeStock }) {
   const [visibility, setVisibility] = useState(false);
   const [errorMessageContent, setErrorMessageContent] = useState("");
   const [typeStock, setTypeStock] = useState(defaultValueTypeStock);
+  const allStocks = useSelector((store) => store.STOCK.stocks);
 
   function clickDropdownlist(value) {
     setStockWorking({ ...stockWorking, Type: value });
@@ -34,18 +35,33 @@ export function StockForm({ stock, setStock, defaultValueTypeStock }) {
 
   function saveThisStock() {
     var result = ValidateStock(stockWorking, stockItems);
+    var isDuplicate = checkDuplicate();
     setVisibility(!result.isValid);
     setErrorMessageContent(result.errorMessage);
-    if (result.isValid) {
+    if (result.isValid && !isDuplicate) {
       stockWorking.Type = getTypeFoodId(stockWorking.Type);
       dispatch(addStock({ stock: stockWorking, stockItems: stockItems }));
       navigate("/stock/");
+    } else if (result.isValid && isDuplicate) {
+      setVisibility(true);
+      setErrorMessageContent(
+        "Le stock " + stockWorking.Name + " existe déjà!!"
+      );
     }
+  }
+
+  function checkDuplicate() {
+    var isDuplicate = false;
+    allStocks.map((stock) => {
+      if (stock.Name === stockWorking.Name) isDuplicate = true;
+    });
+    return isDuplicate;
   }
 
   function editThisStock() {
     var result = ValidateStock(stock, stockItems);
     setVisibility(!result.isValid);
+    setErrorMessageContent(result.errorMessage);
     if (result.isValid) {
       var newStock = { ...stockWorking };
       newStock.Type = getTypeFoodId(newStock.Type);
@@ -68,14 +84,17 @@ export function StockForm({ stock, setStock, defaultValueTypeStock }) {
           <div className="col-3"></div>
           <div className="col-3">Nom</div>
           <div className="col-3">
-            <input
-              type="text"
-              value={stockWorking.Name}
-              onChange={(event) =>
-                setStockWorking({ ...stockWorking, Name: event.target.value })
-              }
-              className="form-control"
-            />
+            {stock === undefined && (
+              <input
+                type="text"
+                value={stockWorking.Name}
+                onChange={(event) =>
+                  setStockWorking({ ...stockWorking, Name: event.target.value })
+                }
+                className="form-control"
+              />
+            )}
+            {stock !== undefined && stockWorking.Name}
           </div>
           <div className="col-2"></div>
         </div>

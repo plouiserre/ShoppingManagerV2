@@ -1,23 +1,25 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { StockForm } from "../../components/Stock/StockForm/StockForm";
-import { getTypeFoodId, getTypeFoodLabel } from "../../domain/manageFoodType";
+import { getTypeFoodLabel } from "../../domain/manageFoodType";
+import {
+  flushStockItem,
+  storeEditStockItems,
+} from "../../store/stock/stockitem-slice";
 
 //TODO factorize with AddStock
 export function StockEdit() {
   const params = useParams();
+  const dispatch = useDispatch();
+  dispatch(flushStockItem());
 
   const id = parseInt(params.id);
-  var stockLoad = LoadDetail();
-  var stockBdd = stockLoad[0];
+  var stocks = useSelector((store) => store.STOCK.stocks);
+  var stockBdd = stocks.find((item) => item.Id === id);
 
-  function LoadDetail() {
-    var stocks = useSelector((store) => store.STOCK.stocks);
-    return stocks.filter((item) => item.Id === id);
-  }
   const [stock, setStock] = useState(stockBdd);
-
+  dispatch(storeEditStockItems(stockBdd));
   return (
     <StockForm
       stock={stock}

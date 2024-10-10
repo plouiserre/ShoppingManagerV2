@@ -5,10 +5,7 @@ import s from "./style.module.css";
 
 //TODO déplacer dans containers
 export function StockListForm({ stock, setStock }) {
-  //récupérer la liste des stocks
   var stockItems = useSelector((store) => store.STOCKITEM.stockItems);
-  //faire la boucle
-  //valider que ca marche
   return (
     <div className={`${s.stocksSub}`}>
       <div className={`row`}>

@@ -9,6 +9,14 @@ export function StockListItem({ element, clickName, goEditPage }) {
   const dispatch = useDispatch();
   const nameFoodClasses = `${s.cellStockList} ${s.nameFood}`;
   const indiceFoodClasses = `${s.cellStockList} ${s.indexFood}`;
+  const quantity = (function () {
+    var result = 0;
+    element.stockItems.map((item) => {
+      const quantityItem = parseInt(item.Quantity);
+      result += quantityItem;
+    });
+    return result;
+  })();
 
   function deleteStockFromList(element) {
     dispatch(deleteStock(element));
@@ -26,7 +34,7 @@ export function StockListItem({ element, clickName, goEditPage }) {
       <div className={`col-2 ${s.cellStockList}`}>
         <Pictogramme pictoName={element.Type} height={50} width={50} />
       </div>
-      <div className={`col-2 ${indiceFoodClasses}`}>{element.Quantity}</div>
+      <div className={`col-2 ${indiceFoodClasses}`}>{quantity}</div>
       <div className={`col-2 ${s.cellStockList}`}>
         <Status element={element} />
       </div>

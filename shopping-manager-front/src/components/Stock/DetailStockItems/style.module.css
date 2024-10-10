@@ -1,0 +1,27 @@
+.cellList{
+    padding: 30px;
+    font-size: xx-large;
+    text-align: center;
+    border-bottom : 1px solid #d2d7db;
+}
+
+.detailStockItem{
+    padding-top: 20px;
+}
+
+.detailStockId{
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #879efa;
+}
+
+.detailStockItemQuantity{
+    text-align: center;
+    font-size:  28px;
+}
+
+.globalButton{
+    margin-top: 20px;
+    margin-bottom: 20px;
+} 

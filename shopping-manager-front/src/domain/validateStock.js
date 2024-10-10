@@ -47,7 +47,7 @@ function ValidateStockItemDates(stockItems){
         return {isValid :true};
     }
     else{
-        return {isValid : false, errorMessage : "Le date du stock n'est pas valide!"};
+        return {isValid : false, errorMessage : "La date d'un des éléments du stock n'est pas valide!"};
     }
 }
 

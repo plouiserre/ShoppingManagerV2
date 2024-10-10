@@ -48,11 +48,13 @@ export const stockSlice = createSlice({
         deleteExpiredStock:(currentState, action)=>{
             var today = new Date();
             var stockNotExpired = []
-            currentState.stocks.map((item)=>{
-                var datePeremption = new Date(item.DatePeremption)
-                if(today < datePeremption){
-                    stockNotExpired.push(item)
-                }
+            currentState.stocks.map((stock)=>{
+                stock.stockItems.map((item)=>{
+                    var datePeremption = new Date(item.DatePeremption)
+                    if(today < datePeremption){
+                        stockNotExpired.push(item)
+                    }
+                })
             })
             currentState.stocks = stockNotExpired;
         },

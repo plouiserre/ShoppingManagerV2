@@ -81,10 +81,13 @@ export const stockItemSlice = createSlice({
                 newStockItems.push(item)
             })
             currentState.stockItems = newStockItems
+        },
+        storeEditStockItems:(currentState, action)=>{
+            currentState.stockItems = action.payload.stockItems;
         }
     }
 })
 
-const {addStockItemEmpty, completeStockItem, deleteStockItem, flushStockItem, stopCompleteStockItem} = stockItemSlice.actions;
+const {addStockItemEmpty, completeStockItem, deleteStockItem, flushStockItem, stopCompleteStockItem, storeEditStockItems} = stockItemSlice.actions;
 
-export {addStockItemEmpty, completeStockItem, deleteStockItem, flushStockItem, stopCompleteStockItem}
+export {addStockItemEmpty, completeStockItem, deleteStockItem, flushStockItem, stopCompleteStockItem, storeEditStockItems}
