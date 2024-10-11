@@ -47,16 +47,25 @@ export const stockSlice = createSlice({
         },
         deleteExpiredStock:(currentState, action)=>{
             var today = new Date();
-            var stockNotExpired = []
+            var stocksFinal = []
+            var stocksCleans = []
             currentState.stocks.map((stock)=>{
+                var stockItems = []
                 stock.stockItems.map((item)=>{
-                    var datePeremption = new Date(item.DatePeremption)
+                    var datePeremption = new Date(item.DatePeremption);
                     if(today < datePeremption){
-                        stockNotExpired.push(item)
+                        stockItems.push(item);
                     }
                 })
+                var stockClean = {...stock};
+                stockClean.stockItems = stockItems;
+                stocksCleans.push(stockClean);
             })
-            currentState.stocks = stockNotExpired;
+            stocksCleans.map((stock)=>{
+                if(stock.stockItems.length >0)
+                    stocksFinal.push(stock)
+            })
+            currentState.stocks = stocksFinal;
         },
         deleteStock:(currentState, action)=>{
             var newStocks = currentState.stocks.filter((item)=>item.Id !==action.payload.Id);
