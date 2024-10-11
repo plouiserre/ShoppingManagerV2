@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { deleteStock } from "../../../store/stock/stock-slice";
 import { BootstrapIcon } from "../../../components/Reusable/BootstrapIcon/BootstrapIcon";
 
-export function StockListItem({ element, clickName, goEditPage }) {
+export function StockItemList({ element, clickName, goEditPage }) {
   const dispatch = useDispatch();
   const nameFoodClasses = `${s.cellStockList} ${s.nameFood}`;
   const indiceFoodClasses = `${s.cellStockList} ${s.indexFood}`;

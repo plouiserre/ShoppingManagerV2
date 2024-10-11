@@ -4,9 +4,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CustomButton } from "../../components/Reusable/CustomButton/CustomButton";
 import { Status } from "../../components/Reusable/Status/Status";
-import { DetailStockItems } from "../../components/Stock/DetailStockItems/DetailStockItems";
+import { DetailStockItemList } from "../../components/Stock/DetailStockItemList/DetailStockItemList";
 
-export function StockDetail() {
+export function DetailStock() {
   var navigate = useNavigate();
   var params = useParams();
   var id = parseInt(params.id);
@@ -44,7 +44,7 @@ export function StockDetail() {
         <div className={`col-4`}>Quantité</div>
         <div className={`col-4`}>Date de péremption</div>
       </div>
-      <DetailStockItems stockItems={stock.stockItems} />
+      <DetailStockItemList stockItems={stock.stockItems} />
       <div className="row">
         {" "}
         <div className="col-3">

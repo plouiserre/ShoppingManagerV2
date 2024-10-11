@@ -1,5 +1,5 @@
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
-import { StockListForm } from "../StockListForm/StockListForm";
+import { StockFormList } from "../StockFormList/StockFormList";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import s from "./style.module.css";
 import { BootstrapDropdown } from "../../../components/Reusable/BootstrapDropdown/BootstrapDropdown";
@@ -110,7 +110,7 @@ export function StockForm({ stock, setStock, defaultValueTypeStock }) {
           </div>
           <div className="col-2"></div>
         </div>
-        <StockListForm stock={stockWorking} setStock={setStock} key={0} />
+        <StockFormList stock={stockWorking} setStock={setStock} key={0} />
         {visibility && <ErrorMessage messageError={errorMessageContent} />}
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>

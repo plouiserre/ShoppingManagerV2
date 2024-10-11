@@ -9,7 +9,7 @@ import {
 } from "../../store/stock/stockitem-slice";
 
 //TODO factorize with AddStock
-export function StockEdit() {
+export function EditStock() {
   const params = useParams();
   const dispatch = useDispatch();
   dispatch(flushStockItem());

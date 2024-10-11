@@ -2,7 +2,7 @@ import s from "./style.module.css";
 import { getTypeFoodId } from "../../../domain/manageFoodType";
 import { Pictogramme } from "../../Reusable/Pictogramme/Pictogramme";
 
-export function DetailShoppingListItems({ shoppingListItems }) {
+export function DetailShoppingItemList({ shoppingListItems }) {
   return shoppingListItems.map((shoppingListItem) => {
     const foodType = getTypeFoodId(shoppingListItem.type);
     return (

@@ -5,7 +5,7 @@ import { MealDayMoment } from "../../components/Meal/MealDayMoment/MealDayMoment
 import { DetailMealItemList } from "../../components/Meal/DetailMealItemList/DetailMealItemList";
 import { CustomButton } from "../../components/Reusable/CustomButton/CustomButton";
 
-export function MealDetail() {
+export function DetailMeal() {
   var params = useParams();
   var id = parseInt(params.id);
   var mealDetail = LoadDetail(id);

@@ -1,7 +1,7 @@
 import s from "./style.module.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { DetailShoppingListItems } from "../../components/ShoppingList/DetailShoppingListItems/DetailShoppingListItems";
+import { DetailShoppingItemList } from "../../components/ShoppingList/DetailShoppingItemList/DetailShoppingItemList";
 import { CustomButton } from "../../components/Reusable/CustomButton/CustomButton";
 
 export function DetailShoppingList() {
@@ -35,7 +35,7 @@ export function DetailShoppingList() {
         <div className={`col-4`}>Type</div>
         <div className={`col-4`}>Quantité</div>
       </div>
-      <DetailShoppingListItems
+      <DetailShoppingItemList
         shoppingListItems={shoppingListSelected.shoppingListItems}
       />
       <div className="row">

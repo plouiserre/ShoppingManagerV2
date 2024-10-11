@@ -1,6 +1,6 @@
 import s from "./style.module.css";
 
-export function DetailStockItems({ stockItems }) {
+export function DetailStockItemList({ stockItems }) {
   return stockItems.map((stockItem) => {
     return (
       <div className={`row ${s.detailStockItem} ${s.cellList}`}>
