@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import s from "./style.module.css";
 
 //TODO déplacer dans containers
-export function StockFormList({ stock, setStock }) {
+export function StockFormList({ stock }) {
   var stockItems = useSelector((store) => store.STOCKITEM.stockItems);
   return (
     <div className={`${s.stocksSub}`}>
@@ -34,13 +34,7 @@ export function StockFormList({ stock, setStock }) {
       </div>
       {stockItems.map((stockItem) => {
         if (stockItem.statusStockItem !== "Validation") {
-          return (
-            <StockItemForm
-              stockItemWorking={stockItem}
-              stock={stock}
-              setStock={setStock}
-            />
-          );
+          return <StockItemForm stockItemWorking={stockItem} stock={stock} />;
         } else {
           return <StockItemFormComplete stockItemWorking={stockItem} />;
         }

@@ -11,8 +11,7 @@ import { ValidateStock } from "../../../domain/validateStock";
 import { addStock, editStock } from "../../../store/stock/stock-slice";
 import { getTypeFoodId } from "../../../domain/manageFoodType";
 
-//TODO déplacer dans containers
-export function StockForm({ stock, setStock, defaultValueTypeStock }) {
+export function StockForm({ stock, defaultValueTypeStock }) {
   var initStock = stock !== undefined ? stock : {};
   var [stockWorking, setStockWorking] = useState(initStock);
   var dispatch = useDispatch();
@@ -110,7 +109,7 @@ export function StockForm({ stock, setStock, defaultValueTypeStock }) {
           </div>
           <div className="col-2"></div>
         </div>
-        <StockFormList stock={stockWorking} setStock={setStock} key={0} />
+        <StockFormList stock={stockWorking} key={0} />
         {visibility && <ErrorMessage messageError={errorMessageContent} />}
         <div className={`row ${s.lineForm}`}>
           <div className="col-3"></div>
