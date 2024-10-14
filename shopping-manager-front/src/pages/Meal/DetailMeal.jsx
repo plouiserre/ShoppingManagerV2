@@ -24,7 +24,6 @@ export function DetailMeal() {
     navigate("/Meal/");
   }
 
-  //récupérer le bon meal
   return (
     <div className={`container-fluid`}>
       <div className={`row ${s.detailMeal} ${s.titleDetailMeal}`}>

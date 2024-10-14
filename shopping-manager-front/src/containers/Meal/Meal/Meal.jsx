@@ -5,6 +5,7 @@ import { MealDayMoment } from "../../../components/Meal/MealDayMoment/MealDayMom
 import { deleteMeal } from "../../../store/meal/meal-slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { calculateMealStatus } from "../../../domain/meal";
 
 export function Meal({ meal, clickPage }) {
   var dispatch = useDispatch();
@@ -16,6 +17,7 @@ export function Meal({ meal, clickPage }) {
   function editMeal() {
     navigate("/meal/edit/" + meal.id);
   }
+  const status = calculateMealStatus(meal);
   return (
     <div className={`row ${s.cellMealList}`}>
       <div className={`col-3 ${s.idMeal}`} onClick={() => clickPage(meal.id)}>
@@ -23,7 +25,7 @@ export function Meal({ meal, clickPage }) {
       </div>
       <div className={`col-3 ${s.quantityItems}`}>{meal.mealItems.length}</div>
       <div className={`col-2 ${s.statusMeal}`}>
-        <Pictogramme pictoName="ok" height={50} width={50} />{" "}
+        <Pictogramme pictoName={status} height={50} width={50} />{" "}
       </div>
       <div className={`col-3 ${s.actionMeal}`}>
         <BootstrapIcon

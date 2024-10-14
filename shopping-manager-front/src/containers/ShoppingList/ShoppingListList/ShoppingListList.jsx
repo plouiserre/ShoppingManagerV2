@@ -18,7 +18,7 @@ export function ShoppingListList() {
           <div className={`col-3 ${s.cellShoppingListList}`}>Actions</div>
         </div>
         {shoppingLists.map((shoppingList) => {
-          return <ShoppingList shoppingListItem={shoppingList} />;
+          return <ShoppingList shoppingList={shoppingList} />;
         })}
       </div>
       <div className="row">

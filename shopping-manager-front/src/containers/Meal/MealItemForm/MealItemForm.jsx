@@ -12,6 +12,10 @@ import {
   deleteMealItems,
 } from "../../../store/meal/mealItem-slice";
 import { getTypeFoodLabel } from "../../../domain/manageFoodType";
+import {
+  calculateStatusStock,
+  calculateQuantityStock,
+} from "../../../domain/stock";
 
 export function MealItemForm({ mealItemWorking, actionType }) {
   const mealItem = { ...mealItemWorking };
@@ -25,15 +29,16 @@ export function MealItemForm({ mealItemWorking, actionType }) {
   orderedStockName();
   function orderedStockName() {
     stocks.map((stock) => {
-      if (checkStatusNotError(stock)) stocksName.push(stock.Name);
+      if (!IsStockPerished(stock)) stocksName.push(stock.Name);
     });
   }
 
-  function checkStatusNotError(stock) {
-    var peremtion = new Date(stock.DatePeremption);
-    var today = new Date();
-    return today < peremtion;
+  function IsStockPerished(stock) {
+    var status = calculateStatusStock(stock);
+    if (status === "error") return true;
+    else return false;
   }
+
   const [stockWorking, setStockWorking] = useState({});
   const defaultStockType = isEditing ? mealItem.stock.Type : "";
   const [stockType, setStockType] = useState(defaultStockType);
@@ -55,8 +60,8 @@ export function MealItemForm({ mealItemWorking, actionType }) {
   function ValidateMealItem() {
     const stockQuantity =
       isEditing && stockWorking.Name === undefined
-        ? parseInt(mealItem.stock.Quantity)
-        : parseInt(stockWorking.Quantity);
+        ? parseInt(calculateQuantityStock(mealItem.stock))
+        : parseInt(calculateQuantityStock(stockWorking));
     const mealItemQuantity = parseInt(mealItem.quantity);
     if (stockWorking.Name === undefined && mealItem.stock.Name === undefined) {
       setErrorMessageVisibility(true);

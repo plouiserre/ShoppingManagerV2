@@ -17,9 +17,7 @@ export function DetailMealItem({ mealItem }) {
               width={50}
             />
           </div>
-          <div className={`col-3  ${s.cellList}`}>
-            {mealItem.stock.Quantity}
-          </div>
+          <div className={`col-3  ${s.cellList}`}>{mealItem.quantity}</div>
           <div className={`col-3 ${s.cellList}`}>
             <Status element={mealItem.stock} />
           </div>
