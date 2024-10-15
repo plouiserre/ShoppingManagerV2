@@ -1,24 +1,20 @@
 import { useEffect, useState } from "react";
 import { Pictogramme } from "../Pictogramme/Pictogramme";
-//TODO externalize the code of check status in a centralized class
+import { calculateStatusStock } from "../../../domain/stock";
+
 export function Status({ element }) {
-  const [status, setStatus] = useState();
   useEffect(() => {
-    var peremtion = new Date(element.DatePeremption);
-    var today = new Date();
-    if (peremtion < today) {
-      setStatus("error");
-    } else {
-      var diffTime = Math.abs(peremtion - today);
-      var diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays < 2) setStatus("warning");
-      else setStatus("ok");
-    }
+    var status = calculateStatusStock(element);
+    setStatus(status);
   }, [element]);
+
+  const [status, setStatus] = useState();
 
   return (
     <>
-      <Pictogramme pictoName={status} height={50} width={50} />
+      {element !== undefined && element.stockItems !== undefined && (
+        <Pictogramme pictoName={status} height={50} width={50} />
+      )}
     </>
   );
 }

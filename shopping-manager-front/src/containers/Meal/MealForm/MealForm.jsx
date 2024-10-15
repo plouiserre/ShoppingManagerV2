@@ -2,7 +2,7 @@ import s from "./style.module.css";
 import { CustomButton } from "../../../components/Reusable/CustomButton/CustomButton";
 import { BootstrapDropdown } from "../../../components/Reusable/BootstrapDropdown/BootstrapDropdown";
 import { useState } from "react";
-import { MealItemListForm } from "../MealItemListForm/MealItemListForm";
+import { MealItemFormList } from "../MealItemFormList/MealItemFormList";
 import { useDispatch, useSelector } from "react-redux";
 import { ErrorMessage } from "../../../components/Global/ErrorMessage/ErrorMessage";
 import { addMealItemsEmpty } from "../../../store/meal/mealItem-slice";
@@ -192,7 +192,7 @@ export function MealForm({ actionType }) {
           </div>
           <div className="col-2"></div>
         </div>
-        <MealItemListForm actionType={actionType} />
+        <MealItemFormList actionType={actionType} />
         {errorMessageVisibility && (
           <ErrorMessage messageError={errorMessageValue} />
         )}

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { MealItemFormComplete } from "../MealItemForm/MealItemFormComplete";
 import s from "./style.module.css";
 
-export function MealItemListForm({ actionType }) {
+export function MealItemFormList() {
   const mealItems = useSelector((store) => store.MEALITEM.mealItems);
 
   return (
@@ -52,11 +52,7 @@ export function MealItemListForm({ actionType }) {
           );
         } else {
           return (
-            <MealItemForm
-              mealItemWorking={mealItem}
-              key={mealItem.iteration}
-              actionType={actionType}
-            />
+            <MealItemForm mealItemWorking={mealItem} key={mealItem.iteration} />
           );
         }
       })}

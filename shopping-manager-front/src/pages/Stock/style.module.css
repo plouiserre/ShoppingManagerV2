@@ -22,6 +22,16 @@
     padding-top: 40px;
 }
 
+.headerStockItems{
+    text-align: center;
+    color: #676565;
+    font-size: 24px;
+    font-weight: 500;
+    border-bottom: 1px solid #d7d9e1 ;
+    margin-top: 60px;
+    padding-bottom: 30px;
+}
+
 .typeStock{
     display: flex;
     justify-content: center;

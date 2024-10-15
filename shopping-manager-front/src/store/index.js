@@ -1,5 +1,6 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
 import storage from "redux-persist/lib/storage"
+import { stockItemSlice } from "./stock/stockitem-slice"
 import { stockSlice } from "./stock/stock-slice"
 import { mealSlice } from "./meal/meal-slice"
 import { persistStore, persistReducer, 
@@ -22,6 +23,7 @@ const persistConfig = {
 
 const rootReducers = combineReducers({
     STOCK : stockSlice.reducer,
+    STOCKITEM : stockItemSlice.reducer,
     MEAL : mealSlice.reducer, 
     MEALITEM : mealItemSlice.reducer,
     SHOPPINGLIST : shoppingListSlice.reducer,

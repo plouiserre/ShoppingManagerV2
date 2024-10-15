@@ -8,7 +8,7 @@ import {
 } from "../../store/meal/mealItem-slice";
 
 //TODO try to rework the utility of storeEditMealItems because it is need on MealForm.jsx
-export function MealEdit() {
+export function EditMeal() {
   var params = useParams();
   var id = parseInt(params.id);
   var dispatch = useDispatch();

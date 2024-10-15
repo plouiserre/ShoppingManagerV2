@@ -3,42 +3,42 @@ import { BootstrapIcon } from "../../../components/Reusable/BootstrapIcon/Bootst
 import { deleteShoppingList } from "../../../store/list/shoppingList-slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { calculateShoppingListQuantity } from "../../../domain/shoppingList";
 
-export function ShoppingList({ shoppingListItem }) {
+export function ShoppingList({ shoppingList }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const quantity = calculateShoppingListQuantity(shoppingList);
 
   function deleteShoppingListAction() {
-    dispatch(deleteShoppingList(shoppingListItem));
+    dispatch(deleteShoppingList(shoppingList));
   }
   return (
     <div className={`row ${s.cellShoppingListList}`}>
-      <div className={`col-2 ${s.idShoppingList}`}>{shoppingListItem.id}</div>
+      <div className={`col-2 ${s.idShoppingList}`}>{shoppingList.id}</div>
       <div
         className={`col-3 ${s.nameShoppingList}`}
-        onClick={() => navigate("/ShoppingList/" + shoppingListItem.id)}
+        onClick={() => navigate("/ShoppingList/" + shoppingList.id)}
       >
-        {shoppingListItem.Name}
+        {shoppingList.Name}
       </div>
       <div className={`col-2 ${s.statusShoppingList}`}>
-        {shoppingListItem.status}
+        {shoppingList.status}
       </div>
-      <div className={`col-2 ${s.ShoppingListItems}`}>
-        {shoppingListItem.shoppingListItems.length}
-      </div>
+      <div className={`col-2 ${s.ShoppingListItems}`}>{quantity}</div>
       <div className={`col-3 ${s.actionsShoppingList}`}>
         {" "}
         <BootstrapIcon
           cssClass={"bi bi-trash btn btn-outline-danger"}
           onClickAction={() => deleteShoppingListAction()}
-          param={shoppingListItem}
+          param={shoppingList}
         />
         <BootstrapIcon
           cssClass={"bi bi-pencil-square btn btn-success"}
           onClickAction={() =>
-            navigate("/ShoppingList/edit/" + shoppingListItem.id)
+            navigate("/ShoppingList/edit/" + shoppingList.id)
           }
-          param={shoppingListItem.id}
+          param={shoppingList.id}
         />
       </div>
     </div>
