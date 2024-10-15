@@ -1,5 +1,5 @@
 import s from "./style.module.css";
-import { StockItemList } from "../../../containers/Stock/StockItemList/StockItemList";
+import { Stock } from "../Stock/Stock";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -28,7 +28,7 @@ export function StockList() {
         </div>
         {stocks.map((stock) => {
           return (
-            <StockItemList
+            <Stock
               element={stock}
               clickName={clickStockElement}
               goEditPage={goEditPage}
