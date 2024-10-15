@@ -46,20 +46,6 @@ export const mealItemSlice = createSlice({
                     statusMeal : "Creation"              
             })
         },
-        completeMealItemExistingMeal:(currentState, action)=>{
-            var newMealItems = []
-            
-            currentState.mealItems.map((item)=>{
-                if(item.id !== action.payload.id){
-                    newMealItems.push(item)
-                }else{
-                    var newItem = action.payload
-                    newItem.statusMeal = "Validation"
-                    newMealItems.push(newItem)
-                }
-            })
-            currentState.mealItems = newMealItems
-        },
         completeMealItemNewMeal:(currentState, action)=>{
             var newMealItems = []
             currentState.mealItems.map((item)=>{
@@ -96,6 +82,6 @@ export const mealItemSlice = createSlice({
     }
 })
 
-const {addMealItems, addMealItemsEmpty, completeMealItemExistingMeal, completeMealItemNewMeal, deleteMealItems, flushMealItem, stopCompleteMealItem, storeEditMealItems} = mealItemSlice.actions;
+const {addMealItems, addMealItemsEmpty, completeMealItemNewMeal, deleteMealItems, flushMealItem, stopCompleteMealItem, storeEditMealItems} = mealItemSlice.actions;
 
-export {addMealItems, addMealItemsEmpty,completeMealItemExistingMeal, completeMealItemNewMeal, deleteMealItems, flushMealItem, stopCompleteMealItem, storeEditMealItems}
+export {addMealItems, addMealItemsEmpty,completeMealItemNewMeal, deleteMealItems, flushMealItem, stopCompleteMealItem, storeEditMealItems}

@@ -17,7 +17,7 @@ import {
   calculateQuantityStock,
 } from "../../../domain/stock";
 
-export function MealItemForm({ mealItemWorking, actionType }) {
+export function MealItemForm({ mealItemWorking }) {
   const mealItem = { ...mealItemWorking };
   const isEditing = mealItem.stock.Name !== undefined ? true : false;
   const dispatch = useDispatch();
@@ -82,11 +82,7 @@ export function MealItemForm({ mealItemWorking, actionType }) {
       setErrorMessageVisibility(false);
       const newMealItem = { ...mealItem };
       if (stockWorking.Name !== undefined) newMealItem.stock = stockWorking;
-      if (actionType == "Add") {
-        dispatch(completeMealItemNewMeal(newMealItem));
-      } else if (actionType == "Edit") {
-        dispatch(completeMealItemExistingMeal(newMealItem));
-      }
+      dispatch(completeMealItemNewMeal(newMealItem));
     }
   }
 
